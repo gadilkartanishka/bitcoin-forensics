@@ -24,7 +24,9 @@ for i in range(200):
         "input_amounts": [round(random.uniform(0.001, 5), 6) for _ in range(random.randint(1,3))],
         "output_amounts": [round(random.uniform(0.001, 5), 6) for _ in range(random.randint(1,3))],
         "geo_country": "",
-        "asn": ""
+        "asn": "",
+        "fee": round(random.uniform(0.00001, 0.0005), 8),
+        "script_type": random.choice(["P2PKH", "P2SH", "P2WPKH", "P2WSH"]),
     })
 
 # CSV version (flatten lists to pipe-separated strings, common real-world quirk)

@@ -1,6 +1,6 @@
 [
   {
-    "timestamp":"2024-01-01 00:00:00",
+    "timestamp":"2024-01-01 00:00:00 UTC",
     "src_ip":"164.57.12.140",
     "dst_ip":"63.114.71.52",
     "src_port":45372,
@@ -28,10 +28,16 @@
     ],
     "geo_country":null,
     "asn":null,
-    "flag_amount_mismatch":false
+    "flag_amount_mismatch":false,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":"United States",
+    "dst_asn":"AS701"
   },
   {
-    "timestamp":"2024-01-01 00:07:00",
+    "timestamp":"2024-01-01 00:07:00 UTC",
     "src_ip":"85.36.121.142",
     "dst_ip":"172.248.109.67",
     "src_port":48429,
@@ -54,12 +60,18 @@
       2.728406,
       4.173141
     ],
-    "geo_country":"Italy",
-    "asn":"AS3269",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Italy",
+    "src_asn":"AS3269",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS20001"
   },
   {
-    "timestamp":"2024-01-01 00:14:00",
+    "timestamp":"2024-01-01 00:14:00 UTC",
     "src_ip":"150.75.220.65",
     "dst_ip":"11.157.186.20",
     "src_port":59935,
@@ -81,10 +93,16 @@
     ],
     "geo_country":null,
     "asn":null,
-    "flag_amount_mismatch":true
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":"United States",
+    "dst_asn":"AS749"
   },
   {
-    "timestamp":"2024-01-01 00:21:00",
+    "timestamp":"2024-01-01 00:21:00 UTC",
     "src_ip":"182.223.0.100",
     "dst_ip":"94.220.35.169",
     "src_port":41863,
@@ -107,12 +125,18 @@
       4.267386,
       4.767198
     ],
-    "geo_country":"South Korea",
-    "asn":"AS17858",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"South Korea",
+    "src_asn":"AS17858",
+    "dst_geo_country":"Germany",
+    "dst_asn":"AS3209"
   },
   {
-    "timestamp":"2024-01-01 00:28:00",
+    "timestamp":"2024-01-01 00:28:00 UTC",
     "src_ip":"108.112.249.112",
     "dst_ip":"70.223.248.14",
     "src_port":26508,
@@ -136,12 +160,18 @@
       2.394092,
       1.704189
     ],
-    "geo_country":"United States",
-    "asn":"AS16509",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS16509",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS22394"
   },
   {
-    "timestamp":"2024-01-01 00:35:00",
+    "timestamp":"2024-01-01 00:35:00 UTC",
     "src_ip":"14.129.244.58",
     "dst_ip":"211.33.205.251",
     "src_port":5879,
@@ -165,12 +195,18 @@
       1.219411,
       2.756774
     ],
-    "geo_country":"South Korea",
-    "asn":"AS46003",
-    "flag_amount_mismatch":false
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":false,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"South Korea",
+    "src_asn":"AS46003",
+    "dst_geo_country":"South Korea",
+    "dst_asn":"AS4766"
   },
   {
-    "timestamp":"2024-01-01 00:42:00",
+    "timestamp":"2024-01-01 00:42:00 UTC",
     "src_ip":"99.97.69.35",
     "dst_ip":"71.212.174.136",
     "src_port":54799,
@@ -192,12 +228,18 @@
     "output_amounts":[
       0.451577
     ],
-    "geo_country":"United States",
-    "asn":"AS7018",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS7018",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS209"
   },
   {
-    "timestamp":"2024-01-01 00:49:00",
+    "timestamp":"2024-01-01 00:49:00 UTC",
     "src_ip":"76.167.212.89",
     "dst_ip":"52.67.187.139",
     "src_port":55449,
@@ -219,12 +261,18 @@
       2.241928,
       1.810833
     ],
-    "geo_country":"United States",
-    "asn":"AS20001",
-    "flag_amount_mismatch":false
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":false,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS20001",
+    "dst_geo_country":"Brazil",
+    "dst_asn":"AS16509"
   },
   {
-    "timestamp":"2024-01-01 00:56:00",
+    "timestamp":"2024-01-01 00:56:00 UTC",
     "src_ip":"152.55.231.113",
     "dst_ip":"158.22.154.234",
     "src_port":43185,
@@ -244,12 +292,18 @@
       0.518899,
       2.537555
     ],
-    "geo_country":"United States",
-    "asn":"AS32798",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS32798",
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 01:03:00",
+    "timestamp":"2024-01-01 01:03:00 UTC",
     "src_ip":"40.246.114.55",
     "dst_ip":"90.188.58.142",
     "src_port":38648,
@@ -273,10 +327,16 @@
     ],
     "geo_country":null,
     "asn":null,
-    "flag_amount_mismatch":true
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":"Russia",
+    "dst_asn":"AS12389"
   },
   {
-    "timestamp":"2024-01-01 01:10:00",
+    "timestamp":"2024-01-01 01:10:00 UTC",
     "src_ip":"151.205.40.202",
     "dst_ip":"223.158.173.113",
     "src_port":22851,
@@ -298,12 +358,18 @@
       0.960834,
       4.999883
     ],
-    "geo_country":"United States",
-    "asn":"AS3372",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS3372",
+    "dst_geo_country":"China",
+    "dst_asn":"AS4134"
   },
   {
-    "timestamp":"2024-01-01 01:17:00",
+    "timestamp":"2024-01-01 01:17:00 UTC",
     "src_ip":"40.39.151.51",
     "dst_ip":"130.19.172.67",
     "src_port":40165,
@@ -322,12 +388,18 @@
     "output_amounts":[
       4.196042
     ],
-    "geo_country":"United States",
-    "asn":"AS8987",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS8987",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS2013"
   },
   {
-    "timestamp":"2024-01-01 01:24:00",
+    "timestamp":"2024-01-01 01:24:00 UTC",
     "src_ip":"167.171.74.70",
     "dst_ip":"10.146.241.71",
     "src_port":50755,
@@ -348,12 +420,18 @@
       1.695844,
       0.934899
     ],
-    "geo_country":"United States",
-    "asn":"AS11101",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS11101",
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 01:31:00",
+    "timestamp":"2024-01-01 01:31:00 UTC",
     "src_ip":"178.254.188.136",
     "dst_ip":"206.42.217.40",
     "src_port":29244,
@@ -373,12 +451,18 @@
     "output_amounts":[
       2.260761
     ],
-    "geo_country":"Serbia",
-    "asn":"AS9125",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Serbia",
+    "src_asn":"AS9125",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS174"
   },
   {
-    "timestamp":"2024-01-01 01:38:00",
+    "timestamp":"2024-01-01 01:38:00 UTC",
     "src_ip":"183.227.44.163",
     "dst_ip":"171.177.33.148",
     "src_port":59438,
@@ -398,12 +482,18 @@
     "output_amounts":[
       0.791244
     ],
-    "geo_country":"China",
-    "asn":"AS9808",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"China",
+    "src_asn":"AS9808",
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 01:45:00",
+    "timestamp":"2024-01-01 01:45:00 UTC",
     "src_ip":"107.247.237.104",
     "dst_ip":"88.73.160.163",
     "src_port":49140,
@@ -425,10 +515,16 @@
     ],
     "geo_country":null,
     "asn":null,
-    "flag_amount_mismatch":false
+    "flag_amount_mismatch":false,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":"Germany",
+    "dst_asn":"AS3209"
   },
   {
-    "timestamp":"2024-01-01 01:52:00",
+    "timestamp":"2024-01-01 01:52:00 UTC",
     "src_ip":"173.56.213.157",
     "dst_ip":"204.13.242.135",
     "src_port":64401,
@@ -450,12 +546,18 @@
     "output_amounts":[
       2.32751
     ],
-    "geo_country":"United States",
-    "asn":"AS701",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS701",
+    "dst_geo_country":"Saint Vincent and the Grenadines",
+    "dst_asn":"AS46408"
   },
   {
-    "timestamp":"2024-01-01 01:59:00",
+    "timestamp":"2024-01-01 01:59:00 UTC",
     "src_ip":"41.207.159.60",
     "dst_ip":"164.151.188.113",
     "src_port":15384,
@@ -475,12 +577,18 @@
       0.776452,
       0.943214
     ],
-    "geo_country":"Mauritius",
-    "asn":"AS36868",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Mauritius",
+    "src_asn":"AS36868",
+    "dst_geo_country":"South Africa",
+    "dst_asn":"AS37130"
   },
   {
-    "timestamp":"2024-01-01 02:06:00",
+    "timestamp":"2024-01-01 02:06:00 UTC",
     "src_ip":"186.57.16.214",
     "dst_ip":"158.8.123.105",
     "src_port":5433,
@@ -502,12 +610,18 @@
       2.849378,
       1.229404
     ],
-    "geo_country":"Argentina",
-    "asn":"AS22927",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Argentina",
+    "src_asn":"AS22927",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS5180"
   },
   {
-    "timestamp":"2024-01-01 02:13:00",
+    "timestamp":"2024-01-01 02:13:00 UTC",
     "src_ip":"141.172.131.250",
     "dst_ip":"186.251.235.86",
     "src_port":49046,
@@ -527,12 +641,18 @@
       0.079275,
       1.036583
     ],
-    "geo_country":"Finland",
-    "asn":"AS29601",
-    "flag_amount_mismatch":false
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":false,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Finland",
+    "src_asn":"AS29601",
+    "dst_geo_country":"Brazil",
+    "dst_asn":"AS53229"
   },
   {
-    "timestamp":"2024-01-01 02:20:00",
+    "timestamp":"2024-01-01 02:20:00 UTC",
     "src_ip":"37.203.39.153",
     "dst_ip":"42.123.199.169",
     "src_port":26179,
@@ -552,12 +672,18 @@
     "output_amounts":[
       3.426895
     ],
-    "geo_country":"Latvia",
-    "asn":"AS12993",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Latvia",
+    "src_asn":"AS12993",
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 02:27:00",
+    "timestamp":"2024-01-01 02:27:00 UTC",
     "src_ip":"44.71.137.154",
     "dst_ip":"69.252.74.32",
     "src_port":11982,
@@ -581,12 +707,18 @@
       0.023246,
       1.074766
     ],
-    "geo_country":"United States",
-    "asn":"AS7377",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS7377",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS7922"
   },
   {
-    "timestamp":"2024-01-01 02:34:00",
+    "timestamp":"2024-01-01 02:34:00 UTC",
     "src_ip":"72.32.52.95",
     "dst_ip":"94.166.100.234",
     "src_port":8492,
@@ -608,12 +740,18 @@
       4.330528,
       1.249137
     ],
-    "geo_country":"United States",
-    "asn":"AS33070",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS33070",
+    "dst_geo_country":"Italy",
+    "dst_asn":"AS1267"
   },
   {
-    "timestamp":"2024-01-01 02:41:00",
+    "timestamp":"2024-01-01 02:41:00 UTC",
     "src_ip":"183.164.126.201",
     "dst_ip":"126.72.137.212",
     "src_port":25611,
@@ -637,12 +775,18 @@
       1.028023,
       3.035027
     ],
-    "geo_country":"China",
-    "asn":"AS4134",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"China",
+    "src_asn":"AS4134",
+    "dst_geo_country":"Japan",
+    "dst_asn":"AS17676"
   },
   {
-    "timestamp":"2024-01-01 02:48:00",
+    "timestamp":"2024-01-01 02:48:00 UTC",
     "src_ip":"49.200.151.27",
     "dst_ip":"201.122.253.197",
     "src_port":8412,
@@ -664,12 +808,18 @@
       1.142794,
       2.544616
     ],
-    "geo_country":"India",
-    "asn":"AS45820",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"India",
+    "src_asn":"AS45820",
+    "dst_geo_country":"Mexico",
+    "dst_asn":"AS8151"
   },
   {
-    "timestamp":"2024-01-01 02:55:00",
+    "timestamp":"2024-01-01 02:55:00 UTC",
     "src_ip":"12.6.125.23",
     "dst_ip":"121.186.196.76",
     "src_port":12752,
@@ -692,12 +842,18 @@
       4.273152,
       2.780213
     ],
-    "geo_country":"United States",
-    "asn":"AS7018",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS7018",
+    "dst_geo_country":"South Korea",
+    "dst_asn":"AS4766"
   },
   {
-    "timestamp":"2024-01-01 03:02:00",
+    "timestamp":"2024-01-01 03:02:00 UTC",
     "src_ip":"141.127.48.236",
     "dst_ip":"27.71.62.6",
     "src_port":5065,
@@ -716,12 +872,18 @@
     "output_amounts":[
       0.147488
     ],
-    "geo_country":"Finland",
-    "asn":"AS719",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Finland",
+    "src_asn":"AS719",
+    "dst_geo_country":"Vietnam",
+    "dst_asn":"AS7552"
   },
   {
-    "timestamp":"2024-01-01 03:09:00",
+    "timestamp":"2024-01-01 03:09:00 UTC",
     "src_ip":"208.143.29.241",
     "dst_ip":"136.183.119.81",
     "src_port":7586,
@@ -744,10 +906,16 @@
     ],
     "geo_country":null,
     "asn":null,
-    "flag_amount_mismatch":true
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":"United States",
+    "dst_asn":"AS19933"
   },
   {
-    "timestamp":"2024-01-01 03:16:00",
+    "timestamp":"2024-01-01 03:16:00 UTC",
     "src_ip":"97.51.245.115",
     "dst_ip":"42.231.37.17",
     "src_port":20351,
@@ -768,12 +936,18 @@
     "output_amounts":[
       4.746325
     ],
-    "geo_country":"United States",
-    "asn":"AS22394",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS22394",
+    "dst_geo_country":"China",
+    "dst_asn":"AS4837"
   },
   {
-    "timestamp":"2024-01-01 03:23:00",
+    "timestamp":"2024-01-01 03:23:00 UTC",
     "src_ip":"115.88.85.108",
     "dst_ip":"207.98.64.21",
     "src_port":28770,
@@ -795,12 +969,18 @@
     "output_amounts":[
       3.388799
     ],
-    "geo_country":"South Korea",
-    "asn":"AS3786",
-    "flag_amount_mismatch":false
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":false,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"South Korea",
+    "src_asn":"AS3786",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS3701"
   },
   {
-    "timestamp":"2024-01-01 03:30:00",
+    "timestamp":"2024-01-01 03:30:00 UTC",
     "src_ip":"69.209.10.4",
     "dst_ip":"122.67.88.4",
     "src_port":15688,
@@ -823,12 +1003,18 @@
       0.32737,
       0.229546
     ],
-    "geo_country":"United States",
-    "asn":"AS7018",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS7018",
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 03:37:00",
+    "timestamp":"2024-01-01 03:37:00 UTC",
     "src_ip":"75.233.172.222",
     "dst_ip":"176.68.175.250",
     "src_port":24567,
@@ -849,12 +1035,18 @@
       0.553044,
       2.87119
     ],
-    "geo_country":"United States",
-    "asn":"AS6167",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS6167",
+    "dst_geo_country":"Sweden",
+    "dst_asn":"AS1257"
   },
   {
-    "timestamp":"2024-01-01 03:44:00",
+    "timestamp":"2024-01-01 03:44:00 UTC",
     "src_ip":"127.76.46.38",
     "dst_ip":"186.51.131.118",
     "src_port":30957,
@@ -880,10 +1072,16 @@
     ],
     "geo_country":null,
     "asn":null,
-    "flag_amount_mismatch":true
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":"Uruguay",
+    "dst_asn":"AS6057"
   },
   {
-    "timestamp":"2024-01-01 03:51:00",
+    "timestamp":"2024-01-01 03:51:00 UTC",
     "src_ip":"210.114.232.169",
     "dst_ip":"144.242.186.231",
     "src_port":8496,
@@ -906,12 +1104,18 @@
       1.122313,
       3.23595
     ],
-    "geo_country":"South Korea",
-    "asn":"AS4670",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"South Korea",
+    "src_asn":"AS4670",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS749"
   },
   {
-    "timestamp":"2024-01-01 03:58:00",
+    "timestamp":"2024-01-01 03:58:00 UTC",
     "src_ip":"100.121.147.24",
     "dst_ip":"98.198.213.160",
     "src_port":64320,
@@ -933,10 +1137,16 @@
     ],
     "geo_country":null,
     "asn":null,
-    "flag_amount_mismatch":true
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":"United States",
+    "dst_asn":"AS7922"
   },
   {
-    "timestamp":"2024-01-01 04:05:00",
+    "timestamp":"2024-01-01 04:05:00 UTC",
     "src_ip":"22.49.85.3",
     "dst_ip":"161.33.107.109",
     "src_port":57709,
@@ -961,12 +1171,18 @@
       4.470036,
       2.698846
     ],
-    "geo_country":"United States",
-    "asn":"AS749",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS749",
+    "dst_geo_country":"Australia",
+    "dst_asn":"AS31898"
   },
   {
-    "timestamp":"2024-01-01 04:12:00",
+    "timestamp":"2024-01-01 04:12:00 UTC",
     "src_ip":"168.76.187.200",
     "dst_ip":"58.148.68.237",
     "src_port":33865,
@@ -986,12 +1202,18 @@
       2.997188,
       2.81846
     ],
-    "geo_country":"South Africa",
-    "asn":"AS137951",
-    "flag_amount_mismatch":false
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":false,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"South Africa",
+    "src_asn":"AS137951",
+    "dst_geo_country":"South Korea",
+    "dst_asn":"AS17858"
   },
   {
-    "timestamp":"2024-01-01 04:19:00",
+    "timestamp":"2024-01-01 04:19:00 UTC",
     "src_ip":"5.145.43.110",
     "dst_ip":"115.241.246.87",
     "src_port":15400,
@@ -1013,12 +1235,18 @@
       3.898585,
       1.766285
     ],
-    "geo_country":"Switzerland",
-    "asn":"AS15600",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Switzerland",
+    "src_asn":"AS15600",
+    "dst_geo_country":"India",
+    "dst_asn":"AS55836"
   },
   {
-    "timestamp":"2024-01-01 04:26:00",
+    "timestamp":"2024-01-01 04:26:00 UTC",
     "src_ip":"102.207.102.7",
     "dst_ip":"189.35.46.145",
     "src_port":48612,
@@ -1042,12 +1270,18 @@
       1.255619,
       4.292651
     ],
-    "geo_country":"South Africa",
-    "asn":"AS328333",
-    "flag_amount_mismatch":false
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":false,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"South Africa",
+    "src_asn":"AS328333",
+    "dst_geo_country":"Brazil",
+    "dst_asn":"AS28573"
   },
   {
-    "timestamp":"2024-01-01 04:33:00",
+    "timestamp":"2024-01-01 04:33:00 UTC",
     "src_ip":"13.203.50.83",
     "dst_ip":"16.110.130.243",
     "src_port":56006,
@@ -1069,12 +1303,18 @@
       2.954564,
       2.283261
     ],
-    "geo_country":"India",
-    "asn":"AS16509",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"India",
+    "src_asn":"AS16509",
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 04:40:00",
+    "timestamp":"2024-01-01 04:40:00 UTC",
     "src_ip":"192.222.158.177",
     "dst_ip":"124.116.45.226",
     "src_port":21200,
@@ -1097,12 +1337,18 @@
       1.791479,
       0.674526
     ],
-    "geo_country":"Canada",
-    "asn":"AS1403",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Canada",
+    "src_asn":"AS1403",
+    "dst_geo_country":"China",
+    "dst_asn":"AS4134"
   },
   {
-    "timestamp":"2024-01-01 04:47:00",
+    "timestamp":"2024-01-01 04:47:00 UTC",
     "src_ip":"11.248.224.150",
     "dst_ip":"139.250.97.95",
     "src_port":36650,
@@ -1124,12 +1370,18 @@
       4.414237,
       0.83488
     ],
-    "geo_country":"United States",
-    "asn":"AS749",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS749",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS749"
   },
   {
-    "timestamp":"2024-01-01 04:54:00",
+    "timestamp":"2024-01-01 04:54:00 UTC",
     "src_ip":"47.205.172.80",
     "dst_ip":"137.226.180.161",
     "src_port":37074,
@@ -1151,12 +1403,18 @@
     "output_amounts":[
       1.526285
     ],
-    "geo_country":"United States",
-    "asn":"AS5650",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS5650",
+    "dst_geo_country":"Germany",
+    "dst_asn":"AS47610"
   },
   {
-    "timestamp":"2024-01-01 05:01:00",
+    "timestamp":"2024-01-01 05:01:00 UTC",
     "src_ip":"121.11.169.107",
     "dst_ip":"190.108.104.132",
     "src_port":36990,
@@ -1179,12 +1437,18 @@
       4.919169,
       0.197219
     ],
-    "geo_country":"China",
-    "asn":"AS4134",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"China",
+    "src_asn":"AS4134",
+    "dst_geo_country":"Brazil",
+    "dst_asn":"AS28258"
   },
   {
-    "timestamp":"2024-01-01 05:08:00",
+    "timestamp":"2024-01-01 05:08:00 UTC",
     "src_ip":"100.25.97.149",
     "dst_ip":"113.203.155.146",
     "src_port":31258,
@@ -1206,12 +1470,18 @@
       4.968682,
       0.807515
     ],
-    "geo_country":"United States",
-    "asn":"AS14618",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS14618",
+    "dst_geo_country":"Spain",
+    "dst_asn":"AS12479"
   },
   {
-    "timestamp":"2024-01-01 05:15:00",
+    "timestamp":"2024-01-01 05:15:00 UTC",
     "src_ip":"73.90.233.184",
     "dst_ip":"10.47.153.165",
     "src_port":25178,
@@ -1232,12 +1502,18 @@
     "output_amounts":[
       1.871704
     ],
-    "geo_country":"United States",
-    "asn":"AS7922",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS7922",
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 05:22:00",
+    "timestamp":"2024-01-01 05:22:00 UTC",
     "src_ip":"10.103.47.227",
     "dst_ip":"130.12.247.78",
     "src_port":13489,
@@ -1261,10 +1537,16 @@
     ],
     "geo_country":null,
     "asn":null,
-    "flag_amount_mismatch":true
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 05:29:00",
+    "timestamp":"2024-01-01 05:29:00 UTC",
     "src_ip":"153.194.167.253",
     "dst_ip":"166.31.46.111",
     "src_port":54569,
@@ -1287,12 +1569,18 @@
       0.072001,
       0.558635
     ],
-    "geo_country":"Japan",
-    "asn":"AS4713",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Japan",
+    "src_asn":"AS4713",
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 05:36:00",
+    "timestamp":"2024-01-01 05:36:00 UTC",
     "src_ip":"45.77.228.189",
     "dst_ip":"207.89.133.120",
     "src_port":32803,
@@ -1312,12 +1600,18 @@
     "output_amounts":[
       3.051899
     ],
-    "geo_country":"United Kingdom",
-    "asn":"AS20473",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United Kingdom",
+    "src_asn":"AS20473",
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 05:43:00",
+    "timestamp":"2024-01-01 05:43:00 UTC",
     "src_ip":"46.251.55.73",
     "dst_ip":"139.220.111.54",
     "src_port":60832,
@@ -1341,12 +1635,18 @@
       4.182299,
       3.965715
     ],
-    "geo_country":"Lithuania",
-    "asn":"AS21412",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Lithuania",
+    "src_asn":"AS21412",
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 05:50:00",
+    "timestamp":"2024-01-01 05:50:00 UTC",
     "src_ip":"196.23.88.171",
     "dst_ip":"17.61.140.72",
     "src_port":50670,
@@ -1369,12 +1669,18 @@
       4.527985,
       2.891029
     ],
-    "geo_country":"South Africa",
-    "asn":"AS3741",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"South Africa",
+    "src_asn":"AS3741",
+    "dst_geo_country":"Denmark",
+    "dst_asn":"AS714"
   },
   {
-    "timestamp":"2024-01-01 05:57:00",
+    "timestamp":"2024-01-01 05:57:00 UTC",
     "src_ip":"142.117.44.210",
     "dst_ip":"220.250.110.242",
     "src_port":55876,
@@ -1397,12 +1703,18 @@
       2.431256,
       3.329611
     ],
-    "geo_country":"Canada",
-    "asn":"AS577",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Canada",
+    "src_asn":"AS577",
+    "dst_geo_country":"China",
+    "dst_asn":"AS4837"
   },
   {
-    "timestamp":"2024-01-01 06:04:00",
+    "timestamp":"2024-01-01 06:04:00 UTC",
     "src_ip":"136.227.234.155",
     "dst_ip":"146.67.156.87",
     "src_port":52749,
@@ -1424,12 +1736,18 @@
       1.931177,
       0.061942
     ],
-    "geo_country":"United States",
-    "asn":"AS23089",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS23089",
+    "dst_geo_country":"Switzerland",
+    "dst_asn":"AS8803"
   },
   {
-    "timestamp":"2024-01-01 06:11:00",
+    "timestamp":"2024-01-01 06:11:00 UTC",
     "src_ip":"89.179.157.228",
     "dst_ip":"144.44.110.227",
     "src_port":49620,
@@ -1450,12 +1768,18 @@
     "output_amounts":[
       0.389599
     ],
-    "geo_country":"Russia",
-    "asn":"AS8402",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Russia",
+    "src_asn":"AS8402",
+    "dst_geo_country":"The Netherlands",
+    "dst_asn":"AS1136"
   },
   {
-    "timestamp":"2024-01-01 06:18:00",
+    "timestamp":"2024-01-01 06:18:00 UTC",
     "src_ip":"199.247.220.21",
     "dst_ip":"51.55.16.30",
     "src_port":31765,
@@ -1474,12 +1798,18 @@
     "output_amounts":[
       0.324487
     ],
-    "geo_country":"Canada",
-    "asn":"AS22867",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Canada",
+    "src_asn":"AS22867",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS8070"
   },
   {
-    "timestamp":"2024-01-01 06:25:00",
+    "timestamp":"2024-01-01 06:25:00 UTC",
     "src_ip":"51.173.102.206",
     "dst_ip":"32.119.217.255",
     "src_port":19276,
@@ -1504,12 +1834,18 @@
       4.673245,
       3.633349
     ],
-    "geo_country":"Germany",
-    "asn":"AS16509",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Germany",
+    "src_asn":"AS16509",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS7018"
   },
   {
-    "timestamp":"2024-01-01 06:32:00",
+    "timestamp":"2024-01-01 06:32:00 UTC",
     "src_ip":"16.102.186.236",
     "dst_ip":"38.123.77.153",
     "src_port":56344,
@@ -1531,12 +1867,18 @@
       3.697509,
       3.994908
     ],
-    "geo_country":"United States",
-    "asn":"AS16509",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS16509",
+    "dst_geo_country":"Mexico",
+    "dst_asn":"AS174"
   },
   {
-    "timestamp":"2024-01-01 06:39:00",
+    "timestamp":"2024-01-01 06:39:00 UTC",
     "src_ip":"14.122.129.196",
     "dst_ip":"80.185.62.121",
     "src_port":57230,
@@ -1557,12 +1899,18 @@
       1.178193,
       2.255432
     ],
-    "geo_country":"China",
-    "asn":"AS4134",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"China",
+    "src_asn":"AS4134",
+    "dst_geo_country":"France",
+    "dst_asn":"AS41272"
   },
   {
-    "timestamp":"2024-01-01 06:46:00",
+    "timestamp":"2024-01-01 06:46:00 UTC",
     "src_ip":"64.189.234.43",
     "dst_ip":"3.240.68.165",
     "src_port":64882,
@@ -1586,12 +1934,18 @@
       4.005701,
       3.679711
     ],
-    "geo_country":"United States",
-    "asn":"AS46273",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS46273",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS16509"
   },
   {
-    "timestamp":"2024-01-01 06:53:00",
+    "timestamp":"2024-01-01 06:53:00 UTC",
     "src_ip":"80.67.183.49",
     "dst_ip":"214.188.102.250",
     "src_port":30216,
@@ -1612,12 +1966,18 @@
     "output_amounts":[
       1.669916
     ],
-    "geo_country":"France",
-    "asn":"AS51083",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"France",
+    "src_asn":"AS51083",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS749"
   },
   {
-    "timestamp":"2024-01-01 07:00:00",
+    "timestamp":"2024-01-01 07:00:00 UTC",
     "src_ip":"27.221.212.253",
     "dst_ip":"189.148.18.249",
     "src_port":27217,
@@ -1640,12 +2000,18 @@
     "output_amounts":[
       2.170927
     ],
-    "geo_country":"China",
-    "asn":"AS4837",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"China",
+    "src_asn":"AS4837",
+    "dst_geo_country":"Mexico",
+    "dst_asn":"AS8151"
   },
   {
-    "timestamp":"2024-01-01 07:07:00",
+    "timestamp":"2024-01-01 07:07:00 UTC",
     "src_ip":"101.18.77.29",
     "dst_ip":"162.151.214.205",
     "src_port":59074,
@@ -1668,12 +2034,18 @@
       0.55257,
       1.84856
     ],
-    "geo_country":"China",
-    "asn":"AS4837",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"China",
+    "src_asn":"AS4837",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS7922"
   },
   {
-    "timestamp":"2024-01-01 07:14:00",
+    "timestamp":"2024-01-01 07:14:00 UTC",
     "src_ip":"75.20.78.60",
     "dst_ip":"96.156.191.155",
     "src_port":20290,
@@ -1694,12 +2066,18 @@
     "output_amounts":[
       2.038061
     ],
-    "geo_country":"United States",
-    "asn":"AS7018",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS7018",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS7922"
   },
   {
-    "timestamp":"2024-01-01 07:21:00",
+    "timestamp":"2024-01-01 07:21:00 UTC",
     "src_ip":"60.9.137.51",
     "dst_ip":"64.64.155.208",
     "src_port":30251,
@@ -1721,12 +2099,18 @@
     "output_amounts":[
       3.401187
     ],
-    "geo_country":"China",
-    "asn":"AS4837",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"China",
+    "src_asn":"AS4837",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS13807"
   },
   {
-    "timestamp":"2024-01-01 07:28:00",
+    "timestamp":"2024-01-01 07:28:00 UTC",
     "src_ip":"120.253.185.22",
     "dst_ip":"185.114.24.142",
     "src_port":61211,
@@ -1748,12 +2132,18 @@
     "output_amounts":[
       1.814723
     ],
-    "geo_country":"China",
-    "asn":"AS24400",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"China",
+    "src_asn":"AS24400",
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 07:35:00",
+    "timestamp":"2024-01-01 07:35:00 UTC",
     "src_ip":"19.183.15.58",
     "dst_ip":"37.148.225.99",
     "src_port":42399,
@@ -1776,10 +2166,16 @@
     ],
     "geo_country":null,
     "asn":null,
-    "flag_amount_mismatch":true
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":"Italy",
+    "dst_asn":"AS30848"
   },
   {
-    "timestamp":"2024-01-01 07:42:00",
+    "timestamp":"2024-01-01 07:42:00 UTC",
     "src_ip":"193.43.151.227",
     "dst_ip":"133.180.117.21",
     "src_port":31514,
@@ -1803,12 +2199,18 @@
       2.289683,
       4.554255
     ],
-    "geo_country":"Sweden",
-    "asn":"AS3257",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Sweden",
+    "src_asn":"AS3257",
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 07:49:00",
+    "timestamp":"2024-01-01 07:49:00 UTC",
     "src_ip":"47.48.201.22",
     "dst_ip":"62.80.140.149",
     "src_port":44714,
@@ -1834,12 +2236,18 @@
       1.212003,
       2.697019
     ],
-    "geo_country":"United States",
-    "asn":"AS20115",
-    "flag_amount_mismatch":false
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":false,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS20115",
+    "dst_geo_country":"Finland",
+    "dst_asn":"AS24751"
   },
   {
-    "timestamp":"2024-01-01 07:56:00",
+    "timestamp":"2024-01-01 07:56:00 UTC",
     "src_ip":"171.127.113.195",
     "dst_ip":"134.164.93.226",
     "src_port":42297,
@@ -1859,12 +2267,18 @@
       3.678585,
       1.212522
     ],
-    "geo_country":"China",
-    "asn":"AS4837",
-    "flag_amount_mismatch":false
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":false,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"China",
+    "src_asn":"AS4837",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS6009"
   },
   {
-    "timestamp":"2024-01-01 08:03:00",
+    "timestamp":"2024-01-01 08:03:00 UTC",
     "src_ip":"9.185.14.75",
     "dst_ip":"67.233.75.130",
     "src_port":17238,
@@ -1889,12 +2303,18 @@
       3.924525,
       3.583611
     ],
-    "geo_country":"United Kingdom",
-    "asn":"AS8075",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United Kingdom",
+    "src_asn":"AS8075",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS209"
   },
   {
-    "timestamp":"2024-01-01 08:10:00",
+    "timestamp":"2024-01-01 08:10:00 UTC",
     "src_ip":"9.65.254.44",
     "dst_ip":"78.239.86.228",
     "src_port":63614,
@@ -1916,12 +2336,18 @@
     "output_amounts":[
       2.639694
     ],
-    "geo_country":null,
-    "asn":null,
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 08:17:00",
+    "timestamp":"2024-01-01 08:17:00 UTC",
     "src_ip":"73.144.99.201",
     "dst_ip":"25.67.165.27",
     "src_port":56717,
@@ -1942,12 +2368,18 @@
     "output_amounts":[
       0.90414
     ],
-    "geo_country":"United States",
-    "asn":"AS7922",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS7922",
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 08:24:00",
+    "timestamp":"2024-01-01 08:24:00 UTC",
     "src_ip":"154.92.2.228",
     "dst_ip":"205.160.62.20",
     "src_port":9466,
@@ -1969,12 +2401,18 @@
       0.632715,
       1.894625
     ],
-    "geo_country":"Hong Kong",
-    "asn":"AS149641",
-    "flag_amount_mismatch":false
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":false,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Hong Kong",
+    "src_asn":"AS149641",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS174"
   },
   {
-    "timestamp":"2024-01-01 08:31:00",
+    "timestamp":"2024-01-01 08:31:00 UTC",
     "src_ip":"189.136.27.189",
     "dst_ip":"182.127.214.234",
     "src_port":13023,
@@ -1996,12 +2434,18 @@
       1.64343,
       1.77011
     ],
-    "geo_country":"Mexico",
-    "asn":"AS8151",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Mexico",
+    "src_asn":"AS8151",
+    "dst_geo_country":"China",
+    "dst_asn":"AS4837"
   },
   {
-    "timestamp":"2024-01-01 08:38:00",
+    "timestamp":"2024-01-01 08:38:00 UTC",
     "src_ip":"2.179.95.205",
     "dst_ip":"91.4.51.220",
     "src_port":33270,
@@ -2021,12 +2465,18 @@
       0.192794,
       4.952004
     ],
-    "geo_country":"Iran",
-    "asn":"AS58224",
-    "flag_amount_mismatch":false
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":false,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Iran",
+    "src_asn":"AS58224",
+    "dst_geo_country":"Germany",
+    "dst_asn":"AS3320"
   },
   {
-    "timestamp":"2024-01-01 08:45:00",
+    "timestamp":"2024-01-01 08:45:00 UTC",
     "src_ip":"38.218.9.102",
     "dst_ip":"24.26.194.208",
     "src_port":35428,
@@ -2050,12 +2500,18 @@
       0.742523,
       2.395555
     ],
-    "geo_country":"United States",
-    "asn":"AS174",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS174",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS11427"
   },
   {
-    "timestamp":"2024-01-01 08:52:00",
+    "timestamp":"2024-01-01 08:52:00 UTC",
     "src_ip":"127.92.235.94",
     "dst_ip":"209.90.96.251",
     "src_port":62847,
@@ -2075,12 +2531,18 @@
     "output_amounts":[
       0.91018
     ],
-    "geo_country":null,
-    "asn":null,
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":"United States",
+    "dst_asn":"AS5048"
   },
   {
-    "timestamp":"2024-01-01 08:59:00",
+    "timestamp":"2024-01-01 08:59:00 UTC",
     "src_ip":"99.180.163.253",
     "dst_ip":"109.246.211.170",
     "src_port":10082,
@@ -2100,12 +2562,18 @@
     "output_amounts":[
       2.607984
     ],
-    "geo_country":"United States",
-    "asn":"AS7018",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS7018",
+    "dst_geo_country":"United Kingdom",
+    "dst_asn":"AS8075"
   },
   {
-    "timestamp":"2024-01-01 09:06:00",
+    "timestamp":"2024-01-01 09:06:00 UTC",
     "src_ip":"33.108.205.28",
     "dst_ip":"57.200.94.39",
     "src_port":54537,
@@ -2127,12 +2595,18 @@
     "output_amounts":[
       1.116033
     ],
-    "geo_country":"United States",
-    "asn":"AS749",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS749",
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 09:13:00",
+    "timestamp":"2024-01-01 09:13:00 UTC",
     "src_ip":"119.47.178.238",
     "dst_ip":"120.238.55.43",
     "src_port":12838,
@@ -2153,12 +2627,18 @@
     "output_amounts":[
       4.631818
     ],
-    "geo_country":"Japan",
-    "asn":"AS7679",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Japan",
+    "src_asn":"AS7679",
+    "dst_geo_country":"China",
+    "dst_asn":"AS9808"
   },
   {
-    "timestamp":"2024-01-01 09:20:00",
+    "timestamp":"2024-01-01 09:20:00 UTC",
     "src_ip":"118.219.191.90",
     "dst_ip":"142.83.223.195",
     "src_port":19703,
@@ -2180,12 +2660,18 @@
     "output_amounts":[
       1.338685
     ],
-    "geo_country":"South Korea",
-    "asn":"AS9318",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"South Korea",
+    "src_asn":"AS9318",
+    "dst_geo_country":"Canada",
+    "dst_asn":"AS11489"
   },
   {
-    "timestamp":"2024-01-01 09:27:00",
+    "timestamp":"2024-01-01 09:27:00 UTC",
     "src_ip":"124.102.47.178",
     "dst_ip":"182.150.239.253",
     "src_port":29601,
@@ -2207,12 +2693,18 @@
       1.120848,
       4.127457
     ],
-    "geo_country":"Japan",
-    "asn":"AS4713",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Japan",
+    "src_asn":"AS4713",
+    "dst_geo_country":"China",
+    "dst_asn":"AS4134"
   },
   {
-    "timestamp":"2024-01-01 09:34:00",
+    "timestamp":"2024-01-01 09:34:00 UTC",
     "src_ip":"36.53.165.223",
     "dst_ip":"58.87.45.97",
     "src_port":48479,
@@ -2234,12 +2726,18 @@
     "output_amounts":[
       1.523707
     ],
-    "geo_country":"Japan",
-    "asn":"AS9370",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Japan",
+    "src_asn":"AS9370",
+    "dst_geo_country":"South Korea",
+    "dst_asn":"AS9524"
   },
   {
-    "timestamp":"2024-01-01 09:41:00",
+    "timestamp":"2024-01-01 09:41:00 UTC",
     "src_ip":"189.171.231.251",
     "dst_ip":"189.179.131.249",
     "src_port":17639,
@@ -2263,12 +2761,18 @@
       0.268627,
       4.225692
     ],
-    "geo_country":"Mexico",
-    "asn":"AS8151",
-    "flag_amount_mismatch":false
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":false,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Mexico",
+    "src_asn":"AS8151",
+    "dst_geo_country":"Mexico",
+    "dst_asn":"AS8151"
   },
   {
-    "timestamp":"2024-01-01 09:48:00",
+    "timestamp":"2024-01-01 09:48:00 UTC",
     "src_ip":"33.206.3.236",
     "dst_ip":"207.235.27.43",
     "src_port":4608,
@@ -2291,12 +2795,18 @@
       0.573254,
       4.234162
     ],
-    "geo_country":"United States",
-    "asn":"AS749",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS749",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS3356"
   },
   {
-    "timestamp":"2024-01-01 09:55:00",
+    "timestamp":"2024-01-01 09:55:00 UTC",
     "src_ip":"19.226.191.15",
     "dst_ip":"45.164.55.230",
     "src_port":25772,
@@ -2317,12 +2827,18 @@
       3.410024,
       3.68988
     ],
-    "geo_country":null,
-    "asn":null,
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":"Brazil",
+    "dst_asn":"AS268598"
   },
   {
-    "timestamp":"2024-01-01 10:02:00",
+    "timestamp":"2024-01-01 10:02:00 UTC",
     "src_ip":"142.246.26.198",
     "dst_ip":"197.193.64.220",
     "src_port":46986,
@@ -2347,12 +2863,18 @@
       4.180163,
       4.238116
     ],
-    "geo_country":"Canada",
-    "asn":"AS395272",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Canada",
+    "src_asn":"AS395272",
+    "dst_geo_country":"Egypt",
+    "dst_asn":"AS36992"
   },
   {
-    "timestamp":"2024-01-01 10:09:00",
+    "timestamp":"2024-01-01 10:09:00 UTC",
     "src_ip":"114.236.8.225",
     "dst_ip":"3.238.18.183",
     "src_port":32494,
@@ -2375,12 +2897,18 @@
       4.749645,
       4.55346
     ],
-    "geo_country":"China",
-    "asn":"AS4134",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"China",
+    "src_asn":"AS4134",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS14618"
   },
   {
-    "timestamp":"2024-01-01 10:16:00",
+    "timestamp":"2024-01-01 10:16:00 UTC",
     "src_ip":"162.230.223.148",
     "dst_ip":"194.244.68.93",
     "src_port":48452,
@@ -2404,12 +2932,18 @@
       3.37527,
       2.056734
     ],
-    "geo_country":"United States",
-    "asn":"AS7018",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS7018",
+    "dst_geo_country":"Italy",
+    "dst_asn":"AS3302"
   },
   {
-    "timestamp":"2024-01-01 10:23:00",
+    "timestamp":"2024-01-01 10:23:00 UTC",
     "src_ip":"208.226.217.204",
     "dst_ip":"67.27.137.248",
     "src_port":48746,
@@ -2432,12 +2966,18 @@
       2.617505,
       4.19841
     ],
-    "geo_country":"United States",
-    "asn":"AS701",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS701",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS3356"
   },
   {
-    "timestamp":"2024-01-01 10:30:00",
+    "timestamp":"2024-01-01 10:30:00 UTC",
     "src_ip":"195.119.30.252",
     "dst_ip":"65.210.159.172",
     "src_port":55702,
@@ -2456,12 +2996,18 @@
     "output_amounts":[
       0.822027
     ],
-    "geo_country":"United States",
-    "asn":"AS16509",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS16509",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS701"
   },
   {
-    "timestamp":"2024-01-01 10:37:00",
+    "timestamp":"2024-01-01 10:37:00 UTC",
     "src_ip":"184.242.5.162",
     "dst_ip":"107.91.76.240",
     "src_port":5418,
@@ -2482,12 +3028,18 @@
       4.277006,
       3.853953
     ],
-    "geo_country":"United States",
-    "asn":"AS16509",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS16509",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS20057"
   },
   {
-    "timestamp":"2024-01-01 10:44:00",
+    "timestamp":"2024-01-01 10:44:00 UTC",
     "src_ip":"89.217.109.97",
     "dst_ip":"98.191.91.5",
     "src_port":13858,
@@ -2507,12 +3059,18 @@
     "output_amounts":[
       0.886383
     ],
-    "geo_country":"Switzerland",
-    "asn":"AS6730",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Switzerland",
+    "src_asn":"AS6730",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS22773"
   },
   {
-    "timestamp":"2024-01-01 10:51:00",
+    "timestamp":"2024-01-01 10:51:00 UTC",
     "src_ip":"76.132.225.135",
     "dst_ip":"24.250.181.186",
     "src_port":23886,
@@ -2533,12 +3091,18 @@
     "output_amounts":[
       1.938482
     ],
-    "geo_country":"United States",
-    "asn":"AS7922",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS7922",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS22773"
   },
   {
-    "timestamp":"2024-01-01 10:58:00",
+    "timestamp":"2024-01-01 10:58:00 UTC",
     "src_ip":"82.68.204.167",
     "dst_ip":"73.217.201.36",
     "src_port":23756,
@@ -2561,12 +3125,18 @@
     "output_amounts":[
       1.871808
     ],
-    "geo_country":"United Kingdom",
-    "asn":"AS13037",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United Kingdom",
+    "src_asn":"AS13037",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS7922"
   },
   {
-    "timestamp":"2024-01-01 11:05:00",
+    "timestamp":"2024-01-01 11:05:00 UTC",
     "src_ip":"122.110.223.140",
     "dst_ip":"192.95.141.23",
     "src_port":40648,
@@ -2589,12 +3159,18 @@
       1.126271,
       2.020426
     ],
-    "geo_country":"Australia",
-    "asn":"AS4804",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Australia",
+    "src_asn":"AS4804",
+    "dst_geo_country":"Canada",
+    "dst_asn":"AS22995"
   },
   {
-    "timestamp":"2024-01-01 11:12:00",
+    "timestamp":"2024-01-01 11:12:00 UTC",
     "src_ip":"194.237.146.230",
     "dst_ip":"41.90.204.147",
     "src_port":1242,
@@ -2618,12 +3194,18 @@
       3.092681,
       0.85288
     ],
-    "geo_country":"Sweden",
-    "asn":"AS3301",
-    "flag_amount_mismatch":false
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":false,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Sweden",
+    "src_asn":"AS3301",
+    "dst_geo_country":"Kenya",
+    "dst_asn":"AS33771"
   },
   {
-    "timestamp":"2024-01-01 11:19:00",
+    "timestamp":"2024-01-01 11:19:00 UTC",
     "src_ip":"89.79.160.191",
     "dst_ip":"97.248.86.246",
     "src_port":12518,
@@ -2647,12 +3229,18 @@
       1.854585,
       1.531856
     ],
-    "geo_country":"Poland",
-    "asn":"AS9141",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Poland",
+    "src_asn":"AS9141",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS6167"
   },
   {
-    "timestamp":"2024-01-01 11:26:00",
+    "timestamp":"2024-01-01 11:26:00 UTC",
     "src_ip":"187.181.161.230",
     "dst_ip":"79.217.201.213",
     "src_port":1395,
@@ -2673,12 +3261,18 @@
       3.448161,
       0.703197
     ],
-    "geo_country":"Brazil",
-    "asn":"AS28573",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Brazil",
+    "src_asn":"AS28573",
+    "dst_geo_country":"Germany",
+    "dst_asn":"AS3320"
   },
   {
-    "timestamp":"2024-01-01 11:33:00",
+    "timestamp":"2024-01-01 11:33:00 UTC",
     "src_ip":"198.34.160.184",
     "dst_ip":"198.228.109.94",
     "src_port":22078,
@@ -2702,12 +3296,18 @@
       0.609397,
       3.783275
     ],
-    "geo_country":null,
-    "asn":null,
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 11:40:00",
+    "timestamp":"2024-01-01 11:40:00 UTC",
     "src_ip":"31.250.183.162",
     "dst_ip":"107.97.107.46",
     "src_port":53439,
@@ -2731,12 +3331,18 @@
       2.729851,
       0.589978
     ],
-    "geo_country":"Germany",
-    "asn":"AS3320",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Germany",
+    "src_asn":"AS3320",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS7018"
   },
   {
-    "timestamp":"2024-01-01 11:47:00",
+    "timestamp":"2024-01-01 11:47:00 UTC",
     "src_ip":"72.172.172.95",
     "dst_ip":"66.174.249.233",
     "src_port":44490,
@@ -2759,12 +3365,18 @@
       4.211783,
       3.662481
     ],
-    "geo_country":"Canada",
-    "asn":"AS15102",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Canada",
+    "src_asn":"AS15102",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS22394"
   },
   {
-    "timestamp":"2024-01-01 11:54:00",
+    "timestamp":"2024-01-01 11:54:00 UTC",
     "src_ip":"65.168.214.128",
     "dst_ip":"92.42.6.51",
     "src_port":47757,
@@ -2784,12 +3396,18 @@
       1.316605,
       3.968411
     ],
-    "geo_country":"United States",
-    "asn":"AS174",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS174",
+    "dst_geo_country":"Russia",
+    "dst_asn":"AS44731"
   },
   {
-    "timestamp":"2024-01-01 12:01:00",
+    "timestamp":"2024-01-01 12:01:00 UTC",
     "src_ip":"54.164.205.178",
     "dst_ip":"200.88.255.45",
     "src_port":22897,
@@ -2813,12 +3431,18 @@
       1.524001,
       1.163589
     ],
-    "geo_country":"United States",
-    "asn":"AS14618",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS14618",
+    "dst_geo_country":"Dominican Republic",
+    "dst_asn":"AS6400"
   },
   {
-    "timestamp":"2024-01-01 12:08:00",
+    "timestamp":"2024-01-01 12:08:00 UTC",
     "src_ip":"205.208.73.161",
     "dst_ip":"221.3.27.183",
     "src_port":39522,
@@ -2839,12 +3463,18 @@
       3.066345,
       1.687646
     ],
-    "geo_country":"United States",
-    "asn":"AS160",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS160",
+    "dst_geo_country":"China",
+    "dst_asn":"AS4837"
   },
   {
-    "timestamp":"2024-01-01 12:15:00",
+    "timestamp":"2024-01-01 12:15:00 UTC",
     "src_ip":"117.199.229.59",
     "dst_ip":"172.33.173.126",
     "src_port":24990,
@@ -2864,12 +3494,18 @@
     "output_amounts":[
       1.859547
     ],
-    "geo_country":"India",
-    "asn":"AS9829",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"India",
+    "src_asn":"AS9829",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS21928"
   },
   {
-    "timestamp":"2024-01-01 12:22:00",
+    "timestamp":"2024-01-01 12:22:00 UTC",
     "src_ip":"215.205.22.79",
     "dst_ip":"37.126.132.216",
     "src_port":45614,
@@ -2895,12 +3531,18 @@
       2.317416,
       4.312331
     ],
-    "geo_country":"United States",
-    "asn":"AS749",
-    "flag_amount_mismatch":false
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":false,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS749",
+    "dst_geo_country":"Saudi Arabia",
+    "dst_asn":"AS35819"
   },
   {
-    "timestamp":"2024-01-01 12:29:00",
+    "timestamp":"2024-01-01 12:29:00 UTC",
     "src_ip":"203.209.191.157",
     "dst_ip":"55.201.72.240",
     "src_port":8144,
@@ -2923,12 +3565,18 @@
     "output_amounts":[
       4.053965
     ],
-    "geo_country":"Thailand",
-    "asn":"AS45629",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Thailand",
+    "src_asn":"AS45629",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS721"
   },
   {
-    "timestamp":"2024-01-01 12:36:00",
+    "timestamp":"2024-01-01 12:36:00 UTC",
     "src_ip":"207.54.124.38",
     "dst_ip":"46.191.33.78",
     "src_port":38504,
@@ -2948,12 +3596,18 @@
     "output_amounts":[
       2.846436
     ],
-    "geo_country":"Canada",
-    "asn":"AS20161",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Canada",
+    "src_asn":"AS20161",
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 12:43:00",
+    "timestamp":"2024-01-01 12:43:00 UTC",
     "src_ip":"187.163.230.183",
     "dst_ip":"191.245.189.255",
     "src_port":20700,
@@ -2974,12 +3628,18 @@
       3.934244,
       2.775424
     ],
-    "geo_country":"Mexico",
-    "asn":"AS6503",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Mexico",
+    "src_asn":"AS6503",
+    "dst_geo_country":"Brazil",
+    "dst_asn":"AS22085"
   },
   {
-    "timestamp":"2024-01-01 12:50:00",
+    "timestamp":"2024-01-01 12:50:00 UTC",
     "src_ip":"148.169.99.65",
     "dst_ip":"83.117.121.127",
     "src_port":33044,
@@ -3002,12 +3662,18 @@
       3.586634,
       0.660202
     ],
-    "geo_country":null,
-    "asn":null,
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":"United States",
+    "dst_asn":"AS16509"
   },
   {
-    "timestamp":"2024-01-01 12:57:00",
+    "timestamp":"2024-01-01 12:57:00 UTC",
     "src_ip":"17.34.71.77",
     "dst_ip":"27.83.120.47",
     "src_port":50481,
@@ -3027,12 +3693,18 @@
     "output_amounts":[
       4.422177
     ],
-    "geo_country":"United States",
-    "asn":"AS714",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS714",
+    "dst_geo_country":"Japan",
+    "dst_asn":"AS2516"
   },
   {
-    "timestamp":"2024-01-01 13:04:00",
+    "timestamp":"2024-01-01 13:04:00 UTC",
     "src_ip":"219.15.25.5",
     "dst_ip":"71.0.155.227",
     "src_port":26020,
@@ -3056,12 +3728,18 @@
       3.439317,
       4.939765
     ],
-    "geo_country":null,
-    "asn":null,
-    "flag_amount_mismatch":false
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":false,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":"United States",
+    "dst_asn":"AS209"
   },
   {
-    "timestamp":"2024-01-01 13:11:00",
+    "timestamp":"2024-01-01 13:11:00 UTC",
     "src_ip":"58.232.79.96",
     "dst_ip":"184.0.55.253",
     "src_port":10484,
@@ -3083,12 +3761,18 @@
     "output_amounts":[
       4.303068
     ],
-    "geo_country":"South Korea",
-    "asn":"AS9318",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"South Korea",
+    "src_asn":"AS9318",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS11398"
   },
   {
-    "timestamp":"2024-01-01 13:18:00",
+    "timestamp":"2024-01-01 13:18:00 UTC",
     "src_ip":"206.109.96.243",
     "dst_ip":"123.245.109.50",
     "src_port":12323,
@@ -3111,12 +3795,18 @@
       0.255914,
       2.139109
     ],
-    "geo_country":"United States",
-    "asn":"AS396982",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS396982",
+    "dst_geo_country":"China",
+    "dst_asn":"AS4134"
   },
   {
-    "timestamp":"2024-01-01 13:25:00",
+    "timestamp":"2024-01-01 13:25:00 UTC",
     "src_ip":"126.55.243.223",
     "dst_ip":"100.160.61.71",
     "src_port":12892,
@@ -3139,12 +3829,18 @@
       2.995927,
       4.050901
     ],
-    "geo_country":"Japan",
-    "asn":"AS17676",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Japan",
+    "src_asn":"AS17676",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS21928"
   },
   {
-    "timestamp":"2024-01-01 13:32:00",
+    "timestamp":"2024-01-01 13:32:00 UTC",
     "src_ip":"217.18.195.186",
     "dst_ip":"13.117.46.81",
     "src_port":7078,
@@ -3167,12 +3863,18 @@
       4.610004,
       0.830561
     ],
-    "geo_country":"Norway",
-    "asn":"AS13243",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Norway",
+    "src_asn":"AS13243",
+    "dst_geo_country":"United Kingdom",
+    "dst_asn":"AS8075"
   },
   {
-    "timestamp":"2024-01-01 13:39:00",
+    "timestamp":"2024-01-01 13:39:00 UTC",
     "src_ip":"26.74.138.30",
     "dst_ip":"7.111.190.12",
     "src_port":30407,
@@ -3193,12 +3895,18 @@
     "output_amounts":[
       1.669595
     ],
-    "geo_country":"United States",
-    "asn":"AS749",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS749",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS749"
   },
   {
-    "timestamp":"2024-01-01 13:46:00",
+    "timestamp":"2024-01-01 13:46:00 UTC",
     "src_ip":"95.60.157.120",
     "dst_ip":"125.251.202.109",
     "src_port":27586,
@@ -3222,12 +3930,18 @@
       2.11232,
       1.574627
     ],
-    "geo_country":"Spain",
-    "asn":"AS12430",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Spain",
+    "src_asn":"AS12430",
+    "dst_geo_country":"South Korea",
+    "dst_asn":"AS17858"
   },
   {
-    "timestamp":"2024-01-01 13:53:00",
+    "timestamp":"2024-01-01 13:53:00 UTC",
     "src_ip":"193.94.3.84",
     "dst_ip":"65.212.47.249",
     "src_port":58402,
@@ -3250,12 +3964,18 @@
       0.382053,
       0.778688
     ],
-    "geo_country":"Finland",
-    "asn":"AS719",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Finland",
+    "src_asn":"AS719",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS701"
   },
   {
-    "timestamp":"2024-01-01 14:00:00",
+    "timestamp":"2024-01-01 14:00:00 UTC",
     "src_ip":"32.1.122.33",
     "dst_ip":"200.138.91.58",
     "src_port":51152,
@@ -3274,12 +3994,18 @@
     "output_amounts":[
       4.695304
     ],
-    "geo_country":"United States",
-    "asn":"AS7018",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS7018",
+    "dst_geo_country":"Brazil",
+    "dst_asn":"AS8167"
   },
   {
-    "timestamp":"2024-01-01 14:07:00",
+    "timestamp":"2024-01-01 14:07:00 UTC",
     "src_ip":"171.70.132.194",
     "dst_ip":"40.143.174.210",
     "src_port":65335,
@@ -3304,12 +4030,18 @@
       4.1975,
       4.817577
     ],
-    "geo_country":"United States",
-    "asn":"AS109",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS109",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS17378"
   },
   {
-    "timestamp":"2024-01-01 14:14:00",
+    "timestamp":"2024-01-01 14:14:00 UTC",
     "src_ip":"70.82.245.112",
     "dst_ip":"113.68.8.120",
     "src_port":43309,
@@ -3330,12 +4062,18 @@
       0.001464,
       3.482199
     ],
-    "geo_country":"Canada",
-    "asn":"AS5769",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Canada",
+    "src_asn":"AS5769",
+    "dst_geo_country":"China",
+    "dst_asn":"AS4134"
   },
   {
-    "timestamp":"2024-01-01 14:21:00",
+    "timestamp":"2024-01-01 14:21:00 UTC",
     "src_ip":"92.231.84.13",
     "dst_ip":"190.49.10.140",
     "src_port":13642,
@@ -3354,12 +4092,18 @@
     "output_amounts":[
       4.540098
     ],
-    "geo_country":"Germany",
-    "asn":"AS6805",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Germany",
+    "src_asn":"AS6805",
+    "dst_geo_country":"Argentina",
+    "dst_asn":"AS22927"
   },
   {
-    "timestamp":"2024-01-01 14:28:00",
+    "timestamp":"2024-01-01 14:28:00 UTC",
     "src_ip":"131.37.123.42",
     "dst_ip":"87.47.132.133",
     "src_port":22786,
@@ -3379,12 +4123,18 @@
     "output_amounts":[
       4.953347
     ],
-    "geo_country":"United States",
-    "asn":"AS56",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS56",
+    "dst_geo_country":"Ireland",
+    "dst_asn":"AS1213"
   },
   {
-    "timestamp":"2024-01-01 14:35:00",
+    "timestamp":"2024-01-01 14:35:00 UTC",
     "src_ip":"95.25.187.158",
     "dst_ip":"211.87.192.21",
     "src_port":37235,
@@ -3406,12 +4156,18 @@
       3.960677,
       4.315558
     ],
-    "geo_country":"Russia",
-    "asn":"AS3216",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Russia",
+    "src_asn":"AS3216",
+    "dst_geo_country":"China",
+    "dst_asn":"AS4538"
   },
   {
-    "timestamp":"2024-01-01 14:42:00",
+    "timestamp":"2024-01-01 14:42:00 UTC",
     "src_ip":"132.11.115.55",
     "dst_ip":"95.123.91.141",
     "src_port":22752,
@@ -3429,12 +4185,18 @@
     "output_amounts":[
       1.044309
     ],
-    "geo_country":"United States",
-    "asn":"AS721",
-    "flag_amount_mismatch":false
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":false,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS721",
+    "dst_geo_country":"Spain",
+    "dst_asn":"AS3352"
   },
   {
-    "timestamp":"2024-01-01 14:49:00",
+    "timestamp":"2024-01-01 14:49:00 UTC",
     "src_ip":"7.15.54.171",
     "dst_ip":"200.212.57.65",
     "src_port":55916,
@@ -3456,12 +4218,18 @@
     "output_amounts":[
       2.014872
     ],
-    "geo_country":"United States",
-    "asn":"AS749",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS749",
+    "dst_geo_country":"Brazil",
+    "dst_asn":"AS4230"
   },
   {
-    "timestamp":"2024-01-01 14:56:00",
+    "timestamp":"2024-01-01 14:56:00 UTC",
     "src_ip":"154.215.192.151",
     "dst_ip":"213.233.45.151",
     "src_port":10538,
@@ -3483,12 +4251,18 @@
       2.519993,
       0.376209
     ],
-    "geo_country":"Hong Kong",
-    "asn":"AS17561",
-    "flag_amount_mismatch":false
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":false,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Hong Kong",
+    "src_asn":"AS17561",
+    "dst_geo_country":"Italy",
+    "dst_asn":"AS5394"
   },
   {
-    "timestamp":"2024-01-01 15:03:00",
+    "timestamp":"2024-01-01 15:03:00 UTC",
     "src_ip":"172.98.171.13",
     "dst_ip":"13.33.192.28",
     "src_port":41136,
@@ -3510,12 +4284,18 @@
     "output_amounts":[
       3.195673
     ],
-    "geo_country":"United States",
-    "asn":"AS46261",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS46261",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS16509"
   },
   {
-    "timestamp":"2024-01-01 15:10:00",
+    "timestamp":"2024-01-01 15:10:00 UTC",
     "src_ip":"126.93.52.99",
     "dst_ip":"67.214.87.174",
     "src_port":49163,
@@ -3538,12 +4318,18 @@
       3.283977,
       0.132063
     ],
-    "geo_country":"Japan",
-    "asn":"AS17676",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Japan",
+    "src_asn":"AS17676",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS11915"
   },
   {
-    "timestamp":"2024-01-01 15:17:00",
+    "timestamp":"2024-01-01 15:17:00 UTC",
     "src_ip":"158.231.140.194",
     "dst_ip":"200.39.32.236",
     "src_port":33457,
@@ -3568,12 +4354,18 @@
       4.282411,
       1.742233
     ],
-    "geo_country":null,
-    "asn":null,
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":"Brazil",
+    "dst_asn":"AS271333"
   },
   {
-    "timestamp":"2024-01-01 15:24:00",
+    "timestamp":"2024-01-01 15:24:00 UTC",
     "src_ip":"42.70.169.219",
     "dst_ip":"107.29.166.212",
     "src_port":52947,
@@ -3594,12 +4386,18 @@
       2.400918,
       1.604923
     ],
-    "geo_country":"Taiwan",
-    "asn":"AS17421",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Taiwan",
+    "src_asn":"AS17421",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS16509"
   },
   {
-    "timestamp":"2024-01-01 15:31:00",
+    "timestamp":"2024-01-01 15:31:00 UTC",
     "src_ip":"192.185.136.247",
     "dst_ip":"35.194.79.16",
     "src_port":22351,
@@ -3622,12 +4420,18 @@
       0.414156,
       3.434181
     ],
-    "geo_country":"United States",
-    "asn":"AS31898",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS31898",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS396982"
   },
   {
-    "timestamp":"2024-01-01 15:38:00",
+    "timestamp":"2024-01-01 15:38:00 UTC",
     "src_ip":"128.47.58.74",
     "dst_ip":"102.24.77.77",
     "src_port":8597,
@@ -3647,12 +4451,18 @@
       4.234519,
       4.972841
     ],
-    "geo_country":"United States",
-    "asn":"AS252",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS252",
+    "dst_geo_country":"Tunisia",
+    "dst_asn":"AS327934"
   },
   {
-    "timestamp":"2024-01-01 15:45:00",
+    "timestamp":"2024-01-01 15:45:00 UTC",
     "src_ip":"90.194.33.0",
     "dst_ip":"207.109.176.65",
     "src_port":52090,
@@ -3674,12 +4484,18 @@
     "output_amounts":[
       0.253837
     ],
-    "geo_country":"United Kingdom",
-    "asn":"AS5607",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United Kingdom",
+    "src_asn":"AS5607",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS209"
   },
   {
-    "timestamp":"2024-01-01 15:52:00",
+    "timestamp":"2024-01-01 15:52:00 UTC",
     "src_ip":"151.248.239.63",
     "dst_ip":"65.19.10.134",
     "src_port":39399,
@@ -3703,12 +4519,18 @@
       4.498035,
       3.211992
     ],
-    "geo_country":"Switzerland",
-    "asn":"AS8821",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Switzerland",
+    "src_asn":"AS8821",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS14818"
   },
   {
-    "timestamp":"2024-01-01 15:59:00",
+    "timestamp":"2024-01-01 15:59:00 UTC",
     "src_ip":"46.249.145.114",
     "dst_ip":"86.193.181.54",
     "src_port":52078,
@@ -3731,12 +4553,18 @@
     "output_amounts":[
       1.637306
     ],
-    "geo_country":"Hungary",
-    "asn":"AS8462",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Hungary",
+    "src_asn":"AS8462",
+    "dst_geo_country":"France",
+    "dst_asn":"AS3215"
   },
   {
-    "timestamp":"2024-01-01 16:06:00",
+    "timestamp":"2024-01-01 16:06:00 UTC",
     "src_ip":"151.133.160.25",
     "dst_ip":"29.63.69.92",
     "src_port":4863,
@@ -3758,12 +4586,18 @@
     "output_amounts":[
       0.268303
     ],
-    "geo_country":"United Kingdom",
-    "asn":"AS60187",
-    "flag_amount_mismatch":true
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United Kingdom",
+    "src_asn":"AS60187",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS749"
   },
   {
-    "timestamp":"2024-01-01 16:13:00",
+    "timestamp":"2024-01-01 16:13:00 UTC",
     "src_ip":"136.128.117.245",
     "dst_ip":"88.116.220.177",
     "src_port":46665,
@@ -3785,12 +4619,18 @@
     "output_amounts":[
       0.078832
     ],
-    "geo_country":"United States",
-    "asn":"AS16509",
-    "flag_amount_mismatch":false
+    "geo_country":"",
+    "asn":"",
+    "flag_amount_mismatch":false,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS16509",
+    "dst_geo_country":"Austria",
+    "dst_asn":"AS8447"
   },
   {
-    "timestamp":"2024-01-01 16:20:00",
+    "timestamp":"2024-01-01 16:20:00 UTC",
     "src_ip":"176.164.123.63",
     "dst_ip":"38.233.130.197",
     "src_port":53708,
@@ -3815,12 +4655,18 @@
       2.614441,
       0.076207
     ],
-    "geo_country":"France",
-    "asn":"AS5410",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"France",
+    "src_asn":"AS5410",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS174"
   },
   {
-    "timestamp":"2024-01-01 16:27:00",
+    "timestamp":"2024-01-01 16:27:00 UTC",
     "src_ip":"198.99.220.214",
     "dst_ip":"141.103.150.72",
     "src_port":25791,
@@ -3845,10 +4691,16 @@
     ],
     "geo_country":null,
     "asn":null,
-    "flag_amount_mismatch":true
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 16:34:00",
+    "timestamp":"2024-01-01 16:34:00 UTC",
     "src_ip":"193.30.46.59",
     "dst_ip":"148.190.0.91",
     "src_port":56325,
@@ -3870,12 +4722,18 @@
     "output_amounts":[
       1.030744
     ],
-    "geo_country":"Germany",
-    "asn":"AS3209",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Germany",
+    "src_asn":"AS3209",
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 16:41:00",
+    "timestamp":"2024-01-01 16:41:00 UTC",
     "src_ip":"47.4.17.170",
     "dst_ip":"197.166.54.21",
     "src_port":33358,
@@ -3898,12 +4756,18 @@
       1.534477,
       3.494747
     ],
-    "geo_country":"United States",
-    "asn":"AS20115",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS20115",
+    "dst_geo_country":"Egypt",
+    "dst_asn":"AS24863"
   },
   {
-    "timestamp":"2024-01-01 16:48:00",
+    "timestamp":"2024-01-01 16:48:00 UTC",
     "src_ip":"96.115.10.1",
     "dst_ip":"101.251.234.193",
     "src_port":50750,
@@ -3926,12 +4790,18 @@
     "output_amounts":[
       3.287125
     ],
-    "geo_country":"United States",
-    "asn":"AS7922",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS7922",
+    "dst_geo_country":"China",
+    "dst_asn":"AS4808"
   },
   {
-    "timestamp":"2024-01-01 16:55:00",
+    "timestamp":"2024-01-01 16:55:00 UTC",
     "src_ip":"132.70.86.244",
     "dst_ip":"42.0.27.90",
     "src_port":37147,
@@ -3952,12 +4822,18 @@
       1.810892,
       0.303162
     ],
-    "geo_country":"Israel",
-    "asn":"AS378",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Israel",
+    "src_asn":"AS378",
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 17:02:00",
+    "timestamp":"2024-01-01 17:02:00 UTC",
     "src_ip":"149.146.130.153",
     "dst_ip":"168.18.225.220",
     "src_port":26682,
@@ -3979,12 +4855,18 @@
       0.264143,
       3.338822
     ],
-    "geo_country":"The Netherlands",
-    "asn":"AS24586",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"The Netherlands",
+    "src_asn":"AS24586",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS3479"
   },
   {
-    "timestamp":"2024-01-01 17:09:00",
+    "timestamp":"2024-01-01 17:09:00 UTC",
     "src_ip":"68.100.126.80",
     "dst_ip":"107.59.154.162",
     "src_port":59097,
@@ -4003,12 +4885,18 @@
     "output_amounts":[
       3.021472
     ],
-    "geo_country":"United States",
-    "asn":"AS22773",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS22773",
+    "dst_geo_country":"United Kingdom",
+    "dst_asn":"AS8075"
   },
   {
-    "timestamp":"2024-01-01 17:16:00",
+    "timestamp":"2024-01-01 17:16:00 UTC",
     "src_ip":"59.63.111.203",
     "dst_ip":"136.44.253.84",
     "src_port":60559,
@@ -4031,12 +4919,18 @@
       1.688332,
       1.858582
     ],
-    "geo_country":"China",
-    "asn":"AS4134",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"China",
+    "src_asn":"AS4134",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS16591"
   },
   {
-    "timestamp":"2024-01-01 17:23:00",
+    "timestamp":"2024-01-01 17:23:00 UTC",
     "src_ip":"13.199.124.245",
     "dst_ip":"222.125.34.58",
     "src_port":35861,
@@ -4056,12 +4950,18 @@
       1.15739,
       3.989651
     ],
-    "geo_country":"Japan",
-    "asn":"AS16509",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Japan",
+    "src_asn":"AS16509",
+    "dst_geo_country":"China",
+    "dst_asn":"AS17962"
   },
   {
-    "timestamp":"2024-01-01 17:30:00",
+    "timestamp":"2024-01-01 17:30:00 UTC",
     "src_ip":"198.94.67.224",
     "dst_ip":"167.199.14.235",
     "src_port":63882,
@@ -4084,12 +4984,18 @@
       3.027588,
       2.385663
     ],
-    "geo_country":"United States",
-    "asn":"AS3356",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS3356",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS2897"
   },
   {
-    "timestamp":"2024-01-01 17:37:00",
+    "timestamp":"2024-01-01 17:37:00 UTC",
     "src_ip":"56.138.51.127",
     "dst_ip":"41.53.4.228",
     "src_port":9483,
@@ -4115,10 +5021,16 @@
     ],
     "geo_country":null,
     "asn":null,
-    "flag_amount_mismatch":true
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":"South Africa",
+    "dst_asn":"AS37168"
   },
   {
-    "timestamp":"2024-01-01 17:44:00",
+    "timestamp":"2024-01-01 17:44:00 UTC",
     "src_ip":"8.110.138.67",
     "dst_ip":"12.65.151.234",
     "src_port":5487,
@@ -4141,12 +5053,18 @@
       1.747099,
       0.419491
     ],
-    "geo_country":"United States",
-    "asn":"AS3356",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS3356",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS7018"
   },
   {
-    "timestamp":"2024-01-01 17:51:00",
+    "timestamp":"2024-01-01 17:51:00 UTC",
     "src_ip":"208.68.14.188",
     "dst_ip":"147.80.77.146",
     "src_port":8693,
@@ -4170,12 +5088,18 @@
       2.720315,
       0.943572
     ],
-    "geo_country":"United States",
-    "asn":"AS40013",
-    "flag_amount_mismatch":false
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":false,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS40013",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS1761"
   },
   {
-    "timestamp":"2024-01-01 17:58:00",
+    "timestamp":"2024-01-01 17:58:00 UTC",
     "src_ip":"25.1.164.23",
     "dst_ip":"84.91.138.125",
     "src_port":59108,
@@ -4198,10 +5122,16 @@
     ],
     "geo_country":null,
     "asn":null,
-    "flag_amount_mismatch":true
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":"Portugal",
+    "dst_asn":"AS13156"
   },
   {
-    "timestamp":"2024-01-01 18:05:00",
+    "timestamp":"2024-01-01 18:05:00 UTC",
     "src_ip":"17.244.166.10",
     "dst_ip":"104.246.252.197",
     "src_port":7248,
@@ -4221,12 +5151,18 @@
     "output_amounts":[
       2.225814
     ],
-    "geo_country":"United States",
-    "asn":"AS714",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS714",
+    "dst_geo_country":"Canada",
+    "dst_asn":"AS5645"
   },
   {
-    "timestamp":"2024-01-01 18:12:00",
+    "timestamp":"2024-01-01 18:12:00 UTC",
     "src_ip":"161.243.73.210",
     "dst_ip":"109.155.32.224",
     "src_port":38647,
@@ -4248,12 +5184,18 @@
       2.072813,
       3.214053
     ],
-    "geo_country":"United States",
-    "asn":"AS36548",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS36548",
+    "dst_geo_country":"United Kingdom",
+    "dst_asn":"AS2856"
   },
   {
-    "timestamp":"2024-01-01 18:19:00",
+    "timestamp":"2024-01-01 18:19:00 UTC",
     "src_ip":"9.15.57.104",
     "dst_ip":"110.190.62.24",
     "src_port":16157,
@@ -4276,10 +5218,16 @@
     ],
     "geo_country":null,
     "asn":null,
-    "flag_amount_mismatch":true
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":"China",
+    "dst_asn":"AS4134"
   },
   {
-    "timestamp":"2024-01-01 18:26:00",
+    "timestamp":"2024-01-01 18:26:00 UTC",
     "src_ip":"134.93.218.19",
     "dst_ip":"132.242.89.34",
     "src_port":24133,
@@ -4300,12 +5248,18 @@
       3.771414,
       0.632966
     ],
-    "geo_country":"Germany",
-    "asn":"AS2857",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Germany",
+    "src_asn":"AS2857",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS14962"
   },
   {
-    "timestamp":"2024-01-01 18:33:00",
+    "timestamp":"2024-01-01 18:33:00 UTC",
     "src_ip":"133.56.26.91",
     "dst_ip":"37.36.225.236",
     "src_port":48939,
@@ -4329,12 +5283,18 @@
       4.036382,
       1.282867
     ],
-    "geo_country":"Japan",
-    "asn":"AS3488",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Japan",
+    "src_asn":"AS3488",
+    "dst_geo_country":"Kuwait",
+    "dst_asn":"AS42961"
   },
   {
-    "timestamp":"2024-01-01 18:40:00",
+    "timestamp":"2024-01-01 18:40:00 UTC",
     "src_ip":"210.211.39.17",
     "dst_ip":"27.236.165.104",
     "src_port":22962,
@@ -4361,10 +5321,16 @@
     ],
     "geo_country":null,
     "asn":null,
-    "flag_amount_mismatch":true
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":"South Korea",
+    "dst_asn":"AS4766"
   },
   {
-    "timestamp":"2024-01-01 18:47:00",
+    "timestamp":"2024-01-01 18:47:00 UTC",
     "src_ip":"98.110.25.243",
     "dst_ip":"4.76.204.229",
     "src_port":46536,
@@ -4385,12 +5351,18 @@
       4.416626,
       1.879762
     ],
-    "geo_country":"United States",
-    "asn":"AS701",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS701",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS3356"
   },
   {
-    "timestamp":"2024-01-01 18:54:00",
+    "timestamp":"2024-01-01 18:54:00 UTC",
     "src_ip":"6.106.93.215",
     "dst_ip":"165.180.161.48",
     "src_port":15746,
@@ -4413,12 +5385,18 @@
     "output_amounts":[
       4.714071
     ],
-    "geo_country":"United States",
-    "asn":"AS749",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS749",
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 19:01:00",
+    "timestamp":"2024-01-01 19:01:00 UTC",
     "src_ip":"222.217.245.132",
     "dst_ip":"100.125.20.25",
     "src_port":2535,
@@ -4441,12 +5419,18 @@
     "output_amounts":[
       4.130425
     ],
-    "geo_country":"China",
-    "asn":"AS4134",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"China",
+    "src_asn":"AS4134",
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 19:08:00",
+    "timestamp":"2024-01-01 19:08:00 UTC",
     "src_ip":"172.93.201.231",
     "dst_ip":"1.200.214.198",
     "src_port":62296,
@@ -4469,12 +5453,18 @@
     "output_amounts":[
       3.803038
     ],
-    "geo_country":"United States",
-    "asn":"AS20278",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS20278",
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 19:15:00",
+    "timestamp":"2024-01-01 19:15:00 UTC",
     "src_ip":"91.26.132.50",
     "dst_ip":"149.145.238.168",
     "src_port":57865,
@@ -4494,12 +5484,18 @@
       0.971579,
       3.840394
     ],
-    "geo_country":"Germany",
-    "asn":"AS3320",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Germany",
+    "src_asn":"AS3320",
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 19:22:00",
+    "timestamp":"2024-01-01 19:22:00 UTC",
     "src_ip":"55.202.95.83",
     "dst_ip":"212.62.200.19",
     "src_port":52754,
@@ -4522,12 +5518,18 @@
       0.095285,
       1.478883
     ],
-    "geo_country":"United States",
-    "asn":"AS721",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS721",
+    "dst_geo_country":"Germany",
+    "dst_asn":"AS21263"
   },
   {
-    "timestamp":"2024-01-01 19:29:00",
+    "timestamp":"2024-01-01 19:29:00 UTC",
     "src_ip":"75.222.189.143",
     "dst_ip":"109.236.239.72",
     "src_port":3427,
@@ -4547,12 +5549,18 @@
       3.019107,
       1.090223
     ],
-    "geo_country":"United States",
-    "asn":"AS6167",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS6167",
+    "dst_geo_country":"Russia",
+    "dst_asn":"AS34205"
   },
   {
-    "timestamp":"2024-01-01 19:36:00",
+    "timestamp":"2024-01-01 19:36:00 UTC",
     "src_ip":"136.220.243.26",
     "dst_ip":"105.15.134.201",
     "src_port":39776,
@@ -4574,12 +5582,18 @@
       0.922739,
       1.988206
     ],
-    "geo_country":"United States",
-    "asn":"AS367",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS367",
+    "dst_geo_country":"South Africa",
+    "dst_asn":"AS37168"
   },
   {
-    "timestamp":"2024-01-01 19:43:00",
+    "timestamp":"2024-01-01 19:43:00 UTC",
     "src_ip":"127.39.31.216",
     "dst_ip":"140.12.36.230",
     "src_port":31468,
@@ -4601,10 +5615,16 @@
     ],
     "geo_country":null,
     "asn":null,
-    "flag_amount_mismatch":true
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":"United States",
+    "dst_asn":"AS5852"
   },
   {
-    "timestamp":"2024-01-01 19:50:00",
+    "timestamp":"2024-01-01 19:50:00 UTC",
     "src_ip":"208.191.169.176",
     "dst_ip":"219.30.58.115",
     "src_port":23151,
@@ -4624,12 +5644,18 @@
     "output_amounts":[
       2.855838
     ],
-    "geo_country":"United States",
-    "asn":"AS7018",
-    "flag_amount_mismatch":false
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":false,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS7018",
+    "dst_geo_country":"Japan",
+    "dst_asn":"AS17676"
   },
   {
-    "timestamp":"2024-01-01 19:57:00",
+    "timestamp":"2024-01-01 19:57:00 UTC",
     "src_ip":"41.137.161.70",
     "dst_ip":"70.31.97.85",
     "src_port":47236,
@@ -4652,12 +5678,18 @@
       2.77769,
       0.863895
     ],
-    "geo_country":"Morocco",
-    "asn":"AS36884",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Morocco",
+    "src_asn":"AS36884",
+    "dst_geo_country":"Canada",
+    "dst_asn":"AS577"
   },
   {
-    "timestamp":"2024-01-01 20:04:00",
+    "timestamp":"2024-01-01 20:04:00 UTC",
     "src_ip":"223.179.4.54",
     "dst_ip":"137.93.180.207",
     "src_port":12034,
@@ -4679,12 +5711,18 @@
     "output_amounts":[
       1.344073
     ],
-    "geo_country":"India",
-    "asn":"AS45609",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"India",
+    "src_asn":"AS45609",
+    "dst_geo_country":"Norway",
+    "dst_asn":"AS2119"
   },
   {
-    "timestamp":"2024-01-01 20:11:00",
+    "timestamp":"2024-01-01 20:11:00 UTC",
     "src_ip":"110.171.100.199",
     "dst_ip":"147.130.229.5",
     "src_port":11870,
@@ -4708,12 +5746,18 @@
       3.880732,
       3.071928
     ],
-    "geo_country":"Thailand",
-    "asn":"AS17552",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Thailand",
+    "src_asn":"AS17552",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS367"
   },
   {
-    "timestamp":"2024-01-01 20:18:00",
+    "timestamp":"2024-01-01 20:18:00 UTC",
     "src_ip":"198.231.220.168",
     "dst_ip":"56.168.23.198",
     "src_port":31873,
@@ -4738,10 +5782,16 @@
     ],
     "geo_country":null,
     "asn":null,
-    "flag_amount_mismatch":true
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":"United States",
+    "dst_asn":"AS16509"
   },
   {
-    "timestamp":"2024-01-01 20:25:00",
+    "timestamp":"2024-01-01 20:25:00 UTC",
     "src_ip":"99.192.138.113",
     "dst_ip":"174.58.175.26",
     "src_port":7771,
@@ -4766,12 +5816,18 @@
       0.93079,
       2.62265
     ],
-    "geo_country":"United States",
-    "asn":"AS27589",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS27589",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS7922"
   },
   {
-    "timestamp":"2024-01-01 20:32:00",
+    "timestamp":"2024-01-01 20:32:00 UTC",
     "src_ip":"48.84.210.65",
     "dst_ip":"3.196.213.203",
     "src_port":5786,
@@ -4794,10 +5850,16 @@
     ],
     "geo_country":null,
     "asn":null,
-    "flag_amount_mismatch":true
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":"United States",
+    "dst_asn":"AS16509"
   },
   {
-    "timestamp":"2024-01-01 20:39:00",
+    "timestamp":"2024-01-01 20:39:00 UTC",
     "src_ip":"169.186.125.1",
     "dst_ip":"115.209.209.51",
     "src_port":62395,
@@ -4819,10 +5881,16 @@
     ],
     "geo_country":null,
     "asn":null,
-    "flag_amount_mismatch":true
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":"China",
+    "dst_asn":"AS4134"
   },
   {
-    "timestamp":"2024-01-01 20:46:00",
+    "timestamp":"2024-01-01 20:46:00 UTC",
     "src_ip":"213.6.159.163",
     "dst_ip":"80.60.141.9",
     "src_port":50906,
@@ -4847,12 +5915,18 @@
       1.695493,
       3.443109
     ],
-    "geo_country":"Palestine",
-    "asn":"AS12975",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Palestine",
+    "src_asn":"AS12975",
+    "dst_geo_country":"The Netherlands",
+    "dst_asn":"AS1136"
   },
   {
-    "timestamp":"2024-01-01 20:53:00",
+    "timestamp":"2024-01-01 20:53:00 UTC",
     "src_ip":"197.235.189.239",
     "dst_ip":"179.187.118.57",
     "src_port":38672,
@@ -4873,12 +5947,18 @@
       2.108575,
       4.607606
     ],
-    "geo_country":"Mozambique",
-    "asn":"AS37223",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Mozambique",
+    "src_asn":"AS37223",
+    "dst_geo_country":"Brazil",
+    "dst_asn":"AS18881"
   },
   {
-    "timestamp":"2024-01-01 21:00:00",
+    "timestamp":"2024-01-01 21:00:00 UTC",
     "src_ip":"5.67.100.180",
     "dst_ip":"205.32.187.186",
     "src_port":2804,
@@ -4899,12 +5979,18 @@
     "output_amounts":[
       4.574279
     ],
-    "geo_country":"United Kingdom",
-    "asn":"AS5607",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United Kingdom",
+    "src_asn":"AS5607",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS749"
   },
   {
-    "timestamp":"2024-01-01 21:07:00",
+    "timestamp":"2024-01-01 21:07:00 UTC",
     "src_ip":"114.165.223.35",
     "dst_ip":"52.113.63.15",
     "src_port":1271,
@@ -4926,12 +6012,18 @@
       3.51974,
       4.40272
     ],
-    "geo_country":"Japan",
-    "asn":"AS4713",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Japan",
+    "src_asn":"AS4713",
+    "dst_geo_country":"Ireland",
+    "dst_asn":"AS8075"
   },
   {
-    "timestamp":"2024-01-01 21:14:00",
+    "timestamp":"2024-01-01 21:14:00 UTC",
     "src_ip":"207.38.53.168",
     "dst_ip":"158.147.173.116",
     "src_port":17504,
@@ -4953,12 +6045,18 @@
       4.442449,
       1.760973
     ],
-    "geo_country":"Canada",
-    "asn":"AS395127",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Canada",
+    "src_asn":"AS395127",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS243"
   },
   {
-    "timestamp":"2024-01-01 21:21:00",
+    "timestamp":"2024-01-01 21:21:00 UTC",
     "src_ip":"45.130.240.220",
     "dst_ip":"71.2.3.26",
     "src_port":26348,
@@ -4978,12 +6076,18 @@
     "output_amounts":[
       2.865611
     ],
-    "geo_country":"Hungary",
-    "asn":"AS47169",
-    "flag_amount_mismatch":false
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":false,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Hungary",
+    "src_asn":"AS47169",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS209"
   },
   {
-    "timestamp":"2024-01-01 21:28:00",
+    "timestamp":"2024-01-01 21:28:00 UTC",
     "src_ip":"128.114.128.9",
     "dst_ip":"87.23.71.221",
     "src_port":1095,
@@ -5005,12 +6109,18 @@
     "output_amounts":[
       1.602708
     ],
-    "geo_country":"United States",
-    "asn":"AS5739",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS5739",
+    "dst_geo_country":"Italy",
+    "dst_asn":"AS3269"
   },
   {
-    "timestamp":"2024-01-01 21:35:00",
+    "timestamp":"2024-01-01 21:35:00 UTC",
     "src_ip":"155.29.154.189",
     "dst_ip":"131.199.85.207",
     "src_port":55207,
@@ -5031,12 +6141,18 @@
       4.254308,
       0.993062
     ],
-    "geo_country":"United States",
-    "asn":"AS668",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS668",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS1341"
   },
   {
-    "timestamp":"2024-01-01 21:42:00",
+    "timestamp":"2024-01-01 21:42:00 UTC",
     "src_ip":"138.227.58.166",
     "dst_ip":"161.201.38.19",
     "src_port":39217,
@@ -5060,10 +6176,16 @@
     ],
     "geo_country":null,
     "asn":null,
-    "flag_amount_mismatch":true
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 21:49:00",
+    "timestamp":"2024-01-01 21:49:00 UTC",
     "src_ip":"4.82.84.39",
     "dst_ip":"132.48.207.36",
     "src_port":43329,
@@ -5083,12 +6205,18 @@
       4.53992,
       2.171971
     ],
-    "geo_country":"United States",
-    "asn":"AS3356",
-    "flag_amount_mismatch":false
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":false,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS3356",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS56"
   },
   {
-    "timestamp":"2024-01-01 21:56:00",
+    "timestamp":"2024-01-01 21:56:00 UTC",
     "src_ip":"79.71.192.26",
     "dst_ip":"29.196.126.250",
     "src_port":50281,
@@ -5110,10 +6238,16 @@
     ],
     "geo_country":null,
     "asn":null,
-    "flag_amount_mismatch":false
+    "flag_amount_mismatch":false,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":null,
+    "src_asn":null,
+    "dst_geo_country":"United States",
+    "dst_asn":"AS749"
   },
   {
-    "timestamp":"2024-01-01 22:03:00",
+    "timestamp":"2024-01-01 22:03:00 UTC",
     "src_ip":"65.117.221.246",
     "dst_ip":"137.211.87.53",
     "src_port":62974,
@@ -5134,12 +6268,18 @@
       4.864315,
       3.983239
     ],
-    "geo_country":"United States",
-    "asn":"AS209",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS209",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS749"
   },
   {
-    "timestamp":"2024-01-01 22:10:00",
+    "timestamp":"2024-01-01 22:10:00 UTC",
     "src_ip":"41.124.130.171",
     "dst_ip":"214.210.145.170",
     "src_port":9297,
@@ -5163,12 +6303,18 @@
       4.481291,
       1.933601
     ],
-    "geo_country":"South Africa",
-    "asn":"AS12091",
-    "flag_amount_mismatch":false
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":false,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"South Africa",
+    "src_asn":"AS12091",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS749"
   },
   {
-    "timestamp":"2024-01-01 22:17:00",
+    "timestamp":"2024-01-01 22:17:00 UTC",
     "src_ip":"71.106.60.67",
     "dst_ip":"32.146.203.100",
     "src_port":39831,
@@ -5190,12 +6336,18 @@
       3.858524,
       0.238756
     ],
-    "geo_country":"United States",
-    "asn":"AS701",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS701",
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 22:24:00",
+    "timestamp":"2024-01-01 22:24:00 UTC",
     "src_ip":"80.82.19.77",
     "dst_ip":"136.213.213.60",
     "src_port":27513,
@@ -5216,12 +6368,18 @@
       4.647251,
       1.066421
     ],
-    "geo_country":"Poland",
-    "asn":"AS42927",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"Poland",
+    "src_asn":"AS42927",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS721"
   },
   {
-    "timestamp":"2024-01-01 22:31:00",
+    "timestamp":"2024-01-01 22:31:00 UTC",
     "src_ip":"112.243.188.251",
     "dst_ip":"98.150.219.96",
     "src_port":40686,
@@ -5243,12 +6401,18 @@
       2.546711,
       4.778649
     ],
-    "geo_country":"China",
-    "asn":"AS4837",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"China",
+    "src_asn":"AS4837",
+    "dst_geo_country":"United States",
+    "dst_asn":"AS20001"
   },
   {
-    "timestamp":"2024-01-01 22:38:00",
+    "timestamp":"2024-01-01 22:38:00 UTC",
     "src_ip":"108.92.133.20",
     "dst_ip":"202.227.52.2",
     "src_port":1248,
@@ -5268,12 +6432,18 @@
       1.440268,
       2.778795
     ],
-    "geo_country":"United States",
-    "asn":"AS7018",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS7018",
+    "dst_geo_country":null,
+    "dst_asn":null
   },
   {
-    "timestamp":"2024-01-01 22:45:00",
+    "timestamp":"2024-01-01 22:45:00 UTC",
     "src_ip":"205.232.147.65",
     "dst_ip":"141.18.89.43",
     "src_port":43069,
@@ -5297,12 +6467,18 @@
       0.454139,
       0.7905
     ],
-    "geo_country":"United States",
-    "asn":"AS7029",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS7029",
+    "dst_geo_country":"Germany",
+    "dst_asn":"AS553"
   },
   {
-    "timestamp":"2024-01-01 22:52:00",
+    "timestamp":"2024-01-01 22:52:00 UTC",
     "src_ip":"125.151.80.71",
     "dst_ip":"213.67.13.154",
     "src_port":6726,
@@ -5323,12 +6499,18 @@
     "output_amounts":[
       3.031764
     ],
-    "geo_country":"South Korea",
-    "asn":"AS4766",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"South Korea",
+    "src_asn":"AS4766",
+    "dst_geo_country":"Sweden",
+    "dst_asn":"AS3301"
   },
   {
-    "timestamp":"2024-01-01 22:59:00",
+    "timestamp":"2024-01-01 22:59:00 UTC",
     "src_ip":"50.11.20.14",
     "dst_ip":"192.125.232.172",
     "src_port":51677,
@@ -5352,12 +6534,18 @@
       1.461597,
       4.590611
     ],
-    "geo_country":"United States",
-    "asn":"AS16509",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS16509",
+    "dst_geo_country":"Italy",
+    "dst_asn":"AS12663"
   },
   {
-    "timestamp":"2024-01-01 23:06:00",
+    "timestamp":"2024-01-01 23:06:00 UTC",
     "src_ip":"33.198.129.104",
     "dst_ip":"53.108.216.231",
     "src_port":45306,
@@ -5380,12 +6568,18 @@
       3.320314,
       0.799997
     ],
-    "geo_country":"United States",
-    "asn":"AS749",
-    "flag_amount_mismatch":true
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":true,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS749",
+    "dst_geo_country":"Germany",
+    "dst_asn":"AS31399"
   },
   {
-    "timestamp":"2024-01-01 23:13:00",
+    "timestamp":"2024-01-01 23:13:00 UTC",
     "src_ip":"17.243.21.164",
     "dst_ip":"222.14.170.106",
     "src_port":25595,
@@ -5405,8 +6599,14 @@
     "output_amounts":[
       0.006482
     ],
-    "geo_country":"United States",
-    "asn":"AS714",
-    "flag_amount_mismatch":false
+    "geo_country":null,
+    "asn":null,
+    "flag_amount_mismatch":false,
+    "fee":null,
+    "script_type":null,
+    "src_geo_country":"United States",
+    "src_asn":"AS714",
+    "dst_geo_country":"Japan",
+    "dst_asn":"AS2516"
   }
 ]
