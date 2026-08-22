@@ -5,3 +5,5 @@ __pycache__/
 data/sample/*.json
 data/sample/*.csv
 !data/sample/.gitkeep
+
+graph-analytics/src/generate_mock_data.py
