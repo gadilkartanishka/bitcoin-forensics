@@ -1,3 +1,4 @@
+import InvestigationGraph from "./components/InvestigationGraph";
 import { Sidebar } from "./components/Sidebar";
 import { TopBar } from "./components/TopBar";
 import { TopFlaggedCard } from "./components/TopFlaggedCard";
@@ -41,6 +42,7 @@ function App() {
 
           {/* row 3: entity table */}
           <EntityTable entities={entities} />
+          <InvestigationGraph />
         </div>
       </div>
     </div>
