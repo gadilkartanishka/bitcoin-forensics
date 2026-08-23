@@ -19,7 +19,9 @@ class Wallet(Base):
     cluster_id = Column(Integer, nullable=True)
     risk_score = Column(Float, nullable=True)
     risk_level = Column(String, nullable=True)  # "LOW" | "MEDIUM" | "HIGH"
-    
+    community_id = Column(Integer, nullable=True)     
+    community_size = Column(Integer, nullable=True) 
+
     inputs = relationship("TxInput", back_populates="wallet")
     outputs = relationship("TxOutput", back_populates="wallet")
 

@@ -11,6 +11,8 @@ class WalletOut(BaseModel):
     risk_score: Optional[float] = None
     risk_level: Optional[str] = None
     cluster_id: Optional[int] = None
+    community_id: Optional[int] = None
+    community_size: Optional[int] = None
 
     class Config:
         from_attributes = True
