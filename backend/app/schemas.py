@@ -9,6 +9,7 @@ class WalletOut(BaseModel):
     out_degree: Optional[int] = None
     anomaly_score: Optional[float] = None
     risk_score: Optional[float] = None
+    risk_level: Optional[str] = None
     cluster_id: Optional[int] = None
 
     class Config:

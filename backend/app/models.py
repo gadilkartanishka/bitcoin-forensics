@@ -18,7 +18,8 @@ class Wallet(Base):
     anomaly_score = Column(Float, nullable=True)
     cluster_id = Column(Integer, nullable=True)
     risk_score = Column(Float, nullable=True)
-
+    risk_level = Column(String, nullable=True)  # "LOW" | "MEDIUM" | "HIGH"
+    
     inputs = relationship("TxInput", back_populates="wallet")
     outputs = relationship("TxOutput", back_populates="wallet")
 
