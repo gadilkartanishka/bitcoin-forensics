@@ -7,3 +7,8 @@ data/sample/*.csv
 !data/sample/.gitkeep
 
 graph-analytics/src/generate_mock_data.py
+# ML local data and generated outputs
+clean_dataset.json
+wallet_features_real.csv
+output/
+
