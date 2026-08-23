@@ -55,7 +55,7 @@ export function Sidebar({
 
               {/* tooltip */}
               {hovered === item.id && (
-                <span className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-2 py-1 text-xs text-text-primary bg-surface border border-border rounded whitespace-nowrap shadow-sm">
+                <span className="absolute left-full ml-2 top-1/2 -translate-y-1/2 px-2 py-1 text-xs text-text-primary bg-surface border border-border rounded whitespace-nowrap shadow-sm tracking-[-0.015em]">
                   {item.label}
                 </span>
               )}

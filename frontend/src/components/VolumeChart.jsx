@@ -20,7 +20,7 @@ export function VolumeChart({ data }) {
         boxShadow: "0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02)",
       }}
     >
-      <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted mb-3">
+      <p className="text-[11px] font-medium uppercase text-text-muted mb-3 tracking-[-0.015em]">
         Volume over time — flagged point highlighted
       </p>
 
@@ -63,7 +63,7 @@ export function VolumeChart({ data }) {
         </LineChart>
       </ResponsiveContainer>
 
-      <p className="mt-1 text-xs text-center font-mono">
+      <p className="mt-1 text-xs text-center font-mono tracking-[-0.015em]">
         <span className="text-accent font-semibold">Apr — spike</span>
       </p>
     </div>

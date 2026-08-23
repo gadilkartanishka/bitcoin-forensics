@@ -34,7 +34,7 @@ export function RiskGauge({ score }) {
           transform="rotate(-90 36 36)"
         />
       </svg>
-      <span className="absolute text-sm font-bold font-mono text-text-primary tracking-tight">
+      <span className="absolute text-sm font-bold font-mono text-text-primary tracking-tight tabular-nums">
         {score}%
       </span>
     </div>

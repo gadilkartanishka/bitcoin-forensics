@@ -5,7 +5,7 @@ function RiskBadge({ score }) {
   if (score >= 90) {
     // High risk: solid filled intelligence blue badge, white text
     return (
-      <span className="inline-block px-2 py-0.5 text-[11px] font-bold font-mono rounded bg-accent text-white tracking-tight">
+      <span className="inline-block px-2 py-0.5 text-[11px] font-bold font-mono rounded bg-accent text-white tracking-tight tabular-nums">
         {score}%
       </span>
     );
@@ -13,14 +13,14 @@ function RiskBadge({ score }) {
   if (score >= 70) {
     // Medium risk: outlined badge, intelligence blue text
     return (
-      <span className="inline-block px-2 py-0.5 text-[11px] font-semibold font-mono rounded border border-accent/50 text-accent bg-accent/10">
+      <span className="inline-block px-2 py-0.5 text-[11px] font-semibold font-mono rounded border border-accent/50 text-accent bg-accent/10 tabular-nums">
         {score}%
       </span>
     );
   }
   // Low risk: plain gray monospace text
   return (
-    <span className="text-text-faint font-mono text-xs px-2 py-0.5">
+    <span className="text-text-faint font-mono text-xs px-2 py-0.5 tabular-nums">
       {score}%
     </span>
   );
@@ -91,7 +91,7 @@ export function EntityTable({ entities, onSelectEntity = () => {} }) {
             {headers.map((h) => (
               <th
                 key={h.key}
-                className={`px-4 py-2.5 text-left text-[11px] font-medium uppercase tracking-wider text-text-muted ${
+                className={`px-4 py-2.5 text-left text-[11px] font-medium uppercase text-text-muted tracking-[-0.015em] ${
                   h.sortable ? "cursor-pointer select-none hover:text-text-primary" : ""
                 }`}
                 onClick={() => h.sortable && handleSort(h.key)}

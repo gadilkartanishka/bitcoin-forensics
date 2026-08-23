@@ -49,7 +49,7 @@ export function EntryScreen({ onLoadDataset }) {
         </h1>
 
         {/* Factual description */}
-        <p className="mt-1.5 text-sm text-text-muted font-normal">
+        <p className="mt-1.5 text-sm text-text-muted font-normal tracking-[-0.015em]">
           Offline transaction &amp; network analysis platform
         </p>
 
@@ -57,10 +57,9 @@ export function EntryScreen({ onLoadDataset }) {
           <>
             {/* System status block */}
             <div
-              className="mt-6 inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-xl bg-shell text-xs font-mono text-text-muted"
+              className="mt-6 inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-xl bg-shell text-xs font-mono text-text-muted tracking-[-0.015em]"
               style={{
-                boxShadow:
-                  "0 1px 2px rgba(0,0,0,0.02), inset 0 1px 0 0 rgba(255,255,255,0.7)",
+                boxShadow: "rgba(12, 41, 126, 0.07) 0px 0px 0px 1px inset",
               }}
             >
               <span className="w-2 h-2 rounded-full bg-accent shrink-0" />
@@ -144,11 +143,6 @@ export function EntryScreen({ onLoadDataset }) {
           </div>
         )}
       </div>
-
-      {/* Low-contrast clinical demo footer */}
-      <footer className="absolute bottom-6 left-0 right-0 text-center text-[11px] font-mono text-text-faint tracking-wide">
-        Prototype build — Smart India Hackathon 2026
-      </footer>
     </main>
   );
 }

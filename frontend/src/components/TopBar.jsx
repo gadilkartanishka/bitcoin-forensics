@@ -8,7 +8,7 @@ export function TopBar({ onLoadDataset = () => {} }) {
         <span className="text-sm font-medium text-text-primary">
           Bitcoin forensic analyzer
         </span>
-        <span className="text-xs text-text-faint font-mono">
+        <span className="text-xs text-text-faint font-mono tracking-[-0.015em]">
           Offline · Dataset: synthetic_v1.json
         </span>
       </div>
@@ -29,7 +29,7 @@ export function TopBar({ onLoadDataset = () => {} }) {
 
         <button
           onClick={onLoadDataset}
-          className="h-8 px-3 text-xs text-text-muted border border-border rounded-lg hover:text-text-primary hover:border-text-faint transition-colors cursor-pointer flex items-center gap-1.5"
+          className="h-8 px-3 text-xs text-text-muted border border-border rounded-lg hover:text-text-primary hover:border-text-faint transition-colors cursor-pointer flex items-center gap-1.5 tracking-[-0.015em]"
         >
           <RefreshCw size={12} />
           Analyze dataset
