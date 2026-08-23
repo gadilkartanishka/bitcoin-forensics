@@ -30,10 +30,22 @@ def validate(df):
     issues.append(f"Dropped {before - len(df)} duplicate transactions")
 
     # 5. Mismatched input/output amount-address counts (flag, don't drop)
+    # Structural check: do the LIST LENGTHS match? (parsing sanity check, not a financial signal)
     def mismatch(row):
         return len(row["input_addresses"]) != len(row["input_amounts"]) or \
                len(row["output_addresses"]) != len(row["output_amounts"])
     df["flag_amount_mismatch"] = df.apply(mismatch, axis=1)
+
+    # 6. Amount mismatch delta — VALUE check: total input BTC vs total output BTC.
+    # Signed float, this is the actual ML feature Osin should use.
+    def amount_delta(row):
+        try:
+            total_in = sum(row["input_amounts"])
+            total_out = sum(row["output_amounts"])
+            return round(total_in - total_out, 8)
+        except (TypeError, ValueError):
+            return None
+    df["amount_mismatch_delta"] = df.apply(amount_delta, axis=1)
 
     for i in issues:
         print(i)

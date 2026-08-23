@@ -8,11 +8,11 @@ def run_pipeline(filepaths, output_path="output/clean_dataset.json"):
     print("Loading and merging files...")
     df = load_and_merge(filepaths)
 
-    print("Validating...")
-    df = validate(df)
-
     print("Normalizing...")
     df = normalize(df)
+
+    print("Validating...")
+    df = validate(df)
 
     print("Enriching with GeoIP...")
     df = enrich_dataframe(df)
