@@ -1,6 +1,6 @@
 import { Search, RefreshCw } from "lucide-react";
 
-export function TopBar() {
+export function TopBar({ onLoadDataset = () => {} }) {
   return (
     <header className="sticky top-0 z-40 h-14 flex items-center justify-between px-6 shrink-0 bg-shell/70 backdrop-blur-[10px] [-webkit-backdrop-filter:blur(10px)]">
       {/* left: system status */}
@@ -8,7 +8,7 @@ export function TopBar() {
         <span className="text-sm font-medium text-text-primary">
           Bitcoin forensic analyzer
         </span>
-        <span className="text-xs text-text-faint">
+        <span className="text-xs text-text-faint font-mono">
           Offline · Dataset: synthetic_v1.json
         </span>
       </div>
@@ -27,9 +27,12 @@ export function TopBar() {
           />
         </div>
 
-        <button className="h-8 px-3 text-xs text-text-muted border border-border rounded-lg hover:text-text-primary hover:border-text-faint cursor-pointer flex items-center gap-1.5">
+        <button
+          onClick={onLoadDataset}
+          className="h-8 px-3 text-xs text-text-muted border border-border rounded-lg hover:text-text-primary hover:border-text-faint transition-colors cursor-pointer flex items-center gap-1.5"
+        >
           <RefreshCw size={12} />
-          Load dataset
+          Analyze dataset
         </button>
       </div>
     </header>
