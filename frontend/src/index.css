@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
+
+  /* layered light enterprise base — dimensional slate canvas */
+  --color-bg: #EEF2F6;
+  --color-shell: #E4EAF1;
+  --color-surface: #FFFFFF;
+  --color-surface-hover: #F8FAFC;
+  --color-border: #D8E1EC;
+  --color-border-subtle: #EDF2F7;
+
+  /* deep ink & slate typography */
+  --color-text-primary: #0F172A;
+  --color-text-secondary: #334155;
+  --color-text-muted: #64748B;
+  --color-text-faint: #94A3B8;
+
+  /* single intelligence blue accent */
+  --color-accent: #2563EB;
+  --color-accent-subtle: #2563EB14;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
