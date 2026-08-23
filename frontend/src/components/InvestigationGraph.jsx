@@ -160,9 +160,15 @@ function getDisplayLabel(node, type) {
   }
 
   if (type === "transaction") {
-    return label
+    const tx = label
       .replace(/^tx:/i, "")
       .replace(/^transaction:/i, "");
+
+    if (tx.length > 30) {
+      return `${tx.slice(0, 12)}...${tx.slice(-10)}`;
+    }
+
+    return tx;
   }
 
   if (type === "ip") {
@@ -234,6 +240,15 @@ function normalizeGraphData(data) {
   let rawNodes = [];
   let rawEdges = [];
 
+  /* =======================================================
+     FORMAT 1
+
+     {
+       nodes: [],
+       edges: []
+     }
+  ======================================================= */
+
   if (
     Array.isArray(data.nodes) ||
     Array.isArray(data.edges)
@@ -245,7 +260,20 @@ function normalizeGraphData(data) {
     rawEdges = Array.isArray(data.edges)
       ? data.edges
       : [];
-  } else if (data.graph) {
+  }
+
+  /* =======================================================
+     FORMAT 2
+
+     {
+       graph: {
+         nodes: [],
+         edges: []
+       }
+     }
+  ======================================================= */
+
+  else if (data.graph) {
     rawNodes = Array.isArray(
       data.graph.nodes
     )
@@ -257,7 +285,19 @@ function normalizeGraphData(data) {
     )
       ? data.graph.edges
       : [];
-  } else {
+  }
+
+  /* =======================================================
+     FORMAT 3
+
+     {
+       wallets: [],
+       transactions: [],
+       ips: []
+     }
+  ======================================================= */
+
+  else {
     const wallets = Array.isArray(
       data.wallets
     )
@@ -456,14 +496,10 @@ function normalizeGraphData(data) {
       }
 
       const source =
-        resolveEndpoint(
-          sourceRaw
-        );
+        resolveEndpoint(sourceRaw);
 
       const target =
-        resolveEndpoint(
-          targetRaw
-        );
+        resolveEndpoint(targetRaw);
 
       if (!source || !target) {
         return;
@@ -940,6 +976,9 @@ function buildGraph(
             id
           );
 
+        const isRoot =
+          id === rootId;
+
         const isUnrelated =
           searchedId &&
           !isSearchResult &&
@@ -979,12 +1018,12 @@ function buildGraph(
         } else if (
           isUnrelated
         ) {
-          opacity = 0.30;
+          opacity = 0.3;
 
           boxShadow =
             "0 2px 6px rgba(0,0,0,0.08)";
         } else if (
-          id === rootId
+          isRoot
         ) {
           border =
             "4px solid #111827";
@@ -1005,10 +1044,13 @@ function buildGraph(
             },
 
           draggable: true,
+
           selectable: true,
 
           style: {
-            width: NODE_WIDTH,
+            width:
+              NODE_WIDTH,
+
             minHeight:
               NODE_HEIGHT,
 
@@ -1018,21 +1060,30 @@ function buildGraph(
                 : "12px",
 
             border,
+
             background,
+
             color: "#111827",
 
             display: "flex",
+
             alignItems:
               "center",
+
             justifyContent:
               "center",
 
             padding: "10px",
+
             fontSize: 13,
+
             fontWeight: 600,
 
             boxShadow,
-            textAlign: "center",
+
+            textAlign:
+              "center",
+
             wordBreak:
               "break-word",
 
@@ -1177,6 +1228,7 @@ function buildGraph(
               MarkerType.ArrowClosed,
 
             width: 18,
+
             height: 18,
 
             color:
@@ -1198,14 +1250,15 @@ function buildGraph(
 
             opacity:
               unrelatedEdge
-                ? 0.20
+                ? 0.2
                 : 1,
 
             transition:
               "all 0.25s ease",
           },
 
-          label: relation,
+          label:
+            relation,
 
           labelStyle: {
             fontSize: 11,
@@ -1219,16 +1272,17 @@ function buildGraph(
 
             opacity:
               unrelatedEdge
-                ? 0.30
+                ? 0.3
                 : 1,
           },
 
           labelBgStyle: {
-            fill: "#ffffff",
+            fill:
+              "#ffffff",
 
             fillOpacity:
               unrelatedEdge
-                ? 0.50
+                ? 0.5
                 : 0.95,
           },
 
@@ -1244,9 +1298,6 @@ function buildGraph(
 
             amount:
               edge.amount,
-
-            original:
-              edge,
           },
         };
       }
@@ -1259,10 +1310,14 @@ function buildGraph(
 }
 
 /* =========================================================
-   NODE TOOLTIP
+   NODE DETAILS PANEL
 ========================================================= */
 
-function NodeTooltip({ node }) {
+function NodeTooltip({
+  node,
+  onInvestigate,
+  onClose,
+}) {
   if (!node) {
     return null;
   }
@@ -1270,61 +1325,167 @@ function NodeTooltip({ node }) {
   const data =
     node.data || {};
 
+  const isWallet =
+    data.nodeType === "wallet";
+
   return (
     <div
       style={{
-        position: "absolute",
+        position:
+          "absolute",
+
         left: 20,
+
         bottom: 20,
+
         zIndex: 50,
+
         width: 330,
-        maxHeight: 430,
-        overflowY: "auto",
+
+        maxHeight: 470,
+
+        overflowY:
+          "auto",
+
         padding: 16,
-        background: "#ffffff",
-        border: "1px solid #e2e8f0",
+
+        background:
+          "#ffffff",
+
+        border:
+          "1px solid #e2e8f0",
+
         borderRadius: 12,
+
         boxShadow:
           "0 10px 30px rgba(0,0,0,0.15)",
+
         fontSize: 13,
-        color: "#0f172a",
+
+        color:
+          "#0f172a",
       }}
     >
+      {/* HEADER */}
+
       <div
         style={{
-          fontWeight: 700,
-          marginBottom: 8,
-          fontSize: 15,
-          textTransform:
-            "capitalize",
-          color:
-            data.nodeType ===
-            "transaction"
-              ? "#2563eb"
-              : data.nodeType ===
-                "ip"
-              ? "#d97706"
-              : "#059669",
+          display: "flex",
+
+          justifyContent:
+            "space-between",
+
+          alignItems:
+            "center",
+
+          marginBottom: 10,
         }}
       >
-        {data.nodeType}
+        <div
+          style={{
+            fontWeight: 700,
+
+            fontSize: 15,
+
+            textTransform:
+              "capitalize",
+
+            color:
+              data.nodeType ===
+              "transaction"
+                ? "#2563eb"
+                : data.nodeType ===
+                  "ip"
+                ? "#d97706"
+                : "#059669",
+          }}
+        >
+          {data.nodeType}
+        </div>
+
+        <button
+          onClick={onClose}
+          style={{
+            border: "none",
+
+            background:
+              "transparent",
+
+            cursor:
+              "pointer",
+
+            fontSize: 20,
+
+            color:
+              "#64748b",
+
+            lineHeight: 1,
+          }}
+        >
+          ×
+        </button>
       </div>
+
+      {/* DISPLAY ID */}
 
       <div
         style={{
           wordBreak:
             "break-all",
+
           marginBottom: 8,
         }}
       >
-        <strong>ID:</strong>{" "}
+        <strong>
+          ID:
+        </strong>{" "}
         {data.fullLabel}
       </div>
+
+      {/* INVESTIGATE WALLET */}
+
+      {isWallet && (
+        <button
+          onClick={() =>
+            onInvestigate(node)
+          }
+          style={{
+            width: "100%",
+
+            marginTop: 10,
+
+            marginBottom: 12,
+
+            padding:
+              "10px 12px",
+
+            border: "none",
+
+            borderRadius: 8,
+
+            background:
+              "#2563eb",
+
+            color:
+              "#ffffff",
+
+            fontWeight: 700,
+
+            cursor:
+              "pointer",
+          }}
+        >
+          Investigate from this wallet
+        </button>
+      )}
+
+      {/* ADDRESS */}
 
       {data.address && (
         <div
           style={{
             marginTop: 5,
+
             wordBreak:
               "break-all",
           }}
@@ -1336,10 +1497,31 @@ function NodeTooltip({ node }) {
         </div>
       )}
 
+      {/* WALLET */}
+
+      {data.wallet && (
+        <div
+          style={{
+            marginTop: 5,
+
+            wordBreak:
+              "break-all",
+          }}
+        >
+          <strong>
+            Wallet:
+          </strong>{" "}
+          {data.wallet}
+        </div>
+      )}
+
+      {/* TRANSACTION */}
+
       {data.txid && (
         <div
           style={{
             marginTop: 5,
+
             wordBreak:
               "break-all",
           }}
@@ -1351,30 +1533,41 @@ function NodeTooltip({ node }) {
         </div>
       )}
 
+      {/* TIME */}
+
       {data.timestamp && (
         <div
           style={{
             marginTop: 5,
           }}
         >
-          <strong>Time:</strong>{" "}
+          <strong>
+            Time:
+          </strong>{" "}
           {data.timestamp}
         </div>
       )}
 
+      {/* FEE */}
+
       {data.fee !==
         undefined &&
-        data.fee !== null &&
+        data.fee !==
+          null &&
         data.fee !== "" && (
           <div
             style={{
               marginTop: 5,
             }}
           >
-            <strong>Fee:</strong>{" "}
+            <strong>
+              Fee:
+            </strong>{" "}
             {data.fee}
           </div>
         )}
+
+      {/* SCRIPT */}
 
       {(data.scriptType ||
         data.script_type) && (
@@ -1390,6 +1583,8 @@ function NodeTooltip({ node }) {
             data.script_type}
         </div>
       )}
+
+      {/* AMOUNT */}
 
       {(data.amount !==
         undefined ||
@@ -1411,6 +1606,8 @@ function NodeTooltip({ node }) {
         </div>
       )}
 
+      {/* AMOUNT MISMATCH */}
+
       {data.flag_amount_mismatch !==
         undefined &&
         data.flag_amount_mismatch !==
@@ -1418,6 +1615,11 @@ function NodeTooltip({ node }) {
           <div
             style={{
               marginTop: 5,
+
+              color:
+                data.flag_amount_mismatch
+                  ? "#dc2626"
+                  : "#059669",
             }}
           >
             <strong>
@@ -1450,6 +1652,8 @@ function NodeTooltip({ node }) {
           </div>
         )}
 
+      {/* RISK */}
+
       {data.riskScore !==
         undefined &&
         data.riskScore !==
@@ -1461,10 +1665,14 @@ function NodeTooltip({ node }) {
               marginTop: 5,
             }}
           >
-            <strong>Risk:</strong>{" "}
+            <strong>
+              Risk:
+            </strong>{" "}
             {data.riskScore}
           </div>
         )}
+
+      {/* COMMUNITY */}
 
       {data.communityId !==
         undefined &&
@@ -1482,6 +1690,8 @@ function NodeTooltip({ node }) {
           </div>
         )}
 
+      {/* COUNTRY */}
+
       {data.country && (
         <div
           style={{
@@ -1495,16 +1705,22 @@ function NodeTooltip({ node }) {
         </div>
       )}
 
+      {/* CITY */}
+
       {data.city && (
         <div
           style={{
             marginTop: 5,
           }}
         >
-          <strong>City:</strong>{" "}
+          <strong>
+            City:
+          </strong>{" "}
           {data.city}
         </div>
       )}
+
+      {/* ASN */}
 
       {data.asn && (
         <div
@@ -1512,10 +1728,14 @@ function NodeTooltip({ node }) {
             marginTop: 5,
           }}
         >
-          <strong>ASN:</strong>{" "}
+          <strong>
+            ASN:
+          </strong>{" "}
           {data.asn}
         </div>
       )}
+
+      {/* ISP */}
 
       {data.isp && (
         <div
@@ -1523,10 +1743,14 @@ function NodeTooltip({ node }) {
             marginTop: 5,
           }}
         >
-          <strong>ISP:</strong>{" "}
+          <strong>
+            ISP:
+          </strong>{" "}
           {data.isp}
         </div>
       )}
+
+      {/* ORGANIZATION */}
 
       {data.organization && (
         <div
@@ -1545,148 +1769,14 @@ function NodeTooltip({ node }) {
 }
 
 /* =========================================================
-   EDGE TOOLTIP
-========================================================= */
-
-function EdgeTooltip({ edge }) {
-  if (!edge) {
-    return null;
-  }
-
-  const data =
-    edge.data || {};
-
-  return (
-    <div
-      style={{
-        position: "absolute",
-        left: 20,
-        bottom: 20,
-        zIndex: 60,
-        width: 330,
-        maxHeight: 400,
-        overflowY: "auto",
-        padding: 16,
-        background: "#ffffff",
-        border: "1px solid #e2e8f0",
-        borderRadius: 12,
-        boxShadow:
-          "0 10px 30px rgba(0,0,0,0.15)",
-        fontSize: 13,
-        color: "#0f172a",
-      }}
-    >
-      <div
-        style={{
-          fontWeight: 700,
-          marginBottom: 10,
-          fontSize: 15,
-          color: "#2563eb",
-        }}
-      >
-        Relationship Details
-      </div>
-
-      <div
-        style={{
-          marginTop: 6,
-          wordBreak: "break-all",
-        }}
-      >
-        <strong>
-          Relationship:
-        </strong>{" "}
-        {data.relation ||
-          edge.label ||
-          "Unknown"}
-      </div>
-
-      <div
-        style={{
-          marginTop: 6,
-          wordBreak: "break-all",
-        }}
-      >
-        <strong>
-          Source:
-        </strong>{" "}
-        {edge.source}
-      </div>
-
-      <div
-        style={{
-          marginTop: 6,
-          wordBreak: "break-all",
-        }}
-      >
-        <strong>
-          Target:
-        </strong>{" "}
-        {edge.target}
-      </div>
-
-      {data.amount !==
-        undefined &&
-        data.amount !== null &&
-        data.amount !== "" && (
-          <div
-            style={{
-              marginTop: 6,
-            }}
-          >
-            <strong>
-              Amount:
-            </strong>{" "}
-            {data.amount}
-          </div>
-        )}
-
-      {data.original && (
-        <>
-          {data.original.timestamp && (
-            <div
-              style={{
-                marginTop: 6,
-              }}
-            >
-              <strong>
-                Timestamp:
-              </strong>{" "}
-              {
-                data.original
-                  .timestamp
-              }
-            </div>
-          )}
-
-          {data.original.fee !==
-            undefined &&
-            data.original.fee !==
-              null && (
-              <div
-                style={{
-                  marginTop: 6,
-                }}
-              >
-                <strong>
-                  Fee:
-                </strong>{" "}
-                {
-                  data.original.fee
-                }
-              </div>
-            )}
-        </>
-      )}
-    </div>
-  );
-}
-
-/* =========================================================
    MAIN COMPONENT
 ========================================================= */
 
 export default function InvestigationGraph() {
+  /* =======================================================
+     NORMALIZE JSON
+  ======================================================= */
+
   const normalizedData =
     useMemo(
       () =>
@@ -1728,20 +1818,19 @@ export default function InvestigationGraph() {
     firstWalletId
   );
 
-  const [depth, setDepth] =
-    useState(1);
+  const [
+    depth,
+    setDepth,
+  ] = useState(1);
 
-  const [top, setTop] =
-    useState(20);
+  const [
+    top,
+    setTop,
+  ] = useState(20);
 
   const [
     selectedNode,
     setSelectedNode,
-  ] = useState(null);
-
-  const [
-    selectedEdge,
-    setSelectedEdge,
   ] = useState(null);
 
   /* =======================================================
@@ -1757,6 +1846,10 @@ export default function InvestigationGraph() {
     searchedId,
     setSearchedId,
   ] = useState("");
+
+  /* =======================================================
+     SEARCH RESULTS
+  ======================================================= */
 
   const searchResults =
     useMemo(() => {
@@ -1783,30 +1876,45 @@ export default function InvestigationGraph() {
               type
             );
 
-          const values = [
-            label,
+          const fullLabel =
             cleanString(
-              node.label
-            ),
-            cleanString(
-              node.name
-            ),
+              node.label ??
+                node.name ??
+                node.address ??
+                node.txid ??
+                node.ip ??
+                node.id
+            );
+
+          const id =
             cleanString(
               node.id
-            ),
+            );
+
+          const txid =
             cleanString(
               node.txid
-            ),
+            );
+
+          const address =
             cleanString(
               node.address
-            ),
+            );
+
+          const ip =
             cleanString(
               node.ip
-            ),
-            type,
-          ];
+            );
 
-          return values.some(
+          return [
+            label,
+            fullLabel,
+            id,
+            txid,
+            address,
+            ip,
+            type,
+          ].some(
             (value) =>
               value
                 .toLowerCase()
@@ -1819,6 +1927,10 @@ export default function InvestigationGraph() {
       normalizedData,
     ]);
 
+  /* =======================================================
+     EXECUTE SEARCH
+  ======================================================= */
+
   function executeSearch(node) {
     if (!node) {
       return;
@@ -1828,19 +1940,123 @@ export default function InvestigationGraph() {
       node.id
     );
 
-    setSelectedNode(
-      node
-    );
+    setSelectedNode({
+      id: node.id,
 
-    setSelectedEdge(
-      null
+      data: {
+        label:
+          getDisplayLabel(
+            node,
+            getNodeType(
+              node.id,
+              node
+            )
+          ),
+
+        fullLabel:
+          node.label ??
+          node.name ??
+          node.address ??
+          node.txid ??
+          node.ip ??
+          node.id,
+
+        nodeType:
+          getNodeType(
+            node.id,
+            node
+          ),
+
+        wallet:
+          node.wallet,
+
+        address:
+          node.address,
+
+        txid:
+          node.txid,
+
+        timestamp:
+          node.timestamp ??
+          node.time ??
+          node.date,
+
+        fee:
+          node.fee,
+
+        scriptType:
+          node.script_type ??
+          node.scriptType,
+
+        flag_amount_mismatch:
+          node.flag_amount_mismatch,
+
+        amount_mismatch_delta:
+          node.amount_mismatch_delta,
+
+        amount:
+          node.amount,
+
+        amount_btc:
+          node.amount_btc,
+
+        value:
+          node.value,
+
+        riskScore:
+          node.risk_score ??
+          node.riskScore,
+
+        communityId:
+          node.community_id ??
+          node.communityId,
+
+        country:
+          node.country,
+
+        asn:
+          node.asn,
+
+        city:
+          node.city,
+
+        isp:
+          node.isp,
+
+        organization:
+          node.organization,
+
+        script_type:
+          node.script_type,
+
+        original:
+          node,
+      },
+    });
+
+    setSearchText(
+      getDisplayLabel(
+        node,
+        getNodeType(
+          node.id,
+          node
+        )
+      )
     );
   }
+
+  /* =======================================================
+     CLEAR SEARCH
+  ======================================================= */
 
   function clearSearch() {
     setSearchText("");
     setSearchedId("");
   }
+
+  /* =======================================================
+     SEARCH KEYBOARD
+  ======================================================= */
 
   function handleSearchKeyDown(
     event
@@ -1868,7 +2084,42 @@ export default function InvestigationGraph() {
   }
 
   /* =======================================================
-     WALLET VALIDATION
+     INVESTIGATE FROM WALLET
+  ======================================================= */
+
+  function investigateFromWallet(
+    node
+  ) {
+    if (!node) {
+      return;
+    }
+
+    if (
+      node.data?.nodeType !==
+      "wallet"
+    ) {
+      return;
+    }
+
+    setSelectedId(
+      node.id
+    );
+
+    setSelectedNode(
+      null
+    );
+
+    setSearchText(
+      ""
+    );
+
+    setSearchedId(
+      ""
+    );
+  }
+
+  /* =======================================================
+     KEEP VALID ROOT
   ======================================================= */
 
   useEffect(() => {
@@ -1938,9 +2189,18 @@ export default function InvestigationGraph() {
     graph.edges
   );
 
+  /* =======================================================
+     UPDATE GRAPH
+  ======================================================= */
+
   useEffect(() => {
-    setNodes(graph.nodes);
-    setEdges(graph.edges);
+    setNodes(
+      graph.nodes
+    );
+
+    setEdges(
+      graph.edges
+    );
   }, [
     graph.nodes,
     graph.edges,
@@ -1959,13 +2219,20 @@ export default function InvestigationGraph() {
       <div
         style={{
           padding: 30,
+
           margin: 20,
+
           border:
             "1px solid #fecaca",
+
           borderRadius: 12,
+
           background:
             "#fef2f2",
-          color: "#991b1b",
+
+          color:
+            "#991b1b",
+
           fontFamily:
             "Arial, sans-serif",
         }}
@@ -2004,13 +2271,19 @@ export default function InvestigationGraph() {
     <div
       style={{
         width: "100%",
+
         height:
           "calc(100vh - 120px)",
+
         minHeight: 650,
+
         display: "flex",
+
         flexDirection:
           "column",
-        background: "#ffffff",
+
+        background:
+          "#ffffff",
       }}
     >
       {/* =================================================
@@ -2021,16 +2294,23 @@ export default function InvestigationGraph() {
         style={{
           padding:
             "20px 24px 12px",
-          background: "#ffffff",
+
+          background:
+            "#ffffff",
         }}
       >
+        {/* TITLE + CONTROLS */}
+
         <div
           style={{
             display: "flex",
+
             justifyContent:
               "space-between",
+
             alignItems:
               "center",
+
             gap: 20,
           }}
         >
@@ -2038,8 +2318,11 @@ export default function InvestigationGraph() {
             <h2
               style={{
                 margin: 0,
+
                 fontSize: 24,
-                color: "#0f172a",
+
+                color:
+                  "#0f172a",
               }}
             >
               Investigation Graph
@@ -2048,8 +2331,10 @@ export default function InvestigationGraph() {
             <div
               style={{
                 marginTop: 5,
+
                 color:
                   "#64748b",
+
                 fontSize: 15,
               }}
             >
@@ -2059,20 +2344,27 @@ export default function InvestigationGraph() {
             </div>
           </div>
 
+          {/* DEPTH + TOP */}
+
           <div
             style={{
               display: "flex",
+
               alignItems:
                 "center",
+
               gap: 16,
             }}
           >
             <label
               style={{
                 display: "flex",
+
                 alignItems:
                   "center",
+
                 gap: 8,
+
                 color:
                   "#0f172a",
               }}
@@ -2083,10 +2375,13 @@ export default function InvestigationGraph() {
 
               <select
                 value={depth}
-                onChange={(event) =>
+                onChange={(
+                  event
+                ) =>
                   setDepth(
                     Number(
-                      event.target
+                      event
+                        .target
                         .value
                     )
                   )
@@ -2094,12 +2389,19 @@ export default function InvestigationGraph() {
                 style={{
                   padding:
                     "9px 14px",
+
                   borderRadius: 8,
+
                   border:
                     "1px solid #cbd5e1",
+
                   background:
                     "#ffffff",
+
                   fontSize: 14,
+
+                  cursor:
+                    "pointer",
                 }}
               >
                 <option value={1}>
@@ -2123,9 +2425,12 @@ export default function InvestigationGraph() {
             <label
               style={{
                 display: "flex",
+
                 alignItems:
                   "center",
+
                 gap: 8,
+
                 color:
                   "#0f172a",
               }}
@@ -2136,10 +2441,13 @@ export default function InvestigationGraph() {
 
               <select
                 value={top}
-                onChange={(event) =>
+                onChange={(
+                  event
+                ) =>
                   setTop(
                     Number(
-                      event.target
+                      event
+                        .target
                         .value
                     )
                   )
@@ -2147,12 +2455,19 @@ export default function InvestigationGraph() {
                 style={{
                   padding:
                     "9px 14px",
+
                   borderRadius: 8,
+
                   border:
                     "1px solid #cbd5e1",
+
                   background:
                     "#ffffff",
+
                   fontSize: 14,
+
+                  cursor:
+                    "pointer",
                 }}
               >
                 <option value={10}>
@@ -2175,18 +2490,24 @@ export default function InvestigationGraph() {
           </div>
         </div>
 
-        {/* SEARCH */}
+        {/* =================================================
+            SEARCH
+        ================================================= */}
 
         <div
           style={{
             marginTop: 18,
-            position: "relative",
+
+            position:
+              "relative",
+
             maxWidth: 650,
           }}
         >
           <div
             style={{
               display: "flex",
+
               gap: 8,
             }}
           >
@@ -2194,6 +2515,7 @@ export default function InvestigationGraph() {
               style={{
                 position:
                   "relative",
+
                 flex: 1,
               }}
             >
@@ -2201,11 +2523,16 @@ export default function InvestigationGraph() {
                 style={{
                   position:
                     "absolute",
+
                   left: 12,
+
                   top: "50%",
+
                   transform:
                     "translateY(-50%)",
+
                   fontSize: 18,
+
                   zIndex: 2,
                 }}
               >
@@ -2217,7 +2544,9 @@ export default function InvestigationGraph() {
                 value={
                   searchText
                 }
-                onChange={(event) =>
+                onChange={(
+                  event
+                ) =>
                   setSearchText(
                     event.target
                       .value
@@ -2228,16 +2557,30 @@ export default function InvestigationGraph() {
                 }
                 placeholder="Search wallet / transaction / IP..."
                 style={{
-                  width: "100%",
+                  width:
+                    "100%",
+
                   boxSizing:
                     "border-box",
+
                   padding:
                     "11px 42px",
+
                   borderRadius: 9,
+
                   border:
                     "1px solid #cbd5e1",
-                  outline: "none",
+
+                  outline:
+                    "none",
+
                   fontSize: 14,
+
+                  color:
+                    "#0f172a",
+
+                  background:
+                    "#ffffff",
                 }}
               />
 
@@ -2249,17 +2592,29 @@ export default function InvestigationGraph() {
                   style={{
                     position:
                       "absolute",
+
                     right: 8,
+
                     top: "50%",
+
                     transform:
                       "translateY(-50%)",
-                    border: "none",
+
+                    border:
+                      "none",
+
                     background:
                       "transparent",
+
                     cursor:
                       "pointer",
+
                     fontSize: 18,
+
+                    color:
+                      "#64748b",
                   }}
+                  title="Clear search"
                 >
                   ×
                 </button>
@@ -2284,15 +2639,23 @@ export default function InvestigationGraph() {
               style={{
                 padding:
                   "10px 18px",
+
                 borderRadius: 9,
-                border: "none",
+
+                border:
+                  "none",
+
                 background:
                   searchResults.length >
                   0
                     ? "#2563eb"
                     : "#cbd5e1",
-                color: "#ffffff",
+
+                color:
+                  "#ffffff",
+
                 fontWeight: 600,
+
                 cursor:
                   searchResults.length >
                   0
@@ -2304,6 +2667,8 @@ export default function InvestigationGraph() {
             </button>
           </div>
 
+          {/* SEARCH RESULTS */}
+
           {searchText &&
             searchResults.length >
               0 && (
@@ -2311,18 +2676,27 @@ export default function InvestigationGraph() {
                 style={{
                   position:
                     "absolute",
+
                   top:
                     "calc(100% + 5px)",
+
                   left: 0,
+
                   right: 80,
+
                   zIndex: 100,
+
                   background:
                     "#ffffff",
+
                   border:
                     "1px solid #e2e8f0",
+
                   borderRadius: 10,
+
                   boxShadow:
                     "0 10px 30px rgba(0,0,0,0.15)",
+
                   overflow:
                     "hidden",
                 }}
@@ -2348,21 +2722,30 @@ export default function InvestigationGraph() {
                         style={{
                           width:
                             "100%",
+
                           padding:
                             "10px 14px",
+
                           display:
                             "flex",
+
                           alignItems:
                             "center",
+
                           gap: 10,
+
                           border:
                             "none",
+
                           borderBottom:
                             "1px solid #f1f5f9",
+
                           background:
                             "#ffffff",
+
                           cursor:
                             "pointer",
+
                           textAlign:
                             "left",
                         }}
@@ -2371,14 +2754,22 @@ export default function InvestigationGraph() {
                           style={{
                             padding:
                               "4px 7px",
+
                             borderRadius: 6,
+
                             background:
                               COLORS[
                                 type
                               ],
+
+                            color:
+                              "#111827",
+
                             fontSize: 11,
+
                             fontWeight:
                               700,
+
                             textTransform:
                               "uppercase",
                           }}
@@ -2390,7 +2781,10 @@ export default function InvestigationGraph() {
                           style={{
                             color:
                               "#0f172a",
-                            fontSize: 13,
+
+                            fontSize:
+                              13,
+
                             wordBreak:
                               "break-all",
                           }}
@@ -2414,21 +2808,32 @@ export default function InvestigationGraph() {
                 style={{
                   position:
                     "absolute",
+
                   top:
                     "calc(100% + 5px)",
+
                   left: 0,
+
                   right: 80,
+
                   zIndex: 100,
+
                   padding: 14,
+
                   background:
                     "#ffffff",
+
                   border:
                     "1px solid #e2e8f0",
+
                   borderRadius: 10,
+
                   boxShadow:
                     "0 10px 30px rgba(0,0,0,0.12)",
+
                   color:
                     "#64748b",
+
                   fontSize: 13,
                 }}
               >
@@ -2439,15 +2844,22 @@ export default function InvestigationGraph() {
             )}
         </div>
 
+        {/* SEARCH STATUS */}
+
         {searchedId && (
           <div
             style={{
               marginTop: 10,
+
               display: "flex",
+
               alignItems:
                 "center",
+
               gap: 10,
+
               fontSize: 13,
+
               color:
                 "#475569",
             }}
@@ -2462,16 +2874,23 @@ export default function InvestigationGraph() {
                 clearSearch
               }
               style={{
-                border: "none",
+                border:
+                  "none",
+
                 background:
                   "#fee2e2",
+
                 color:
                   "#b91c1c",
+
                 padding:
                   "5px 10px",
+
                 borderRadius: 6,
+
                 cursor:
                   "pointer",
+
                 fontWeight: 600,
               }}
             >
@@ -2480,57 +2899,196 @@ export default function InvestigationGraph() {
           </div>
         )}
 
-        {/* LEGEND */}
+        {/* =================================================
+            LEGEND
+        ================================================= */}
 
         <div
           style={{
             display: "flex",
-            flexWrap: "wrap",
+
+            flexWrap:
+              "wrap",
+
             gap: 24,
+
             marginTop: 18,
+
             fontSize: 14,
+
             color:
               "#0f172a",
           }}
         >
-          <span>
-            🟢 Wallet
+          <span
+            style={{
+              display: "flex",
+
+              alignItems:
+                "center",
+
+              gap: 8,
+            }}
+          >
+            <span
+              style={{
+                width: 14,
+
+                height: 14,
+
+                borderRadius:
+                  "50%",
+
+                background:
+                  COLORS.wallet,
+              }}
+            />
+
+            Wallet
           </span>
 
-          <span>
-            🔵 Transaction
+          <span
+            style={{
+              display: "flex",
+
+              alignItems:
+                "center",
+
+              gap: 8,
+            }}
+          >
+            <span
+              style={{
+                width: 14,
+
+                height: 14,
+
+                borderRadius:
+                  "50%",
+
+                background:
+                  COLORS.transaction,
+              }}
+            />
+
+            Transaction
           </span>
 
-          <span>
-            🟠 IP
+          <span
+            style={{
+              display: "flex",
+
+              alignItems:
+                "center",
+
+              gap: 10,
+            }}
+          >
+            <span
+              style={{
+                width: 14,
+
+                height: 14,
+
+                transform:
+                  "rotate(45deg)",
+
+                background:
+                  COLORS.ip,
+              }}
+            />
+
+            IP
           </span>
 
-          <span>
-            🟡 Search result
+          <span
+            style={{
+              display: "flex",
+
+              alignItems:
+                "center",
+
+              gap: 8,
+            }}
+          >
+            <span
+              style={{
+                width: 14,
+
+                height: 14,
+
+                borderRadius:
+                  "50%",
+
+                background:
+                  SEARCH_RESULT_COLOR,
+
+                border:
+                  "2px solid #92400e",
+
+                boxShadow:
+                  "0 0 8px rgba(250,204,21,0.8)",
+              }}
+            />
+
+            Search result
           </span>
 
-          <span>
-            🔵 Direct connection
+          <span
+            style={{
+              display: "flex",
+
+              alignItems:
+                "center",
+
+              gap: 8,
+            }}
+          >
+            <span
+              style={{
+                width: 14,
+
+                height: 14,
+
+                borderRadius:
+                  "50%",
+
+                background:
+                  COLORS.wallet,
+
+                border:
+                  "3px solid #2563eb",
+              }}
+            />
+
+            Direct connection
           </span>
         </div>
 
-        {/* WALLET SELECTOR */}
+        {/* =================================================
+            WALLET SELECTOR
+        ================================================= */}
 
         {walletOptions.length >
           0 && (
           <div
             style={{
               marginTop: 16,
+
               display: "flex",
+
               alignItems:
                 "center",
+
               gap: 10,
             }}
           >
             <label
               style={{
                 fontSize: 13,
+
                 fontWeight: 600,
+
                 color:
                   "#475569",
               }}
@@ -2543,7 +3101,9 @@ export default function InvestigationGraph() {
               value={
                 selectedId
               }
-              onChange={(event) => {
+              onChange={(
+                event
+              ) => {
                 setSelectedId(
                   event.target
                     .value
@@ -2553,22 +3113,29 @@ export default function InvestigationGraph() {
                   null
                 );
 
-                setSelectedEdge(
-                  null
-                );
-
                 clearSearch();
               }}
               style={{
                 minWidth: 395,
+
                 padding:
                   "9px 12px",
+
                 borderRadius: 8,
+
                 border:
                   "1px solid #cbd5e1",
+
                 background:
                   "#ffffff",
+
                 fontSize: 14,
+
+                color:
+                  "#0f172a",
+
+                cursor:
+                  "pointer",
               }}
             >
               {walletOptions.map(
@@ -2599,14 +3166,23 @@ export default function InvestigationGraph() {
       <div
         style={{
           flex: 1,
+
           minHeight: 500,
+
           margin:
             "0 20px 20px",
+
           border:
             "1px solid #e2e8f0",
+
           borderRadius: 14,
-          overflow: "hidden",
-          position: "relative",
+
+          overflow:
+            "hidden",
+
+          position:
+            "relative",
+
           background:
             "#f8fafc",
         }}
@@ -2617,14 +3193,20 @@ export default function InvestigationGraph() {
             style={{
               position:
                 "absolute",
+
               inset: 0,
+
               display: "flex",
+
               alignItems:
                 "center",
+
               justifyContent:
                 "center",
+
               color:
                 "#64748b",
+
               fontSize: 16,
             }}
           >
@@ -2643,11 +3225,6 @@ export default function InvestigationGraph() {
             onEdgesChange={
               onEdgesChange
             }
-
-            /* =========================================
-               NODE CLICK
-            ========================================= */
-
             onNodeClick={(
               event,
               node
@@ -2656,64 +3233,22 @@ export default function InvestigationGraph() {
                 node
               );
 
-              setSelectedEdge(
-                null
-              );
+              /*
+                IMPORTANT:
 
-              if (
-                node.data
-                  ?.nodeType ===
-                "wallet"
-              ) {
-                setSelectedId(
-                  node.id
-                );
+                Clicking a wallet DOES NOT
+                automatically change the graph.
 
-                setSearchText(
-                  ""
-                );
-
-                setSearchedId(
-                  ""
-                );
-              }
+                The user must click:
+                "Investigate from this wallet"
+              */
             }}
-
-            /* =========================================
-               EDGE CLICK
-            ========================================= */
-
-            onEdgeClick={(
-              event,
-              edge
-            ) => {
-              setSelectedEdge(
-                edge
-              );
-
-              setSelectedNode(
-                null
-              );
-            }}
-
-            /* =========================================
-               BACKGROUND CLICK
-            ========================================= */
-
-            onPaneClick={() => {
-              setSelectedNode(
-                null
-              );
-
-              setSelectedEdge(
-                null
-              );
-            }}
-
             fitView
             fitViewOptions={{
               padding: 0.25,
+
               maxZoom: 1.15,
+
               minZoom: 0.35,
             }}
             minZoom={0.15}
@@ -2739,7 +3274,9 @@ export default function InvestigationGraph() {
             <MiniMap
               pannable
               zoomable
-              nodeColor={(node) => {
+              nodeColor={(
+                node
+              ) => {
                 const type =
                   node?.data
                     ?.nodeType;
@@ -2753,41 +3290,55 @@ export default function InvestigationGraph() {
           </ReactFlow>
         )}
 
-        {/* NODE DETAILS */}
+        {/* =================================================
+            NODE DETAILS
+        ================================================= */}
 
         <NodeTooltip
           node={
             selectedNode
           }
-        />
-
-        {/* EDGE DETAILS */}
-
-        <EdgeTooltip
-          edge={
-            selectedEdge
+          onInvestigate={
+            investigateFromWallet
+          }
+          onClose={() =>
+            setSelectedNode(
+              null
+            )
           }
         />
 
-        {/* STATISTICS */}
+        {/* =================================================
+            GRAPH STATISTICS
+        ================================================= */}
 
         <div
           style={{
             position:
               "absolute",
+
             right: 15,
+
             bottom: 15,
+
             zIndex: 20,
+
             padding:
               "10px 14px",
+
             background:
               "rgba(255,255,255,0.96)",
+
             border:
               "1px solid #e2e8f0",
+
             borderRadius: 10,
+
             fontSize: 12,
+
             color:
               "#475569",
+
             boxShadow:
               "0 4px 15px rgba(0,0,0,0.08)",
           }}
@@ -2825,6 +3376,7 @@ export default function InvestigationGraph() {
             <div
               style={{
                 marginTop: 3,
+
                 color:
                   "#2563eb",
               }}
@@ -2835,6 +3387,26 @@ export default function InvestigationGraph() {
               Active
             </div>
           )}
+
+          <div
+            style={{
+              marginTop: 3,
+            }}
+          >
+            <strong>
+              Root:
+            </strong>{" "}
+            {selectedId
+              ? getDisplayLabel(
+                  normalizedData.nodes.find(
+                    (n) =>
+                      n.id ===
+                      selectedId
+                  ) || {},
+                  "wallet"
+                )
+              : "None"}
+          </div>
         </div>
       </div>
     </div>
