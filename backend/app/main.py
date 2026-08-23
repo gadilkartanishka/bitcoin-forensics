@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from app.routers import wallet, transaction, dataset, graph, ml_results, alerts, statistics
+from app.routers import wallet, transaction, dataset, graph, ml_results, alerts, statistics, graph_features, clusters
 
 app = FastAPI(title="Bitcoin Forensics API")
 
@@ -10,6 +10,8 @@ app.include_router(graph.router)
 app.include_router(ml_results.router)
 app.include_router(alerts.router)
 app.include_router(statistics.router)
+app.include_router(graph_features.router)
+app.include_router(clusters.router)
 
 @app.get("/")
 def root():
