@@ -1,6 +1,9 @@
 import CytoscapeComponent from "react-cytoscapejs";
+import { useState } from "react";
 
 function InvestigationGraph() {
+  const [selectedNode, setSelectedNode] = useState(null);
+
   const elements = [
     {
       data: {
@@ -21,6 +24,11 @@ function InvestigationGraph() {
         id: "wallet1",
         label: "Wallet A",
         type: "wallet",
+        riskScore: 97,
+        transactions: 382,
+        countries: 4,
+        received: 82,
+        sent: 79,
       },
     },
     {
@@ -28,6 +36,11 @@ function InvestigationGraph() {
         id: "wallet2",
         label: "Wallet B",
         type: "wallet",
+        riskScore: 74,
+        transactions: 96,
+        countries: 2,
+        received: 31,
+        sent: 28,
       },
     },
 
@@ -66,6 +79,8 @@ function InvestigationGraph() {
         "background-color": "#94a3b8",
         width: "55px",
         height: "55px",
+        "border-width": 2,
+        "border-color": "#ffffff",
       },
     },
 
@@ -103,7 +118,30 @@ function InvestigationGraph() {
         "curve-style": "bezier",
       },
     },
+
+    {
+      selector: ":selected",
+      style: {
+        "border-width": 4,
+        "border-color": "#7c3aed",
+      },
+    },
   ];
+
+  const handleNodeClick = (event) => {
+    const node = event.target;
+
+    setSelectedNode({
+      id: node.id(),
+      label: node.data("label"),
+      type: node.data("type"),
+      riskScore: node.data("riskScore"),
+      transactions: node.data("transactions"),
+      countries: node.data("countries"),
+      received: node.data("received"),
+      sent: node.data("sent"),
+    });
+  };
 
   return (
     <div className="mt-4 rounded-xl bg-white p-4 shadow-sm">
@@ -132,8 +170,66 @@ function InvestigationGraph() {
             width: "100%",
             height: "100%",
           }}
+          cy={(cy) => {
+            cy.removeListener("tap", "node");
+            cy.on("tap", "node", handleNodeClick);
+          }}
         />
       </div>
+
+      {selectedNode && (
+        <div className="mt-4 rounded-lg border border-gray-200 bg-gray-50 p-4">
+          <h3 className="text-base font-semibold mb-3">
+            Selected Entity
+          </h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+            <div>
+              <span className="font-medium">Type:</span>{" "}
+              {selectedNode.type}
+            </div>
+
+            <div>
+              <span className="font-medium">ID:</span>{" "}
+              {selectedNode.id}
+            </div>
+
+            <div>
+              <span className="font-medium">Label:</span>{" "}
+              {selectedNode.label}
+            </div>
+
+            {selectedNode.riskScore !== undefined && (
+              <>
+                <div>
+                  <span className="font-medium">Risk Score:</span>{" "}
+                  {selectedNode.riskScore}
+                </div>
+
+                <div>
+                  <span className="font-medium">Transactions:</span>{" "}
+                  {selectedNode.transactions}
+                </div>
+
+                <div>
+                  <span className="font-medium">Countries:</span>{" "}
+                  {selectedNode.countries}
+                </div>
+
+                <div>
+                  <span className="font-medium">Received:</span>{" "}
+                  {selectedNode.received} BTC
+                </div>
+
+                <div>
+                  <span className="font-medium">Sent:</span>{" "}
+                  {selectedNode.sent} BTC
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
