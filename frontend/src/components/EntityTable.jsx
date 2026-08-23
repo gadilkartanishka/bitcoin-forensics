@@ -51,7 +51,7 @@ function TrendCell({ trend }) {
   );
 }
 
-export function EntityTable({ entities }) {
+export function EntityTable({ entities, onSelectEntity = () => {} }) {
   const [sortKey, setSortKey] = useState("risk_score");
   const [sortDir, setSortDir] = useState("desc");
 
@@ -117,9 +117,10 @@ export function EntityTable({ entities }) {
           {sorted.map((e) => (
             <tr
               key={e.id}
-              className="border-b border-border-subtle last:border-0 hover:bg-slate-50/80 transition-colors"
+              onClick={() => onSelectEntity(e.id)}
+              className="border-b border-border-subtle last:border-0 hover:bg-slate-50/80 transition-colors cursor-pointer group"
             >
-              <td className="px-4 py-2.5 font-mono font-semibold text-text-primary">
+              <td className="px-4 py-2.5 font-mono font-semibold text-text-primary group-hover:text-accent transition-colors">
                 {e.id}
               </td>
               <td className="px-4 py-2.5 font-mono text-text-muted tabular-nums">

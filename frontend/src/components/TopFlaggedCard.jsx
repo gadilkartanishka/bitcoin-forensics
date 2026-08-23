@@ -1,9 +1,10 @@
 import { RiskGauge } from "./RiskGauge";
 
-export function TopFlaggedCard({ entity }) {
+export function TopFlaggedCard({ entity, onSelectEntity = () => {} }) {
   return (
     <div
-      className="rounded-xl bg-surface p-4 flex flex-col gap-3 h-full border border-border"
+      onClick={() => onSelectEntity(entity.id)}
+      className="rounded-xl bg-surface p-4 flex flex-col gap-3 h-full border border-border cursor-pointer hover:border-accent/40 transition-all group"
       style={{
         boxShadow:
           "0 2px 4px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03), inset 0 1px 0 0 rgba(255,255,255,0.9)",
@@ -14,7 +15,7 @@ export function TopFlaggedCard({ entity }) {
           <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
             Top flagged entity
           </p>
-          <p className="mt-1 text-lg font-bold font-mono text-text-primary tracking-tight">
+          <p className="mt-1 text-lg font-bold font-mono text-text-primary group-hover:text-accent transition-colors tracking-tight">
             {entity.id}
           </p>
         </div>
