@@ -29,22 +29,25 @@ const COLORS = {
 
 const EDGE_COLOR = "#94a3b8";
 
+const SEARCH_RESULT_COLOR = "#facc15";
+const CONNECTED_COLOR = "#60a5fa";
+
 /* =========================================================
    HELPERS
 ========================================================= */
 
 function cleanString(value) {
-  if (value === undefined || value === null) return "";
+  if (value === undefined || value === null) {
+    return "";
+  }
+
   return String(value);
 }
 
-/*
-  Detect node type from:
-  - node.type
-  - node.nodeType
-  - id prefix
-  - common field names
-*/
+/* =========================================================
+   GET NODE TYPE
+========================================================= */
+
 function getNodeType(id, node = {}) {
   const explicitType =
     node.type ??
@@ -100,14 +103,12 @@ function getNodeType(id, node = {}) {
     return "ip";
   }
 
-  /*
-    Detect Bitcoin-like wallet addresses.
-  */
   const raw = value.replace(
     /^(wallet|address):/,
     ""
   );
 
+  /* Bitcoin wallet */
   if (
     /^[13][a-z0-9]{25,40}$/i.test(raw) ||
     /^bc1[a-z0-9]{20,90}$/i.test(raw)
@@ -115,19 +116,14 @@ function getNodeType(id, node = {}) {
     return "wallet";
   }
 
-  /*
-    Detect IPv4.
-  */
+  /* IPv4 */
   if (
     /^\d{1,3}(\.\d{1,3}){3}$/.test(raw)
   ) {
     return "ip";
   }
 
-  /*
-    Transaction IDs often start with tx or are
-    64-character hexadecimal strings.
-  */
+  /* Transaction hash */
   if (
     /^[a-f0-9]{64}$/i.test(raw)
   ) {
@@ -138,7 +134,7 @@ function getNodeType(id, node = {}) {
 }
 
 /* =========================================================
-   NODE LABEL
+   DISPLAY LABEL
 ========================================================= */
 
 function getDisplayLabel(node, type) {
@@ -164,9 +160,15 @@ function getDisplayLabel(node, type) {
   }
 
   if (type === "transaction") {
-    return label
+    const tx = label
       .replace(/^tx:/i, "")
       .replace(/^transaction:/i, "");
+
+    if (tx.length > 22) {
+      return `${tx.slice(0, 10)}...${tx.slice(-8)}`;
+    }
+
+    return tx;
   }
 
   if (type === "ip") {
@@ -189,30 +191,29 @@ function canonicalNodeId(id, node = {}) {
       node.ip
   );
 
-  if (!raw) return "";
+  if (!raw) {
+    return "";
+  }
 
   const type = getNodeType(raw, node);
 
-  /*
-    If already prefixed, keep it.
-  */
   if (
     raw.startsWith("wallet:") ||
     raw.startsWith("tx:") ||
     raw.startsWith("transaction:") ||
     raw.startsWith("ip:")
   ) {
-    if (raw.startsWith("transaction:")) {
-      return `tx:${raw.slice("transaction:".length)}`;
+    if (
+      raw.startsWith("transaction:")
+    ) {
+      return `tx:${raw.slice(
+        "transaction:".length
+      )}`;
     }
 
     return raw;
   }
 
-  /*
-    Add a stable prefix so raw wallet addresses,
-    tx ids and IPs do not collide.
-  */
   if (type === "wallet") {
     return `wallet:${raw}`;
   }
@@ -236,15 +237,6 @@ function normalizeGraphData(data) {
     };
   }
 
-  /*
-    Most likely format:
-
-    {
-      nodes: [],
-      edges: []
-    }
-  */
-
   let rawNodes = [];
   let rawEdges = [];
 
@@ -259,26 +251,22 @@ function normalizeGraphData(data) {
     rawEdges = Array.isArray(data.edges)
       ? data.edges
       : [];
-  }
-
-  /*
-    Support nested graph format.
-  */
-  else if (data.graph) {
-    rawNodes = Array.isArray(data.graph.nodes)
+  } else if (data.graph) {
+    rawNodes = Array.isArray(
+      data.graph.nodes
+    )
       ? data.graph.nodes
       : [];
 
-    rawEdges = Array.isArray(data.graph.edges)
+    rawEdges = Array.isArray(
+      data.graph.edges
+    )
       ? data.graph.edges
       : [];
-  }
-
-  /*
-    Support separate wallet / transaction / IP arrays.
-  */
-  else {
-    const wallets = Array.isArray(data.wallets)
+  } else {
+    const wallets = Array.isArray(
+      data.wallets
+    )
       ? data.wallets
       : [];
 
@@ -309,21 +297,28 @@ function normalizeGraphData(data) {
       })),
     ];
 
-    if (Array.isArray(data.relationships)) {
+    if (
+      Array.isArray(data.relationships)
+    ) {
       rawEdges = data.relationships;
-    } else if (Array.isArray(data.links)) {
+    } else if (
+      Array.isArray(data.links)
+    ) {
       rawEdges = data.links;
     }
   }
 
-  /*
-    Normalize nodes.
-  */
+  /* =======================================================
+     NORMALIZE NODES
+  ======================================================= */
+
   const nodes = [];
   const idMap = new Map();
 
   for (const original of rawNodes) {
-    if (!original) continue;
+    if (!original) {
+      continue;
+    }
 
     const originalId =
       original.id ??
@@ -332,14 +327,18 @@ function normalizeGraphData(data) {
       original.ip ??
       original.wallet;
 
-    if (!originalId) continue;
+    if (!originalId) {
+      continue;
+    }
 
     const id = canonicalNodeId(
       originalId,
       original
     );
 
-    if (!id) continue;
+    if (!id) {
+      continue;
+    }
 
     const type = getNodeType(
       originalId,
@@ -354,12 +353,15 @@ function normalizeGraphData(data) {
 
     nodes.push(normalized);
 
-    /*
-      Map all possible representations to the same
-      canonical ID.
-    */
-    idMap.set(String(originalId), id);
-    idMap.set(String(originalId).toLowerCase(), id);
+    idMap.set(
+      String(originalId),
+      id
+    );
+
+    idMap.set(
+      String(originalId).toLowerCase(),
+      id
+    );
 
     idMap.set(id, id);
 
@@ -371,13 +373,21 @@ function normalizeGraphData(data) {
       original.ip;
 
     if (label) {
-      idMap.set(String(label), id);
+      idMap.set(
+        String(label),
+        id
+      );
+
       idMap.set(
         String(label).toLowerCase(),
         id
       );
     }
   }
+
+  /* =======================================================
+     RESOLVE EDGE ENDPOINT
+  ======================================================= */
 
   function resolveEndpoint(value) {
     if (
@@ -394,16 +404,15 @@ function normalizeGraphData(data) {
     }
 
     if (
-      idMap.has(raw.toLowerCase())
+      idMap.has(
+        raw.toLowerCase()
+      )
     ) {
       return idMap.get(
         raw.toLowerCase()
       );
     }
 
-    /*
-      Try prefixed forms.
-    */
     const possibilities = [
       `wallet:${raw}`,
       `tx:${raw}`,
@@ -419,82 +428,101 @@ function normalizeGraphData(data) {
     return canonicalNodeId(raw);
   }
 
-  /*
-    Normalize edges.
-  */
+  /* =======================================================
+     NORMALIZE EDGES
+  ======================================================= */
+
   const edges = [];
 
-  rawEdges.forEach((edge, index) => {
-    if (!edge) return;
+  rawEdges.forEach(
+    (edge, index) => {
+      if (!edge) {
+        return;
+      }
 
-    const sourceRaw =
-      edge.source ??
-      edge.from ??
-      edge.src ??
-      edge.from_id ??
-      edge.source_id;
+      const sourceRaw =
+        edge.source ??
+        edge.from ??
+        edge.src ??
+        edge.from_id ??
+        edge.source_id;
 
-    const targetRaw =
-      edge.target ??
-      edge.to ??
-      edge.dst ??
-      edge.to_id ??
-      edge.target_id;
+      const targetRaw =
+        edge.target ??
+        edge.to ??
+        edge.dst ??
+        edge.to_id ??
+        edge.target_id;
 
-    if (
-      sourceRaw === undefined ||
-      targetRaw === undefined
-    ) {
-      return;
+      if (
+        sourceRaw === undefined ||
+        targetRaw === undefined
+      ) {
+        return;
+      }
+
+      const source =
+        resolveEndpoint(
+          sourceRaw
+        );
+
+      const target =
+        resolveEndpoint(
+          targetRaw
+        );
+
+      if (!source || !target) {
+        return;
+      }
+
+      const sourceExists =
+        nodes.some(
+          (node) =>
+            node.id === source
+        );
+
+      const targetExists =
+        nodes.some(
+          (node) =>
+            node.id === target
+        );
+
+      if (
+        !sourceExists ||
+        !targetExists
+      ) {
+        return;
+      }
+
+      const relation =
+        edge.relation ??
+        edge.relationship ??
+        edge.type ??
+        edge.label ??
+        "";
+
+      edges.push({
+        ...edge,
+
+        id:
+          edge.id ??
+          `edge-${index}-${source}-${target}`,
+
+        source,
+        target,
+
+        relation:
+          String(relation),
+
+        amount:
+          edge.amount ??
+          edge.value ??
+          edge.amount_btc ??
+          edge.btc ??
+          null,
+      });
     }
-
-    const source =
-      resolveEndpoint(sourceRaw);
-
-    const target =
-      resolveEndpoint(targetRaw);
-
-    if (!source || !target) {
-      return;
-    }
-
-    /*
-      Only create edges when both endpoints exist.
-    */
-    if (
-      !nodes.some((node) => node.id === source) ||
-      !nodes.some((node) => node.id === target)
-    ) {
-      return;
-    }
-
-    const relation =
-      edge.relation ??
-      edge.relationship ??
-      edge.type ??
-      edge.label ??
-      "";
-
-    edges.push({
-      ...edge,
-
-      id:
-        edge.id ??
-        `edge-${index}-${source}-${target}`,
-
-      source,
-      target,
-
-      relation: String(relation),
-
-      amount:
-        edge.amount ??
-        edge.value ??
-        edge.amount_btc ??
-        edge.btc ??
-        null,
-    });
-  });
+  );
 
   return {
     nodes,
@@ -510,7 +538,8 @@ function buildGraph(
   data,
   selectedId,
   depth,
-  top
+  top,
+  searchedId
 ) {
   if (
     !data ||
@@ -523,7 +552,10 @@ function buildGraph(
   }
 
   const allNodes = data.nodes;
-  const allEdges = Array.isArray(data.edges)
+
+  const allEdges = Array.isArray(
+    data.edges
+  )
     ? data.edges
     : [];
 
@@ -538,39 +570,41 @@ function buildGraph(
 
   allNodes.forEach((node) => {
     if (node?.id) {
-      nodeMap.set(node.id, node);
+      nodeMap.set(
+        node.id,
+        node
+      );
     }
   });
 
-  /*
-    Find root.
-  */
+  /* =======================================================
+     FIND ROOT
+  ======================================================= */
+
   let rootId =
     selectedId &&
     nodeMap.has(selectedId)
       ? selectedId
       : null;
 
-  /*
-    If selected ID is not found, choose first wallet.
-  */
   if (!rootId) {
-    const wallet = allNodes.find(
-      (node) =>
-        getNodeType(node.id, node) ===
-        "wallet"
-    );
+    const wallet =
+      allNodes.find(
+        (node) =>
+          getNodeType(
+            node.id,
+            node
+          ) === "wallet"
+      );
 
     if (wallet) {
       rootId = wallet.id;
     }
   }
 
-  /*
-    Last fallback: first node.
-  */
   if (!rootId) {
-    rootId = allNodes[0]?.id;
+    rootId =
+      allNodes[0]?.id;
   }
 
   if (!rootId) {
@@ -580,59 +614,70 @@ function buildGraph(
     };
   }
 
-  /* -------------------------------------------------------
-     Build undirected adjacency map.
+  /* =======================================================
+     ADJACENCY MAP
+  ======================================================= */
 
-     We deliberately traverse both directions because
-     investigation should be able to move through:
+  const adjacency =
+    new Map();
 
-       wallet -> transaction
-       transaction -> wallet
-       transaction -> IP
-       IP -> transaction
-
-  ------------------------------------------------------- */
-
-  const adjacency = new Map();
-
-  function addConnection(a, b) {
-    if (!a || !b) return;
-
-    if (!adjacency.has(a)) {
-      adjacency.set(a, []);
-    }
-
-    adjacency.get(a).push(b);
-  }
-
-  allEdges.forEach((edge) => {
-    if (
-      !edge?.source ||
-      !edge?.target
-    ) {
+  function addConnection(
+    a,
+    b
+  ) {
+    if (!a || !b) {
       return;
     }
 
-    addConnection(
-      edge.source,
-      edge.target
-    );
+    if (
+      !adjacency.has(a)
+    ) {
+      adjacency.set(
+        a,
+        []
+      );
+    }
 
-    addConnection(
-      edge.target,
-      edge.source
-    );
-  });
+    adjacency
+      .get(a)
+      .push(b);
+  }
 
-  /* -------------------------------------------------------
+  allEdges.forEach(
+    (edge) => {
+      if (
+        !edge?.source ||
+        !edge?.target
+      ) {
+        return;
+      }
+
+      addConnection(
+        edge.source,
+        edge.target
+      );
+
+      addConnection(
+        edge.target,
+        edge.source
+      );
+    }
+  );
+
+  /* =======================================================
      BFS
-  ------------------------------------------------------- */
+  ======================================================= */
 
-  const visited = new Set([rootId]);
+  const visited =
+    new Set([rootId]);
 
-  const levelMap = new Map();
+  const levelMap =
+    new Map();
 
-  levelMap.set(rootId, 0);
+  levelMap.set(
+    rootId,
+    0
+  );
 
   const queue = [
     {
@@ -641,31 +686,53 @@ function buildGraph(
     },
   ];
 
-  while (queue.length > 0) {
-    const current = queue.shift();
+  while (
+    queue.length > 0
+  ) {
+    const current =
+      queue.shift();
 
-    if (!current) continue;
+    if (!current) {
+      continue;
+    }
 
-    if (current.level >= depth) {
+    if (
+      current.level >=
+      depth
+    ) {
       continue;
     }
 
     const neighbors =
-      adjacency.get(current.id) || [];
+      adjacency.get(
+        current.id
+      ) || [];
 
-    for (const neighbor of neighbors) {
-      if (!nodeMap.has(neighbor)) {
+    for (
+      const neighbor of neighbors
+    ) {
+      if (
+        !nodeMap.has(
+          neighbor
+        )
+      ) {
         continue;
       }
 
-      if (visited.has(neighbor)) {
+      if (
+        visited.has(
+          neighbor
+        )
+      ) {
         continue;
       }
 
       const nextLevel =
         current.level + 1;
 
-      visited.add(neighbor);
+      visited.add(
+        neighbor
+      );
 
       levelMap.set(
         neighbor,
@@ -679,34 +746,43 @@ function buildGraph(
     }
   }
 
-  /* -------------------------------------------------------
-     Limit nodes.
-  ------------------------------------------------------- */
+  /* =======================================================
+     LIMIT NODES
+  ======================================================= */
 
-  let visibleIds = Array.from(
-    visited
-  );
+  let visibleIds =
+    Array.from(visited);
 
-  if (visibleIds.length > top) {
+  if (
+    visibleIds.length >
+    top
+  ) {
     visibleIds = [
       rootId,
+
       ...visibleIds
         .filter(
-          (id) => id !== rootId
+          (id) =>
+            id !== rootId
         )
         .slice(
           0,
-          Math.max(0, top - 1)
+          Math.max(
+            0,
+            top - 1
+          )
         ),
     ];
   }
 
   const visibleSet =
-    new Set(visibleIds);
+    new Set(
+      visibleIds
+    );
 
-  /* -------------------------------------------------------
-     Visible edges
-  ------------------------------------------------------- */
+  /* =======================================================
+     VISIBLE EDGES
+  ======================================================= */
 
   const visibleEdges =
     allEdges.filter(
@@ -719,209 +795,421 @@ function buildGraph(
         )
     );
 
-  /* -------------------------------------------------------
-     Group nodes by BFS level.
-  ------------------------------------------------------- */
+  /* =======================================================
+     SEARCH CONNECTIONS
+  ======================================================= */
 
-  const columns = new Map();
+  const connectedToSearch =
+    new Set();
 
-  visibleIds.forEach((id) => {
-    const level =
-      levelMap.get(id) ?? 0;
+  if (searchedId) {
+    const searchNeighbors =
+      adjacency.get(
+        searchedId
+      ) || [];
 
-    if (!columns.has(level)) {
-      columns.set(level, []);
-    }
-
-    columns
-      .get(level)
-      .push(id);
-  });
-
-  /* -------------------------------------------------------
-     Calculate positions.
-  ------------------------------------------------------- */
-
-  const positions = new Map();
-
-  const COLUMN_GAP = 360;
-  const ROW_GAP = 150;
-
-  const sortedLevels =
-    Array.from(columns.keys()).sort(
-      (a, b) => a - b
-    );
-
-  sortedLevels.forEach((level) => {
-    const ids =
-      columns.get(level) || [];
-
-    const totalHeight =
-      Math.max(
-        0,
-        (ids.length - 1) *
-          ROW_GAP
-      );
-
-    ids.forEach(
-      (id, index) => {
-        positions.set(id, {
-          x:
-            120 +
-            level *
-              COLUMN_GAP,
-
-          y:
-            420 -
-            totalHeight / 2 +
-            index * ROW_GAP,
-        });
+    searchNeighbors.forEach(
+      (id) => {
+        if (
+          visibleSet.has(id)
+        ) {
+          connectedToSearch.add(
+            id
+          );
+        }
       }
     );
-  });
+  }
+
+  /* =======================================================
+     COLUMNS
+  ======================================================= */
+
+  const columns =
+    new Map();
+
+  visibleIds.forEach(
+    (id) => {
+      const level =
+        levelMap.get(id) ??
+        0;
+
+      if (
+        !columns.has(level)
+      ) {
+        columns.set(
+          level,
+          []
+        );
+      }
+
+      columns
+        .get(level)
+        .push(id);
+    }
+  );
+
+  /* =======================================================
+     POSITIONS
+  ======================================================= */
+
+  const positions =
+    new Map();
 
   /*
-    Put root in the middle.
+    Increased spacing to reduce
+    node overlap.
   */
-  positions.set(rootId, {
-    x: 120,
-    y: 420,
-  });
 
-  /* -------------------------------------------------------
-     React Flow nodes
-  ------------------------------------------------------- */
+  const COLUMN_GAP = 420;
+  const ROW_GAP = 190;
 
-  const flowNodes = visibleIds
-    .map((id) => {
-      const original =
-        nodeMap.get(id);
+  const sortedLevels =
+    Array.from(
+      columns.keys()
+    ).sort(
+      (a, b) =>
+        a - b
+    );
 
-      if (!original) {
-        return null;
-      }
+  sortedLevels.forEach(
+    (level) => {
+      const ids =
+        columns.get(
+          level
+        ) || [];
 
-      const type =
-        getNodeType(
+      const totalHeight =
+        Math.max(
+          0,
+          (ids.length - 1) *
+            ROW_GAP
+        );
+
+      ids.forEach(
+        (id, index) => {
+          positions.set(
+            id,
+            {
+              x:
+                120 +
+                level *
+                  COLUMN_GAP,
+
+              y:
+                420 -
+                totalHeight /
+                  2 +
+                index *
+                  ROW_GAP,
+            }
+          );
+        }
+      );
+    }
+  );
+
+  /* =======================================================
+     ROOT POSITION
+  ======================================================= */
+
+  positions.set(
+    rootId,
+    {
+      x: 120,
+      y: 420,
+    }
+  );
+
+  /* =======================================================
+     FLOW NODES
+  ======================================================= */
+
+  const flowNodes =
+    visibleIds
+      .map((id) => {
+        const original =
+          nodeMap.get(id);
+
+        if (!original) {
+          return null;
+        }
+
+        const type =
+          getNodeType(
+            id,
+            original
+          );
+
+        const label =
+          getDisplayLabel(
+            original,
+            type
+          );
+
+        const isSearchResult =
+          id === searchedId;
+
+        const isConnected =
+          connectedToSearch.has(
+            id
+          );
+
+        const isRoot =
+          id === rootId;
+
+        const isUnrelated =
+          searchedId &&
+          !isSearchResult &&
+          !isConnected;
+
+        let background =
+          COLORS[type] ||
+          COLORS.wallet;
+
+        let border =
+          "2px solid white";
+
+        let boxShadow =
+          "0 3px 10px rgba(0,0,0,0.12)";
+
+        let opacity = 1;
+
+        /* SEARCH RESULT */
+
+        if (
+          isSearchResult
+        ) {
+          background =
+            SEARCH_RESULT_COLOR;
+
+          border =
+            "4px solid #92400e";
+
+          boxShadow =
+            "0 0 0 8px rgba(250,204,21,0.35), 0 0 30px rgba(250,204,21,0.85)";
+
+          opacity = 1;
+        }
+
+        /* DIRECT SEARCH CONNECTION */
+
+        else if (
+          isConnected
+        ) {
+          border =
+            "4px solid #2563eb";
+
+          boxShadow =
+            "0 0 0 6px rgba(96,165,250,0.30), 0 0 20px rgba(96,165,250,0.55)";
+
+          opacity = 1;
+        }
+
+        /* ROOT WALLET */
+
+        else if (
+          isRoot
+        ) {
+          border =
+            "4px solid #111827";
+
+          boxShadow =
+            "0 0 0 7px rgba(59,130,246,0.25), 0 0 25px rgba(59,130,246,0.45)";
+
+          opacity = 1;
+        }
+
+        /* UNRELATED */
+
+        else if (
+          isUnrelated
+        ) {
+          opacity = 0.30;
+
+          boxShadow =
+            "0 2px 6px rgba(0,0,0,0.08)";
+        }
+
+        return {
           id,
-          original
-        );
 
-      const label =
-        getDisplayLabel(
-          original,
-          type
-        );
+          type: "default",
 
-      const selected =
-        id === rootId;
+          position:
+            positions.get(id) || {
+              x: 120,
+              y: 420,
+            },
 
-      return {
-        id,
+          draggable: true,
 
-        type: "default",
+          selectable: true,
 
-        position:
-          positions.get(id) || {
-            x: 120,
-            y: 420,
+          style: {
+            width:
+              NODE_WIDTH,
+
+            minHeight:
+              NODE_HEIGHT,
+
+            borderRadius:
+              type === "ip"
+                ? "50%"
+                : "12px",
+
+            border,
+
+            background,
+
+            color: "#111827",
+
+            display: "flex",
+
+            alignItems:
+              "center",
+
+            justifyContent:
+              "center",
+
+            padding: "10px",
+
+            fontSize: 13,
+
+            fontWeight: 600,
+
+            boxShadow,
+
+            textAlign:
+              "center",
+
+            wordBreak:
+              "break-word",
+
+            opacity,
+
+            transition:
+              "all 0.25s ease",
+
+            zIndex:
+              isSearchResult
+                ? 20
+                : isRoot
+                ? 15
+                : isConnected
+                ? 10
+                : 1,
           },
 
-        draggable: true,
+          data: {
+            label,
 
-        selectable: true,
+            fullLabel:
+              original.label ??
+              original.name ??
+              original.address ??
+              original.txid ??
+              original.ip ??
+              original.id,
 
-        style: {
-          width: NODE_WIDTH,
+            nodeType: type,
 
-          minHeight:
-            NODE_HEIGHT,
+            wallet:
+              original.wallet,
 
-          borderRadius:
-            type === "ip"
-              ? "50%"
-              : "12px",
+            address:
+              original.address,
 
-          border: selected
-            ? "4px solid #111827"
-            : "2px solid white",
+            txid:
+              original.txid,
 
-          background:
-            COLORS[type] ||
-            COLORS.wallet,
+            timestamp:
+              original.timestamp ??
+              original.time ??
+              original.date,
 
-          color: "#111827",
+            fee:
+              original.fee,
 
-          display: "flex",
+            scriptType:
+              original.script_type ??
+              original.scriptType,
 
-          alignItems:
-            "center",
+            flag_amount_mismatch:
+              original.flag_amount_mismatch,
 
-          justifyContent:
-            "center",
+            amount_mismatch_delta:
+              original.amount_mismatch_delta,
 
-          padding: "10px",
+            amount:
+              original.amount,
 
-          fontSize: 13,
+            amount_btc:
+              original.amount_btc,
 
-          fontWeight: 600,
+            value:
+              original.value,
 
-          boxShadow: selected
-            ? "0 0 0 6px rgba(59,130,246,0.20)"
-            : "0 3px 10px rgba(0,0,0,0.12)",
+            riskScore:
+              original.risk_score ??
+              original.riskScore,
 
-          textAlign: "center",
+            communityId:
+              original.community_id ??
+              original.communityId,
 
-          wordBreak:
-            "break-word",
-        },
+            country:
+              original.country,
 
-        data: {
-          label,
+            asn:
+              original.asn,
 
-          fullLabel:
-            original.label ??
-            original.name ??
-            original.address ??
-            original.txid ??
-            original.ip ??
-            original.id,
+            city:
+              original.city,
 
-          nodeType: type,
+            isp:
+              original.isp,
 
-          riskScore:
-            original.risk_score ??
-            original.riskScore,
+            organization:
+              original.organization,
 
-          communityId:
-            original.community_id ??
-            original.communityId,
+            script_type:
+              original.script_type,
 
-          timestamp:
-            original.timestamp ??
-            original.time ??
-            original.date,
+            original,
+          },
+        };
+      })
+      .filter(Boolean);
 
-          fee:
-            original.fee,
-
-          scriptType:
-            original.script_type ??
-            original.scriptType,
-        },
-      };
-    })
-    .filter(Boolean);
-
-  /* -------------------------------------------------------
-     React Flow edges
-  ------------------------------------------------------- */
+  /* =======================================================
+     FLOW EDGES
+  ======================================================= */
 
   const flowEdges =
     visibleEdges.map(
       (edge, index) => {
         const relation =
           edge.relation || "";
+
+        const searchEdge =
+          searchedId &&
+          (
+            edge.source ===
+              searchedId ||
+            edge.target ===
+              searchedId
+          );
+
+        const rootEdge =
+          edge.source ===
+            rootId ||
+          edge.target ===
+            rootId;
+
+        const unrelatedEdge =
+          searchedId &&
+          !searchEdge;
 
         return {
           id:
@@ -934,9 +1222,13 @@ function buildGraph(
           target:
             edge.target,
 
-          type: "smoothstep",
+          type:
+            "smoothstep",
 
-          animated: false,
+          animated:
+            Boolean(
+              searchEdge
+            ),
 
           markerEnd: {
             type:
@@ -947,30 +1239,64 @@ function buildGraph(
             height: 18,
 
             color:
-              EDGE_COLOR,
+              searchEdge
+                ? "#2563eb"
+                : rootEdge
+                ? "#475569"
+                : EDGE_COLOR,
           },
 
           style: {
             stroke:
-              EDGE_COLOR,
+              searchEdge
+                ? "#2563eb"
+                : rootEdge
+                ? "#475569"
+                : EDGE_COLOR,
 
-            strokeWidth: 2,
+            strokeWidth:
+              searchEdge
+                ? 4
+                : rootEdge
+                ? 3
+                : 2,
+
+            opacity:
+              unrelatedEdge
+                ? 0.20
+                : 1,
+
+            transition:
+              "all 0.25s ease",
           },
 
-          label: relation,
+          label:
+            relation,
 
           labelStyle: {
             fontSize: 11,
 
-            fill: "#475569",
+            fill:
+              searchEdge
+                ? "#1d4ed8"
+                : "#475569",
 
             fontWeight: 600,
+
+            opacity:
+              unrelatedEdge
+                ? 0.30
+                : 1,
           },
 
           labelBgStyle: {
-            fill: "#ffffff",
+            fill:
+              "#ffffff",
 
-            fillOpacity: 0.95,
+            fillOpacity:
+              unrelatedEdge
+                ? 0.50
+                : 0.95,
           },
 
           labelBgPadding: [
@@ -978,7 +1304,8 @@ function buildGraph(
             3,
           ],
 
-          labelBgBorderRadius: 4,
+          labelBgBorderRadius:
+            4,
 
           data: {
             relation,
@@ -991,17 +1318,24 @@ function buildGraph(
     );
 
   return {
-    nodes: flowNodes,
-    edges: flowEdges,
+    nodes:
+      flowNodes,
+
+    edges:
+      flowEdges,
   };
 }
 
 /* =========================================================
-   TOOLTIP
+   NODE TOOLTIP
 ========================================================= */
 
-function NodeTooltip({ node }) {
-  if (!node) return null;
+function NodeTooltip({
+  node,
+}) {
+  if (!node) {
+    return null;
+  }
 
   const data =
     node.data || {};
@@ -1009,7 +1343,8 @@ function NodeTooltip({ node }) {
   return (
     <div
       style={{
-        position: "absolute",
+        position:
+          "absolute",
 
         left: 20,
 
@@ -1017,11 +1352,17 @@ function NodeTooltip({ node }) {
 
         zIndex: 50,
 
-        width: 310,
+        width: 330,
+
+        maxHeight: 430,
+
+        overflowY:
+          "auto",
 
         padding: 16,
 
-        background: "#ffffff",
+        background:
+          "#ffffff",
 
         border:
           "1px solid #e2e8f0",
@@ -1033,7 +1374,8 @@ function NodeTooltip({ node }) {
 
         fontSize: 13,
 
-        color: "#0f172a",
+        color:
+          "#0f172a",
       }}
     >
       <div
@@ -1046,6 +1388,15 @@ function NodeTooltip({ node }) {
 
           textTransform:
             "capitalize",
+
+          color:
+            data.nodeType ===
+            "transaction"
+              ? "#2563eb"
+              : data.nodeType ===
+                "ip"
+              ? "#d97706"
+              : "#059669",
         }}
       >
         {data.nodeType}
@@ -1059,9 +1410,143 @@ function NodeTooltip({ node }) {
           marginBottom: 8,
         }}
       >
-        <strong>ID:</strong>{" "}
+        <strong>
+          ID:
+        </strong>{" "}
         {data.fullLabel}
       </div>
+
+      {data.address && (
+        <div
+          style={{
+            marginTop: 5,
+            wordBreak:
+              "break-all",
+          }}
+        >
+          <strong>
+            Address:
+          </strong>{" "}
+          {data.address}
+        </div>
+      )}
+
+      {data.txid && (
+        <div
+          style={{
+            marginTop: 5,
+            wordBreak:
+              "break-all",
+          }}
+        >
+          <strong>
+            Transaction ID:
+          </strong>{" "}
+          {data.txid}
+        </div>
+      )}
+
+      {data.timestamp && (
+        <div
+          style={{
+            marginTop: 5,
+          }}
+        >
+          <strong>
+            Time:
+          </strong>{" "}
+          {data.timestamp}
+        </div>
+      )}
+
+      {data.fee !==
+        undefined &&
+        data.fee !==
+          null &&
+        data.fee !== "" && (
+          <div
+            style={{
+              marginTop: 5,
+            }}
+          >
+            <strong>
+              Fee:
+            </strong>{" "}
+            {data.fee}
+          </div>
+        )}
+
+      {(data.scriptType ||
+        data.script_type) && (
+        <div
+          style={{
+            marginTop: 5,
+          }}
+        >
+          <strong>
+            Script:
+          </strong>{" "}
+          {data.scriptType ||
+            data.script_type}
+        </div>
+      )}
+
+      {(data.amount !==
+        undefined ||
+        data.amount_btc !==
+          undefined ||
+        data.value !==
+          undefined) && (
+        <div
+          style={{
+            marginTop: 5,
+          }}
+        >
+          <strong>
+            Amount:
+          </strong>{" "}
+          {data.amount ??
+            data.amount_btc ??
+            data.value}
+        </div>
+      )}
+
+      {data.flag_amount_mismatch !==
+        undefined &&
+        data.flag_amount_mismatch !==
+          null && (
+          <div
+            style={{
+              marginTop: 5,
+            }}
+          >
+            <strong>
+              Amount Mismatch:
+            </strong>{" "}
+            {data.flag_amount_mismatch
+              ? "Yes"
+              : "No"}
+          </div>
+        )}
+
+      {data.amount_mismatch_delta !==
+        undefined &&
+        data.amount_mismatch_delta !==
+          null &&
+        data.amount_mismatch_delta !==
+          "" && (
+          <div
+            style={{
+              marginTop: 5,
+            }}
+          >
+            <strong>
+              Mismatch Delta:
+            </strong>{" "}
+            {data.amount_mismatch_delta}{" "}
+            BTC
+          </div>
+        )}
 
       {data.riskScore !==
         undefined &&
@@ -1097,44 +1582,68 @@ function NodeTooltip({ node }) {
           </div>
         )}
 
-      {data.timestamp && (
+      {data.country && (
         <div
           style={{
             marginTop: 5,
           }}
         >
           <strong>
-            Time:
+            Country:
           </strong>{" "}
-          {data.timestamp}
+          {data.country}
         </div>
       )}
 
-      {data.fee !==
-        undefined &&
-        data.fee !== null && (
-          <div
-            style={{
-              marginTop: 5,
-            }}
-          >
-            <strong>
-              Fee:
-            </strong>{" "}
-            {data.fee}
-          </div>
-        )}
-
-      {data.scriptType && (
+      {data.city && (
         <div
           style={{
             marginTop: 5,
           }}
         >
           <strong>
-            Script:
+            City:
           </strong>{" "}
-          {data.scriptType}
+          {data.city}
+        </div>
+      )}
+
+      {data.asn && (
+        <div
+          style={{
+            marginTop: 5,
+          }}
+        >
+          <strong>
+            ASN:
+          </strong>{" "}
+          {data.asn}
+        </div>
+      )}
+
+      {data.isp && (
+        <div
+          style={{
+            marginTop: 5,
+          }}
+        >
+          <strong>
+            ISP:
+          </strong>{" "}
+          {data.isp}
+        </div>
+      )}
+
+      {data.organization && (
+        <div
+          style={{
+            marginTop: 5,
+          }}
+        >
+          <strong>
+            Organization:
+          </strong>{" "}
+          {data.organization}
         </div>
       )}
     </div>
@@ -1146,9 +1655,6 @@ function NodeTooltip({ node }) {
 ========================================================= */
 
 export default function InvestigationGraph() {
-  /*
-    Normalize JSON once.
-  */
   const normalizedData =
     useMemo(
       () =>
@@ -1158,9 +1664,10 @@ export default function InvestigationGraph() {
       []
     );
 
-  /*
-    Get available wallets.
-  */
+  /* =======================================================
+     WALLET OPTIONS
+  ======================================================= */
+
   const walletOptions =
     useMemo(() => {
       return normalizedData.nodes
@@ -1174,32 +1681,191 @@ export default function InvestigationGraph() {
         .slice(0, 100);
     }, [normalizedData]);
 
-  /*
-    Start with the first real wallet
-    instead of hard-coding an ID.
-  */
   const firstWalletId =
-    walletOptions[0]?.id || "";
+    walletOptions[0]?.id ||
+    "";
 
-  const [selectedId, setSelectedId] =
-    useState(firstWalletId);
+  /* =======================================================
+     STATES
+  ======================================================= */
 
-  const [depth, setDepth] =
-    useState(1);
+  const [
+    selectedId,
+    setSelectedId,
+  ] = useState(
+    firstWalletId
+  );
 
-  const [top, setTop] =
-    useState(20);
+  const [
+    depth,
+    setDepth,
+  ] = useState(1);
 
-  const [selectedNode, setSelectedNode] =
-    useState(null);
+  const [
+    top,
+    setTop,
+  ] = useState(20);
 
-  /*
-    If JSON loads/changes and the old
-    selected wallet no longer exists,
-    automatically select the first wallet.
-  */
+  const [
+    selectedNode,
+    setSelectedNode,
+  ] = useState(null);
+
+  /* SEARCH */
+
+  const [
+    searchText,
+    setSearchText,
+  ] = useState("");
+
+  const [
+    searchedId,
+    setSearchedId,
+  ] = useState("");
+
+  /* =======================================================
+     SEARCH RESULTS
+  ======================================================= */
+
+  const searchResults =
+    useMemo(() => {
+      const query =
+        searchText
+          .trim()
+          .toLowerCase();
+
+      if (!query) {
+        return [];
+      }
+
+      return normalizedData.nodes
+        .filter((node) => {
+          const type =
+            getNodeType(
+              node.id,
+              node
+            );
+
+          const label =
+            getDisplayLabel(
+              node,
+              type
+            );
+
+          const fullLabel =
+            cleanString(
+              node.label ??
+                node.name ??
+                node.address ??
+                node.txid ??
+                node.ip ??
+                node.id
+            );
+
+          const id =
+            cleanString(
+              node.id
+            );
+
+          const txid =
+            cleanString(
+              node.txid
+            );
+
+          const address =
+            cleanString(
+              node.address
+            );
+
+          const ip =
+            cleanString(
+              node.ip
+            );
+
+          return [
+            label,
+            fullLabel,
+            id,
+            txid,
+            address,
+            ip,
+            type,
+          ].some((value) =>
+            value
+              .toLowerCase()
+              .includes(query)
+          );
+        })
+        .slice(0, 10);
+    }, [
+      searchText,
+      normalizedData,
+    ]);
+
+  /* =======================================================
+     EXECUTE SEARCH
+  ======================================================= */
+
+  function executeSearch(node) {
+    if (!node) {
+      return;
+    }
+
+    setSearchedId(
+      node.id
+    );
+
+    setSelectedNode(
+      node
+    );
+  }
+
+  /* =======================================================
+     SEARCH ENTER
+  ======================================================= */
+
+  function handleSearchKeyDown(
+    event
+  ) {
+    if (
+      event.key ===
+      "Enter"
+    ) {
+      if (
+        searchResults.length >
+        0
+      ) {
+        executeSearch(
+          searchResults[0]
+        );
+      }
+    }
+
+    if (
+      event.key ===
+      "Escape"
+    ) {
+      clearSearch();
+    }
+  }
+
+  /* =======================================================
+     CLEAR SEARCH
+  ======================================================= */
+
+  function clearSearch() {
+    setSearchText("");
+    setSearchedId("");
+  }
+
+  /* =======================================================
+     SELECT FIRST WALLET
+  ======================================================= */
+
   useEffect(() => {
-    if (!walletOptions.length) {
+    if (
+      !walletOptions.length
+    ) {
       return;
     }
 
@@ -1220,33 +1886,32 @@ export default function InvestigationGraph() {
     selectedId,
   ]);
 
-  /*
-    Build graph according to:
-      selected wallet
-      depth
-      top
-  */
-  const graph = useMemo(
-    () =>
-      buildGraph(
+  /* =======================================================
+     BUILD GRAPH
+  ======================================================= */
+
+  const graph =
+    useMemo(
+      () =>
+        buildGraph(
+          normalizedData,
+          selectedId,
+          Number(depth),
+          Number(top),
+          searchedId
+        ),
+      [
         normalizedData,
-
         selectedId,
+        depth,
+        top,
+        searchedId,
+      ]
+    );
 
-        Number(depth),
-
-        Number(top)
-      ),
-    [
-      normalizedData,
-
-      selectedId,
-
-      depth,
-
-      top,
-    ]
-  );
+  /* =======================================================
+     REACT FLOW STATE
+  ======================================================= */
 
   const [
     nodes,
@@ -1264,16 +1929,13 @@ export default function InvestigationGraph() {
     graph.edges
   );
 
-  /*
-    Update React Flow whenever
-    depth / wallet / top changes.
-  */
+  /* =======================================================
+     UPDATE GRAPH
+  ======================================================= */
+
   useEffect(() => {
     setNodes(graph.nodes);
-
     setEdges(graph.edges);
-
-    setSelectedNode(null);
   }, [
     graph.nodes,
     graph.edges,
@@ -1282,26 +1944,24 @@ export default function InvestigationGraph() {
   ]);
 
   /* =======================================================
-     NO DATA MESSAGE
+     NO DATA
   ======================================================= */
 
-  if (!normalizedData.nodes.length) {
+  if (
+    !normalizedData.nodes.length
+  ) {
     return (
       <div
         style={{
           padding: 30,
-
           margin: 20,
-
           border:
             "1px solid #fecaca",
-
           borderRadius: 12,
-
-          background: "#fef2f2",
-
-          color: "#991b1b",
-
+          background:
+            "#fef2f2",
+          color:
+            "#991b1b",
           fontFamily:
             "Arial, sans-serif",
         }}
@@ -1326,8 +1986,7 @@ export default function InvestigationGraph() {
 
         <p>
           Make sure that file
-          contains a graph with
-          nodes.
+          contains graph nodes.
         </p>
       </div>
     );
@@ -1341,56 +2000,45 @@ export default function InvestigationGraph() {
     <div
       style={{
         width: "100%",
-
         height:
           "calc(100vh - 120px)",
-
         minHeight: 650,
-
         display: "flex",
-
         flexDirection:
           "column",
-
-        background: "#ffffff",
+        background:
+          "#ffffff",
       }}
     >
-      {/* =================================================
-          HEADER
-      ================================================= */}
+      {/* HEADER */}
 
       <div
         style={{
           padding:
             "20px 24px 12px",
-
           background:
             "#ffffff",
         }}
       >
+        {/* TITLE + CONTROLS */}
+
         <div
           style={{
             display: "flex",
-
             justifyContent:
               "space-between",
-
             alignItems:
               "center",
-
             gap: 20,
           }}
         >
-          {/* TITLE */}
-
           <div>
             <h2
               style={{
                 margin: 0,
-
                 fontSize: 24,
-
-                color: "#0f172a",
+                color:
+                  "#0f172a",
               }}
             >
               Investigation Graph
@@ -1399,9 +2047,8 @@ export default function InvestigationGraph() {
             <div
               style={{
                 marginTop: 5,
-
-                color: "#64748b",
-
+                color:
+                  "#64748b",
                 fontSize: 15,
               }}
             >
@@ -1411,30 +2058,24 @@ export default function InvestigationGraph() {
             </div>
           </div>
 
-          {/* CONTROLS */}
+          {/* DEPTH + TOP */}
 
           <div
             style={{
               display: "flex",
-
               alignItems:
                 "center",
-
               gap: 16,
             }}
           >
-            {/* DEPTH */}
-
             <label
               style={{
                 display: "flex",
-
                 alignItems:
                   "center",
-
                 gap: 8,
-
-                color: "#0f172a",
+                color:
+                  "#0f172a",
               }}
             >
               <strong>
@@ -1443,10 +2084,13 @@ export default function InvestigationGraph() {
 
               <select
                 value={depth}
-                onChange={(event) =>
+                onChange={(
+                  event
+                ) =>
                   setDepth(
                     Number(
-                      event.target
+                      event
+                        .target
                         .value
                     )
                   )
@@ -1454,17 +2098,12 @@ export default function InvestigationGraph() {
                 style={{
                   padding:
                     "9px 14px",
-
                   borderRadius: 8,
-
                   border:
                     "1px solid #cbd5e1",
-
                   background:
                     "#ffffff",
-
                   fontSize: 14,
-
                   cursor:
                     "pointer",
                 }}
@@ -1487,18 +2126,14 @@ export default function InvestigationGraph() {
               </select>
             </label>
 
-            {/* TOP */}
-
             <label
               style={{
                 display: "flex",
-
                 alignItems:
                   "center",
-
                 gap: 8,
-
-                color: "#0f172a",
+                color:
+                  "#0f172a",
               }}
             >
               <strong>
@@ -1507,10 +2142,13 @@ export default function InvestigationGraph() {
 
               <select
                 value={top}
-                onChange={(event) =>
+                onChange={(
+                  event
+                ) =>
                   setTop(
                     Number(
-                      event.target
+                      event
+                        .target
                         .value
                     )
                   )
@@ -1518,17 +2156,12 @@ export default function InvestigationGraph() {
                 style={{
                   padding:
                     "9px 14px",
-
                   borderRadius: 8,
-
                   border:
                     "1px solid #cbd5e1",
-
                   background:
                     "#ffffff",
-
                   fontSize: 14,
-
                   cursor:
                     "pointer",
                 }}
@@ -1553,129 +2186,475 @@ export default function InvestigationGraph() {
           </div>
         </div>
 
-        {/* =================================================
-            LEGEND
-        ================================================= */}
+        {/* SEARCH */}
+
+        <div
+          style={{
+            marginTop: 18,
+            position:
+              "relative",
+            maxWidth: 650,
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              gap: 8,
+            }}
+          >
+            <div
+              style={{
+                position:
+                  "relative",
+                flex: 1,
+              }}
+            >
+              <span
+                style={{
+                  position:
+                    "absolute",
+                  left: 12,
+                  top: "50%",
+                  transform:
+                    "translateY(-50%)",
+                  fontSize: 18,
+                  zIndex: 2,
+                }}
+              >
+                🔎
+              </span>
+
+              <input
+                type="text"
+                value={
+                  searchText
+                }
+                onChange={(
+                  event
+                ) =>
+                  setSearchText(
+                    event.target
+                      .value
+                  )
+                }
+                onKeyDown={
+                  handleSearchKeyDown
+                }
+                placeholder="Search wallet / transaction / IP..."
+                style={{
+                  width:
+                    "100%",
+                  boxSizing:
+                    "border-box",
+                  padding:
+                    "11px 42px",
+                  borderRadius: 9,
+                  border:
+                    "1px solid #cbd5e1",
+                  outline:
+                    "none",
+                  fontSize: 14,
+                  color:
+                    "#0f172a",
+                  background:
+                    "#ffffff",
+                }}
+              />
+
+              {searchText && (
+                <button
+                  onClick={
+                    clearSearch
+                  }
+                  style={{
+                    position:
+                      "absolute",
+                    right: 8,
+                    top: "50%",
+                    transform:
+                      "translateY(-50%)",
+                    border: "none",
+                    background:
+                      "transparent",
+                    cursor:
+                      "pointer",
+                    fontSize: 18,
+                    color:
+                      "#64748b",
+                  }}
+                  title="Clear search"
+                >
+                  ×
+                </button>
+              )}
+            </div>
+
+            <button
+              onClick={() => {
+                if (
+                  searchResults.length >
+                  0
+                ) {
+                  executeSearch(
+                    searchResults[0]
+                  );
+                }
+              }}
+              disabled={
+                searchResults.length ===
+                0
+              }
+              style={{
+                padding:
+                  "10px 18px",
+                borderRadius: 9,
+                border: "none",
+                background:
+                  searchResults.length >
+                  0
+                    ? "#2563eb"
+                    : "#cbd5e1",
+                color:
+                  "#ffffff",
+                fontWeight: 600,
+                cursor:
+                  searchResults.length >
+                  0
+                    ? "pointer"
+                    : "not-allowed",
+              }}
+            >
+              Search
+            </button>
+          </div>
+
+          {/* SEARCH RESULTS */}
+
+          {searchText &&
+            searchResults.length >
+              0 && (
+              <div
+                style={{
+                  position:
+                    "absolute",
+                  top:
+                    "calc(100% + 5px)",
+                  left: 0,
+                  right: 80,
+                  zIndex: 100,
+                  background:
+                    "#ffffff",
+                  border:
+                    "1px solid #e2e8f0",
+                  borderRadius: 10,
+                  boxShadow:
+                    "0 10px 30px rgba(0,0,0,0.15)",
+                  overflow:
+                    "hidden",
+                }}
+              >
+                {searchResults.map(
+                  (result) => {
+                    const type =
+                      getNodeType(
+                        result.id,
+                        result
+                      );
+
+                    return (
+                      <button
+                        key={
+                          result.id
+                        }
+                        onClick={() =>
+                          executeSearch(
+                            result
+                          )
+                        }
+                        style={{
+                          width:
+                            "100%",
+                          padding:
+                            "10px 14px",
+                          display:
+                            "flex",
+                          alignItems:
+                            "center",
+                          gap: 10,
+                          border:
+                            "none",
+                          borderBottom:
+                            "1px solid #f1f5f9",
+                          background:
+                            "#ffffff",
+                          cursor:
+                            "pointer",
+                          textAlign:
+                            "left",
+                        }}
+                      >
+                        <span
+                          style={{
+                            padding:
+                              "4px 7px",
+                            borderRadius: 6,
+                            background:
+                              COLORS[
+                                type
+                              ],
+                            color:
+                              "#111827",
+                            fontSize:
+                              11,
+                            fontWeight:
+                              700,
+                            textTransform:
+                              "uppercase",
+                          }}
+                        >
+                          {type}
+                        </span>
+
+                        <span
+                          style={{
+                            color:
+                              "#0f172a",
+                            fontSize:
+                              13,
+                            wordBreak:
+                              "break-all",
+                          }}
+                        >
+                          {getDisplayLabel(
+                            result,
+                            type
+                          )}
+                        </span>
+                      </button>
+                    );
+                  }
+                )}
+              </div>
+            )}
+
+          {searchText &&
+            searchResults.length ===
+              0 && (
+              <div
+                style={{
+                  position:
+                    "absolute",
+                  top:
+                    "calc(100% + 5px)",
+                  left: 0,
+                  right: 80,
+                  zIndex: 100,
+                  padding: 14,
+                  background:
+                    "#ffffff",
+                  border:
+                    "1px solid #e2e8f0",
+                  borderRadius: 10,
+                  boxShadow:
+                    "0 10px 30px rgba(0,0,0,0.12)",
+                  color:
+                    "#64748b",
+                  fontSize: 13,
+                }}
+              >
+                No wallet,
+                transaction or IP
+                found.
+              </div>
+            )}
+        </div>
+
+        {/* SEARCH STATUS */}
+
+        {searchedId && (
+          <div
+            style={{
+              marginTop: 10,
+              display: "flex",
+              alignItems:
+                "center",
+              gap: 10,
+              fontSize: 13,
+              color:
+                "#475569",
+            }}
+          >
+            <span>
+              🎯 Search highlighting
+              active
+            </span>
+
+            <button
+              onClick={
+                clearSearch
+              }
+              style={{
+                border: "none",
+                background:
+                  "#fee2e2",
+                color:
+                  "#b91c1c",
+                padding:
+                  "5px 10px",
+                borderRadius: 6,
+                cursor:
+                  "pointer",
+                fontWeight: 600,
+              }}
+            >
+              Clear search
+            </button>
+          </div>
+        )}
+
+        {/* LEGEND */}
 
         <div
           style={{
             display: "flex",
-
+            flexWrap:
+              "wrap",
             gap: 24,
-
             marginTop: 18,
-
             fontSize: 14,
-
-            color: "#0f172a",
+            color:
+              "#0f172a",
           }}
         >
           <span
             style={{
               display: "flex",
-
               alignItems:
                 "center",
-
               gap: 8,
             }}
           >
             <span
               style={{
                 width: 14,
-
                 height: 14,
-
                 borderRadius:
                   "50%",
-
                 background:
                   COLORS.wallet,
               }}
             />
-
             Wallet
           </span>
 
           <span
             style={{
               display: "flex",
-
               alignItems:
                 "center",
-
               gap: 8,
             }}
           >
             <span
               style={{
                 width: 14,
-
                 height: 14,
-
                 borderRadius:
                   "50%",
-
                 background:
                   COLORS.transaction,
               }}
             />
-
             Transaction
           </span>
 
           <span
             style={{
               display: "flex",
-
               alignItems:
                 "center",
-
               gap: 10,
             }}
           >
             <span
               style={{
                 width: 14,
-
                 height: 14,
-
                 transform:
                   "rotate(45deg)",
-
                 background:
                   COLORS.ip,
               }}
             />
-
             IP
+          </span>
+
+          <span
+            style={{
+              display: "flex",
+              alignItems:
+                "center",
+              gap: 8,
+            }}
+          >
+            <span
+              style={{
+                width: 14,
+                height: 14,
+                borderRadius:
+                  "50%",
+                background:
+                  SEARCH_RESULT_COLOR,
+                border:
+                  "2px solid #92400e",
+                boxShadow:
+                  "0 0 8px rgba(250,204,21,0.8)",
+              }}
+            />
+            Search result
+          </span>
+
+          <span
+            style={{
+              display: "flex",
+              alignItems:
+                "center",
+              gap: 8,
+            }}
+          >
+            <span
+              style={{
+                width: 14,
+                height: 14,
+                borderRadius:
+                  "50%",
+                background:
+                  COLORS.wallet,
+                border:
+                  "3px solid #2563eb",
+              }}
+            />
+            Direct connection
           </span>
         </div>
 
-        {/* =================================================
-            WALLET SELECTOR
-        ================================================= */}
+        {/* WALLET SELECTOR */}
 
         {walletOptions.length >
           0 && (
           <div
             style={{
               marginTop: 16,
-
               display: "flex",
-
               alignItems:
                 "center",
-
               gap: 10,
             }}
           >
             <label
               style={{
                 fontSize: 13,
-
                 fontWeight: 600,
-
                 color:
                   "#475569",
               }}
@@ -1685,7 +2664,9 @@ export default function InvestigationGraph() {
             </label>
 
             <select
-              value={selectedId}
+              value={
+                selectedId
+              }
               onChange={(
                 event
               ) => {
@@ -1697,26 +2678,21 @@ export default function InvestigationGraph() {
                 setSelectedNode(
                   null
                 );
+
+                clearSearch();
               }}
               style={{
                 minWidth: 395,
-
                 padding:
                   "9px 12px",
-
                 borderRadius: 8,
-
                 border:
                   "1px solid #cbd5e1",
-
                 background:
                   "#ffffff",
-
                 fontSize: 14,
-
                 color:
                   "#0f172a",
-
                 cursor:
                   "pointer",
               }}
@@ -1742,52 +2718,39 @@ export default function InvestigationGraph() {
         )}
       </div>
 
-      {/* =================================================
-          GRAPH
-      ================================================= */}
+      {/* GRAPH */}
 
       <div
         style={{
           flex: 1,
-
           minHeight: 500,
-
           margin:
             "0 20px 20px",
-
           border:
             "1px solid #e2e8f0",
-
           borderRadius: 14,
-
-          overflow: "hidden",
-
+          overflow:
+            "hidden",
           position:
             "relative",
-
           background:
             "#f8fafc",
         }}
       >
-        {nodes.length === 0 ? (
+        {nodes.length ===
+        0 ? (
           <div
             style={{
               position:
                 "absolute",
-
               inset: 0,
-
               display: "flex",
-
               alignItems:
                 "center",
-
               justifyContent:
                 "center",
-
               color:
                 "#64748b",
-
               fontSize: 16,
             }}
           >
@@ -1806,29 +2769,45 @@ export default function InvestigationGraph() {
             onEdgesChange={
               onEdgesChange
             }
-            onNodeClick={(
-              event,
-              node
-            ) => {
-              setSelectedNode(
-                node
-              );
-            }}
+
+            /*
+              IMPORTANT:
+              Clicking a wallet changes
+              the investigation root.
+            */
+           onNodeClick={(event, node) => {
+  setSelectedNode(node);
+
+  // If a wallet is clicked,
+  // make it the new investigation root
+  if (node.data?.nodeType === "wallet") {
+    setSelectedId(node.id);
+
+    // Clear previous search highlighting
+    setSearchText("");
+    setSearchedId("");
+  }
+}}
+
             fitView
+
             fitViewOptions={{
               padding: 0.25,
-
               maxZoom: 1.15,
-
               minZoom: 0.35,
             }}
+
             minZoom={0.15}
             maxZoom={2}
+
             nodesDraggable
+
             nodesConnectable={
               false
             }
+
             elementsSelectable
+
             proOptions={{
               hideAttribution:
                 true,
@@ -1861,9 +2840,7 @@ export default function InvestigationGraph() {
           </ReactFlow>
         )}
 
-        {/* =================================================
-            NODE DETAILS
-        ================================================= */}
+        {/* NODE DETAILS */}
 
         <NodeTooltip
           node={
@@ -1871,36 +2848,25 @@ export default function InvestigationGraph() {
           }
         />
 
-        {/* =================================================
-            GRAPH STATISTICS
-        ================================================= */}
+        {/* GRAPH STATISTICS */}
 
         <div
           style={{
             position:
               "absolute",
-
             right: 15,
-
             bottom: 15,
-
             zIndex: 20,
-
             padding:
               "10px 14px",
-
             background:
               "rgba(255,255,255,0.96)",
-
             border:
               "1px solid #e2e8f0",
-
             borderRadius: 10,
-
             fontSize: 12,
-
-            color: "#475569",
-
+            color:
+              "#475569",
             boxShadow:
               "0 4px 15px rgba(0,0,0,0.08)",
           }}
@@ -1933,6 +2899,21 @@ export default function InvestigationGraph() {
             </strong>{" "}
             {depth}
           </div>
+
+          {searchedId && (
+            <div
+              style={{
+                marginTop: 3,
+                color:
+                  "#2563eb",
+              }}
+            >
+              <strong>
+                Search:
+              </strong>{" "}
+              Active
+            </div>
+          )}
         </div>
       </div>
     </div>
