@@ -46,14 +46,40 @@ Notes:
 import json
 
 
-def load_transactions(path: str) -> list[dict]:
+def load_transactions(path: str, strict: bool = True) -> list[dict]:
+    """
+    strict=True (default): raise on the first invalid record (old
+    behavior) — use for final/production-quality data you expect to
+    be fully clean.
+
+    strict=False: skip invalid records instead of crashing the whole
+    load, and return (valid_transactions, quality_report) so you can
+    still work with whatever fraction of the file is usable, and hand
+    the report to whoever owns the upstream data.
+    """
     with open(path) as f:
         transactions = json.load(f)
 
-    for tx in transactions:
-        _validate(tx)
+    if strict:
+        for tx in transactions:
+            _validate(tx)
+        return transactions
 
-    return transactions
+    valid, errors = [], []
+    for tx in transactions:
+        try:
+            _validate(tx)
+            valid.append(tx)
+        except ValueError as e:
+            errors.append({"txid": tx.get("txid", "?"), "error": str(e)})
+
+    report = {
+        "total_records": len(transactions),
+        "valid_records": len(valid),
+        "invalid_records": len(errors),
+        "errors": errors,
+    }
+    return valid, report
 
 
 def _validate(tx: dict) -> None:

@@ -8,6 +8,9 @@ import json
 
 import networkx as nx
 
+from graph_builder import wallet_to_wallet_projection
+from features import compute_communities
+
 
 def export_for_viz(g: nx.DiGraph, risk_scores: dict[str, float] | None = None) -> dict:
     """
@@ -16,7 +19,7 @@ def export_for_viz(g: nx.DiGraph, risk_scores: dict[str, float] | None = None) -
     without a second lookup.
     """
     risk_scores = risk_scores or {}
-
+    community_map = compute_communities(wallet_to_wallet_projection(g))
     nodes = []
     for n, d in g.nodes(data=True):
         node_type = d.get("type")
@@ -25,6 +28,7 @@ def export_for_viz(g: nx.DiGraph, risk_scores: dict[str, float] | None = None) -
             wallet_id = n.replace("wallet:", "")
             entry["label"] = wallet_id
             entry["risk_score"] = risk_scores.get(wallet_id)
+            entry["community_id"] = community_map.get(n, -1)
         elif node_type == "ip":
             entry["label"] = n.replace("ip:", "")
             entry["country"] = d.get("country")
