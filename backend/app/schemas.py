@@ -19,6 +19,10 @@ class TransactionOut(BaseModel):
     timestamp: datetime
     src_ip: Optional[str] = None
     dst_ip: Optional[str] = None
+    src_geo_country: Optional[str] = None
+    src_asn: Optional[str] = None
+    dst_geo_country: Optional[str] = None
+    dst_asn: Optional[str] = None
     total_input_amount: Optional[float] = None
     total_output_amount: Optional[float] = None
     flag_amount_mismatch: Optional[bool] = None

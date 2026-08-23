@@ -35,20 +35,25 @@ class Transaction(Base):
     __tablename__ = "transactions"
 
     txid = Column(String, primary_key=True)
-    timestamp = Column(DateTime, nullable=False)  # TODO: confirm UTC with Bhargavi
+    timestamp = Column(DateTime, nullable=False)  # UTC, per Bhargavi (flagged assumption pending real dataset)
 
     src_ip = Column(String, ForeignKey("ips.ip_address"), nullable=True)
     dst_ip = Column(String, ForeignKey("ips.ip_address"), nullable=True)
     src_port = Column(Integer, nullable=True)
     dst_port = Column(Integer, nullable=True)
 
+    src_geo_country = Column(String, nullable=True)
+    src_asn = Column(String, nullable=True)
+    dst_geo_country = Column(String, nullable=True)
+    dst_asn = Column(String, nullable=True)
+
     total_input_amount = Column(Float, nullable=True)
     total_output_amount = Column(Float, nullable=True)
 
     flag_amount_mismatch = Column(Boolean, nullable=True)
-    amount_mismatch_delta = Column(Float, nullable=True)  # TODO: pending Bhargavi (point 3)
-    fee = Column(Float, nullable=True)                     # TODO: pending Bhargavi (point 2)
-    script_type = Column(String, nullable=True)             # TODO: pending Bhargavi (point 2)
+    amount_mismatch_delta = Column(Float, nullable=True) 
+    fee = Column(Float, nullable=True)                    
+    script_type = Column(String, nullable=True)            
 
     src_ip_rel = relationship("IPAddress", foreign_keys=[src_ip])
     dst_ip_rel = relationship("IPAddress", foreign_keys=[dst_ip])
