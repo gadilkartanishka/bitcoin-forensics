@@ -2,8 +2,12 @@ __pycache__/
 *.pyc
 .venv/
 *.egg-info/
-data/sample/*.json
-data/sample/*.csv
+graph-analytics/data/sample/*.json
+graph-analytics/data/sample/*.csv
 !data/sample/.gitkeep
 
 graph-analytics/src/generate_mock_data.py
+
+graph-analytics/data/real/*.json
+graph-analytics/data/real/*.csv
+!graph-analytics/data/real/clean_dataset.json
