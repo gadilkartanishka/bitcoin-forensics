@@ -37,7 +37,7 @@ def parse_record(record: dict, db: Session):
 
     tx = models.Transaction(
         txid=txid,
-        timestamp=datetime.strptime(record["timestamp"], "%Y-%m-%d %H:%M:%S"),
+        timestamp=datetime.strptime(record["timestamp"].replace(" UTC", ""), "%Y-%m-%d %H:%M:%S"),
         src_ip=src_ip,
         dst_ip=dst_ip,
         src_port=record.get("src_port"),
