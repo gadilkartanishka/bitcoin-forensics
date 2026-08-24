@@ -4,6 +4,8 @@ interactive visualization. Share this shape with her early and adjust
 together — don't build this in isolation.
 """
 
+from __future__ import annotations
+
 import json
 
 import networkx as nx

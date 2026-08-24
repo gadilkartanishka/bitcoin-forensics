@@ -17,8 +17,10 @@ actually is (a static file today, possibly Shreeja's DB/API later).
 import argparse
 import json
 import sys
+from pathlib import Path
 
-sys.path.insert(0, "src")
+src_dir = Path(__file__).resolve().parent / "src"
+sys.path.insert(0, str(src_dir))
 
 from ingest import load_transactions
 from graph_builder import build_graph
