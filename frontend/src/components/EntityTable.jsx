@@ -3,24 +3,21 @@ import { TrendingUp, TrendingDown, Minus, ChevronDown } from "lucide-react";
 
 function RiskBadge({ score }) {
   if (score >= 90) {
-    // High risk: solid filled intelligence blue badge, white text
     return (
-      <span className="inline-block px-2 py-0.5 text-[11px] font-bold font-mono rounded bg-accent text-white tracking-tight tabular-nums">
+      <span className="inline-block px-2.5 py-0.5 text-[11px] font-bold font-mono rounded-[28.8px] bg-accent text-white tracking-tight tabular-nums shadow-sm">
         {score}%
       </span>
     );
   }
   if (score >= 70) {
-    // Medium risk: outlined badge, intelligence blue text
     return (
-      <span className="inline-block px-2 py-0.5 text-[11px] font-semibold font-mono rounded border border-accent/50 text-accent bg-accent/10 tabular-nums">
+      <span className="inline-block px-2.5 py-0.5 text-[11px] font-semibold font-mono rounded-[28.8px] border border-accent/50 text-accent bg-accent/10 tabular-nums">
         {score}%
       </span>
     );
   }
-  // Low risk: plain gray monospace text
   return (
-    <span className="text-text-faint font-mono text-xs px-2 py-0.5 tabular-nums">
+    <span className="text-text-faint font-mono text-xs px-2.5 py-0.5 tabular-nums">
       {score}%
     </span>
   );
@@ -84,14 +81,12 @@ export function EntityTable({ entities = [], onSelectEntity = () => {} }) {
     { key: "country_count", label: "Cluster / Geo", sortable: true },
     { key: "risk_score", label: "Risk score", sortable: true },
     { key: "trend", label: "Trend", sortable: true },
+    { key: "action", label: "Inspect", sortable: false },
   ];
 
   return (
     <div
-      className="rounded-xl border border-border bg-surface overflow-hidden"
-      style={{
-        boxShadow: "0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02)",
-      }}
+      className="rounded-[9px] border border-border bg-surface overflow-hidden shadow-sm"
     >
       <table className="w-full text-xs">
         <thead>
@@ -99,7 +94,7 @@ export function EntityTable({ entities = [], onSelectEntity = () => {} }) {
             {headers.map((h) => (
               <th
                 key={h.key}
-                className={`px-4 py-2.5 text-left text-[11px] font-medium uppercase text-text-muted tracking-[-0.015em] ${
+                className={`px-4 py-2.5 text-left text-[11px] font-medium uppercase text-text-muted tracking-wider ${
                   h.sortable ? "cursor-pointer select-none hover:text-text-primary" : ""
                 }`}
                 onClick={() => h.sortable && handleSort(h.key)}
@@ -124,7 +119,7 @@ export function EntityTable({ entities = [], onSelectEntity = () => {} }) {
         <tbody>
           {sorted.length === 0 ? (
             <tr>
-              <td colSpan={5} className="text-center py-6 text-text-muted">
+              <td colSpan={6} className="text-center py-6 text-text-muted">
                 No entities found.
               </td>
             </tr>
@@ -149,6 +144,18 @@ export function EntityTable({ entities = [], onSelectEntity = () => {} }) {
                 </td>
                 <td className="px-4 py-2.5">
                   <TrendCell trend={e.trend} />
+                </td>
+                <td className="px-4 py-2.5">
+                  <button
+                    type="button"
+                    onClick={(ev) => {
+                      ev.stopPropagation();
+                      onSelectEntity(e.id);
+                    }}
+                    className="px-3 py-1 text-[11px] font-medium font-mono rounded-[28.8px] bg-shell hover:bg-accent hover:text-white text-text-secondary transition-colors cursor-pointer"
+                  >
+                    View Dossier
+                  </button>
                 </td>
               </tr>
             ))

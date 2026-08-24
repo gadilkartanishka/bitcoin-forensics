@@ -58,7 +58,7 @@ export function TopBar({
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Search wallet, tx id, or press Enter..."
-            className="w-72 h-8 pl-8 pr-3 text-xs bg-bg border border-border rounded-lg text-text-primary placeholder:text-text-faint focus:outline-none focus:border-accent transition-colors font-mono"
+            className="w-72 h-8 pl-8 pr-3 text-xs bg-bg border border-border rounded-[9px] text-text-primary placeholder:text-text-faint focus:outline-none focus:border-accent transition-colors font-mono"
           />
         </div>
 
@@ -74,7 +74,7 @@ export function TopBar({
         <button
           onClick={() => fileInputRef.current?.click()}
           disabled={isUploading}
-          className="h-8 px-3 text-xs font-medium text-white bg-accent hover:bg-accent/90 disabled:opacity-50 border border-accent rounded-lg transition-colors cursor-pointer flex items-center gap-1.5 tracking-[-0.015em] shadow-sm"
+          className="h-8 px-4 text-xs font-medium text-white bg-accent hover:bg-accent/90 disabled:opacity-50 border border-accent rounded-[28.8px] transition-colors cursor-pointer flex items-center gap-1.5 tracking-[-0.015em] shadow-sm"
         >
           {isUploading ? (
             <>

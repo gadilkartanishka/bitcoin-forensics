@@ -5,7 +5,7 @@ export function RiskGauge({ score }) {
   const filled = (score / 100) * circumference;
   const gap = circumference - filled;
 
-  const strokeColor = "#2563EB";
+  const strokeColor = "#3368A0";
   const trackColor = "#E2E8F0";
 
   return (
@@ -34,7 +34,7 @@ export function RiskGauge({ score }) {
           transform="rotate(-90 36 36)"
         />
       </svg>
-      <span className="absolute text-sm font-bold font-mono text-text-primary tracking-tight tabular-nums">
+      <span className="absolute text-sm font-medium font-mono text-text-primary tracking-tight tabular-nums">
         {score}%
       </span>
     </div>

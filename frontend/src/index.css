@@ -1,7 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
   --font-mono: ui-monospace, "Cascadia Code", "Fira Code", monospace;
 
   /* layered light enterprise base — dimensional slate canvas */
@@ -18,9 +19,13 @@
   --color-text-muted: #64748B;
   --color-text-faint: #94A3B8;
 
-  /* single intelligence blue accent */
-  --color-accent: #2563EB;
-  --color-accent-subtle: #2563EB14;
+  /* Deep Blue highlight accent */
+  --color-accent: #3368A0;
+  --color-accent-subtle: #3368A014;
+
+  /* Shapes & Radii from design.md */
+  --radius-card: 9px;
+  --radius-pill: 28.8px;
 }
 
 body {
@@ -30,3 +35,24 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.font-display-serif {
+  font-family: var(--font-serif);
+  letter-spacing: -0.025em;
+}
+
+.btn-pill {
+  border-radius: 28.8px;
+  padding: 9px 17px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: all 0.15s ease;
+}
+
+.card-gallery {
+  border-radius: 9px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+}
+

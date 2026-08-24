@@ -611,24 +611,30 @@ function buildGraph(
      FIND ROOT
   ======================================================= */
 
-  let rootId =
-    selectedId &&
-    nodeMap.has(selectedId)
-      ? selectedId
-      : null;
+  let rootId = null;
+  if (selectedId) {
+    if (nodeMap.has(selectedId)) {
+      rootId = selectedId;
+    } else if (nodeMap.has(`wallet:${selectedId}`)) {
+      rootId = `wallet:${selectedId}`;
+    } else if (nodeMap.has(selectedId.replace(/^wallet:/, ""))) {
+      rootId = selectedId.replace(/^wallet:/, "");
+    }
+  }
 
   if (!rootId) {
-    const wallet =
-      allNodes.find(
-        (node) =>
-          getNodeType(
-            node.id,
-            node
-          ) === "wallet"
-      );
+    // Pick the highest risk wallet as default root
+    const wallets = allNodes.filter(
+      (node) => getNodeType(node.id, node) === "wallet"
+    );
+    const sortedWallets = [...wallets].sort((a, b) => {
+      const scoreA = a.riskScore || a.risk_score || 0;
+      const scoreB = b.riskScore || b.risk_score || 0;
+      return scoreB - scoreA;
+    });
 
-    if (wallet) {
-      rootId = wallet.id;
+    if (sortedWallets.length > 0) {
+      rootId = sortedWallets[0].id;
     }
   }
 
@@ -1009,7 +1015,7 @@ function buildGraph(
           isConnected
         ) {
           border =
-            "4px solid #2563eb";
+            "4px solid #3368A0";
 
           boxShadow =
             "0 0 0 6px rgba(96,165,250,0.30), 0 0 20px rgba(96,165,250,0.55)";
@@ -1148,8 +1154,7 @@ function buildGraph(
               original.value,
 
             riskScore:
-              original.risk_score ??
-              original.riskScore,
+              original.riskScore || original.risk_score || null,
 
             communityId:
               original.community_id ??
@@ -1231,14 +1236,14 @@ function buildGraph(
 
             color:
               searchEdge
-                ? "#2563eb"
+                ? "#3368A0"
                 : EDGE_COLOR,
           },
 
           style: {
             stroke:
               searchEdge
-                ? "#2563eb"
+                ? "#3368A0"
                 : EDGE_COLOR,
 
             strokeWidth:
@@ -1391,7 +1396,7 @@ function NodeTooltip({
             color:
               data.nodeType ===
               "transaction"
-                ? "#2563eb"
+                ? "#3368A0"
                 : data.nodeType ===
                   "ip"
                 ? "#d97706"
@@ -1462,7 +1467,7 @@ function NodeTooltip({
             borderRadius: 8,
 
             background:
-              "#2563eb",
+              "#3368A0",
 
             color:
               "#ffffff",
@@ -1787,9 +1792,15 @@ function NodeTooltip({
         <div style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: 11, fontFamily: "monospace" }}>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <span style={{ color: "#64748b" }}>Anomaly Score</span>
-            <span style={{ fontWeight: 700, color: (data.riskScore || data.risk_score || 85) >= 80 ? "#dc2626" : "#d97706" }}>
-              {data.riskScore || data.risk_score ? `${Math.round(data.riskScore || data.risk_score)}%` : "N/A"}
-            </span>
+            {(() => {
+              const score = data.riskScore || data.risk_score || (data.original?.riskScore) || (data.original?.risk_score) || null;
+              const displayScore = score != null ? Math.round(score) : null;
+              return (
+                <span style={{ fontWeight: 700, color: (displayScore || 0) >= 80 ? "#dc2626" : (displayScore || 0) >= 50 ? "#d97706" : "#334155" }}>
+                  {displayScore != null ? `${displayScore}%` : "N/A"}
+                </span>
+              );
+            })()}
           </div>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <span style={{ color: "#64748b" }}>Transaction Frequency</span>
@@ -1825,14 +1836,104 @@ export default function InvestigationGraph({ entityId = null }) {
   const [apiGraphData, setApiGraphData] = useState(null);
   const [apiLoading, setApiLoading] = useState(false);
   const [apiError, setApiError] = useState("");
+  const [walletScores, setWalletScores] = useState({});
+
+  /* =======================================================
+     FETCH LIVE GRAPH DATA FROM BACKEND
+  ======================================================= */
+
+  useEffect(() => {
+    setApiLoading(true);
+    fetch("http://localhost:8000/graph/full")
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch full graph");
+        return res.json();
+      })
+      .then((data) => {
+        if (data && Array.isArray(data.nodes) && data.nodes.length > 0) {
+          setApiGraphData(data);
+        }
+      })
+      .catch((err) => {
+        console.warn("Using fallback graph dataset:", err);
+      })
+      .finally(() => {
+        setApiLoading(false);
+      });
+  }, []);
+
+  /* =======================================================
+     FETCH WALLET SCORES FROM BACKEND
+  ======================================================= */
+
+  useEffect(() => {
+    fetch("http://localhost:8000/wallet")
+      .then((res) => res.json())
+      .then((wallets) => {
+        const scoreMap = {};
+        (wallets || []).forEach((w) => {
+          const id = w.wallet_id || w.id;
+          if (id) {
+            scoreMap[id] = {
+              risk_score: w.risk_score ?? Math.round((w.anomaly_score || 0) * 100),
+              risk_level: w.risk_level,
+              degree: w.degree,
+              community_id: w.community_id,
+            };
+          }
+        });
+        setWalletScores(scoreMap);
+      })
+      .catch(() => {});
+  }, []);
 
   /* =======================================================
      NORMALIZE JSON
   ======================================================= */
 
   const normalizedData = useMemo(() => {
-    return normalizeGraphData(apiGraphData || graphData);
-  }, [apiGraphData]);
+    const data = normalizeGraphData(apiGraphData || graphData);
+    const scoreKeys = Object.keys(walletScores);
+
+    data.nodes = data.nodes.map((node) => {
+      // Skip if already has a valid score
+      if (node.riskScore != null && node.riskScore > 0) return node;
+
+      // Try to match by node id (strip "wallet:" prefix if present)
+      const rawId = String(node.id || "").replace(/^wallet:/, "");
+      const scores = scoreKeys.length > 0
+        ? (walletScores[rawId] || walletScores[node.id])
+        : null;
+
+      if (scores) {
+        return {
+          ...node,
+          riskScore: scores.risk_score,
+          risk_level: scores.risk_level,
+          communityId: scores.community_id ?? node.communityId,
+        };
+      }
+
+      // Fallback: compute heuristic score from graph topology for wallet nodes
+      const nodeType = getNodeType(node.id, node);
+      if (nodeType === "wallet") {
+        const degree = node.degree ?? node.in_degree ?? 0;
+        const community = node.community_id ?? node.communityId;
+        // Heuristic: high degree + large community = higher risk
+        const degreeScore = Math.min(degree * 8, 50);
+        const communityScore = community != null ? 25 : 10;
+        const baseScore = Math.min(degreeScore + communityScore + 15, 100);
+        return {
+          ...node,
+          riskScore: baseScore,
+        };
+      }
+
+      return node;
+    });
+
+    return data;
+  }, [apiGraphData, walletScores]);
 
   /* =======================================================
      WALLET OPTIONS
@@ -1861,6 +1962,13 @@ export default function InvestigationGraph({ entityId = null }) {
       setSelectedId(entityId);
     }
   }, [entityId]);
+
+  // Synchronize initial root selection if firstWalletId becomes available from API data
+  useEffect(() => {
+    if (!selectedId && firstWalletId) {
+      setSelectedId(firstWalletId);
+    }
+  }, [firstWalletId, selectedId]);
 
 
   /* =======================================================
@@ -2034,8 +2142,7 @@ export default function InvestigationGraph({ entityId = null }) {
           node.value,
 
         riskScore:
-          node.risk_score ??
-          node.riskScore,
+          node.riskScore || node.risk_score || null,
 
         communityId:
           node.community_id ??
@@ -2678,7 +2785,7 @@ export default function InvestigationGraph({ entityId = null }) {
                 background:
                   searchResults.length >
                   0
-                    ? "#2563eb"
+                    ? "#3368A0"
                     : "#cbd5e1",
 
                 color:
@@ -3087,7 +3194,7 @@ export default function InvestigationGraph({ entityId = null }) {
                   COLORS.wallet,
 
                 border:
-                  "3px solid #2563eb",
+                  "3px solid #3368A0",
               }}
             />
 
@@ -3408,7 +3515,7 @@ export default function InvestigationGraph({ entityId = null }) {
                 marginTop: 3,
 
                 color:
-                  "#2563eb",
+                  "#3368A0",
               }}
             >
               <strong>

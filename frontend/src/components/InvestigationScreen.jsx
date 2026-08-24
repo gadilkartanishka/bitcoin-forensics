@@ -5,7 +5,7 @@ import InvestigationGraph from "./InvestigationGraph";
 function RiskBadge({ score }) {
   if (score >= 90) {
     return (
-      <span className="inline-block px-2 py-0.5 text-[11px] font-bold font-mono rounded bg-accent text-white tracking-tight tabular-nums">
+      <span className="inline-block px-2 py-0.5 text-[11px] font-medium font-mono rounded bg-accent text-white tracking-tight tabular-nums">
         {score}%
       </span>
     );
@@ -51,7 +51,7 @@ export function InvestigationScreen({
 
       {/* 1. HEADER HERO CARD with STATS ROW */}
       <div
-        className="rounded-xl bg-surface p-5 border border-border flex flex-col gap-5"
+        className="rounded-[9px] bg-surface p-5 border border-border flex flex-col gap-5"
         style={{
           boxShadow: "rgba(12, 41, 126, 0.07) 0px 0px 0px 1px inset",
         }}
@@ -67,7 +67,7 @@ export function InvestigationScreen({
                 {entity.type || "Wallet Entity"}
               </span>
             </div>
-            <h1 className="text-xl sm:text-2xl font-bold font-mono text-text-primary tracking-tight break-all">
+            <h1 className="text-xl sm:text-2xl font-medium font-mono text-text-primary tracking-tight break-all">
               {entity.id}
             </h1>
             <p className="text-xs font-mono text-text-faint mt-1 break-all">
@@ -94,7 +94,7 @@ export function InvestigationScreen({
             <p className="text-[10px] uppercase text-text-faint font-medium tracking-[-0.015em]">
               Transactions
             </p>
-            <p className="text-base font-bold font-mono text-text-primary mt-0.5 tabular-nums">
+            <p className="text-base font-medium font-mono text-text-primary mt-0.5 tabular-nums">
               {entity.stats?.transactions != null
                 ? entity.stats.transactions.toLocaleString()
                 : "0"}
@@ -104,7 +104,7 @@ export function InvestigationScreen({
             <p className="text-[10px] uppercase text-text-faint font-medium tracking-[-0.015em]">
               Received
             </p>
-            <p className="text-base font-bold font-mono text-text-primary mt-0.5 tabular-nums">
+            <p className="text-base font-medium font-mono text-text-primary mt-0.5 tabular-nums">
               {entity.stats?.received_btc ?? entity.stats?.totalReceived ?? "0.00"}{" "}
               <span className="text-xs text-text-muted font-normal tracking-[-0.015em]">BTC</span>
             </p>
@@ -113,7 +113,7 @@ export function InvestigationScreen({
             <p className="text-[10px] uppercase text-text-faint font-medium tracking-[-0.015em]">
               Sent
             </p>
-            <p className="text-base font-bold font-mono text-text-primary mt-0.5 tabular-nums">
+            <p className="text-base font-medium font-mono text-text-primary mt-0.5 tabular-nums">
               {entity.stats?.sent_btc ?? entity.stats?.totalSent ?? "0.00"}{" "}
               <span className="text-xs text-text-muted font-normal tracking-[-0.015em]">BTC</span>
             </p>
@@ -122,7 +122,7 @@ export function InvestigationScreen({
             <p className="text-[10px] uppercase text-text-faint font-medium tracking-[-0.015em]">
               Unique IPs
             </p>
-            <p className="text-base font-bold font-mono text-text-primary mt-0.5 tabular-nums">
+            <p className="text-base font-medium font-mono text-text-primary mt-0.5 tabular-nums">
               {entity.stats?.unique_ips ?? (entity.stats?.transactions ? 2 : 0)}
             </p>
           </div>
@@ -130,7 +130,7 @@ export function InvestigationScreen({
             <p className="text-[10px] uppercase text-text-faint font-medium tracking-[-0.015em]">
               Cluster / Community
             </p>
-            <p className="text-base font-bold font-mono text-text-primary mt-0.5 tabular-nums">
+            <p className="text-base font-medium font-mono text-text-primary mt-0.5 tabular-nums">
               {entity.stats?.community ?? (entity.stats?.countries ?? "Cluster #1")}
             </p>
           </div>
@@ -138,7 +138,7 @@ export function InvestigationScreen({
             <p className="text-[10px] uppercase text-text-faint font-medium tracking-[-0.015em]">
               Graph Hops
             </p>
-            <p className="text-base font-bold font-mono text-accent mt-0.5 tabular-nums">
+            <p className="text-base font-medium font-mono text-accent mt-0.5 tabular-nums">
               {entity.stats?.hops_20min ?? entity.stats?.degree ?? 1}
             </p>
           </div>
@@ -147,7 +147,7 @@ export function InvestigationScreen({
 
       {/* 3. "WHY FLAGGED" — EVIDENCE SECTION */}
       <div
-        className="rounded-xl bg-surface p-5 border border-border flex flex-col gap-3"
+        className="rounded-[9px] bg-surface p-5 border border-border flex flex-col gap-3"
         style={{
           boxShadow: "0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02)",
         }}
@@ -204,7 +204,7 @@ export function InvestigationScreen({
 
       {/* 4. RELATED ENTITIES */}
       <div
-        className="rounded-xl bg-surface p-5 border border-border flex flex-col gap-3"
+        className="rounded-[9px] bg-surface p-5 border border-border flex flex-col gap-3"
         style={{
           boxShadow: "0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02)",
         }}
@@ -253,7 +253,7 @@ export function InvestigationScreen({
 
       {/* 5. TRANSACTION TIMELINE */}
       <div
-        className="rounded-xl bg-surface border border-border overflow-hidden"
+        className="rounded-[9px] bg-surface border border-border overflow-hidden"
         style={{
           boxShadow: "0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02)",
         }}
@@ -310,7 +310,7 @@ export function InvestigationScreen({
                           {isOut ? "OUTFLOW" : "INFLOW"}
                         </span>
                       </td>
-                      <td className="px-4 py-2.5 font-mono text-text-primary font-bold tabular-nums">
+                      <td className="px-4 py-2.5 font-mono text-text-primary font-medium tabular-nums">
                         {(tx.amount_btc || tx.amount || 0).toFixed(3)}{" "}
                         <span className="text-xs font-normal text-text-muted tracking-[-0.015em]">
                           BTC
@@ -342,7 +342,7 @@ export function InvestigationScreen({
 
       {/* 6. LIVE INTERACTIVE GRAPH */}
       <div
-        className="rounded-xl bg-surface p-5 border border-border flex flex-col gap-3"
+        className="rounded-[9px] bg-surface p-5 border border-border flex flex-col gap-3"
         style={{
           boxShadow: "0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02)",
         }}

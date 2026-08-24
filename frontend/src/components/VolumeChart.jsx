@@ -11,7 +11,7 @@ import {
 
 export function VolumeChart({ data }) {
   const anomalyMonth = "Apr";
-  const accent = "#2563EB";
+  const accent = "#3368A0";
 
   return (
     <div

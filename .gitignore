@@ -35,3 +35,6 @@ graph-analytics/data/real/*.csv
 # Database
 *.db
 *.sqlite3
+
+# Testing / Cache
+.pytest_cache/

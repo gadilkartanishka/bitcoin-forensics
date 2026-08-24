@@ -168,8 +168,20 @@ function App() {
     };
   }, [selectedEntityId]);
 
+  const handleStartFromEntry = async (file) => {
+    if (file) {
+      try {
+        await api.uploadDataset(file);
+      } catch (err) {
+        console.error("Failed to upload dataset on entry:", err);
+      }
+    }
+    await loadDashboardData();
+    setShowEntry(false);
+  };
+
   if (showEntry) {
-    return <EntryScreen onLoadDataset={() => setShowEntry(false)} />;
+    return <EntryScreen onStartAnalysis={handleStartFromEntry} />;
   }
 
   // Pick top flagged entity from live wallets
@@ -309,6 +321,20 @@ function App() {
               {/* VIEW: OVERVIEW / DASHBOARD */}
               {activeNav === "overview" && (
                 <div className="flex flex-col gap-4">
+                  <div className="flex items-baseline justify-between mb-1">
+                    <div>
+                      <h2 className="font-display-serif text-2xl font-medium tracking-tight text-text-primary">
+                        Forensic Intelligence Operations
+                      </h2>
+                      <p className="text-xs text-text-muted mt-0.5 tracking-[-0.01em]">
+                        Real-time blockchain anomaly detection, graph clustering, and money-laundering tracking
+                      </p>
+                    </div>
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-text-faint bg-shell px-2.5 py-1 rounded-[28.8px] border border-border">
+                      EXHIBIT // ACTIVE SCAN
+                    </span>
+                  </div>
+
                   {/* row 1: top flagged + alerts + wallets */}
                   <div className="grid grid-cols-1 lg:grid-cols-4 gap-3">
                     <div className="lg:col-span-2">
@@ -336,9 +362,11 @@ function App() {
                   </div>
 
                   {/* row 3: entity table */}
-                  <div>
+                  <div className="mt-1">
                     <div className="flex items-center justify-between mb-2">
-                      <h3 className="text-sm font-bold text-text-primary">Monitored Wallets</h3>
+                      <h3 className="font-display-serif text-lg font-medium text-text-primary tracking-tight">
+                        Monitored Wallets
+                      </h3>
                       <span className="text-xs font-mono text-text-muted">
                         {wallets.length} Entities Streamed from Backend
                       </span>
@@ -355,10 +383,20 @@ function App() {
               {activeNav === "alerts" && (
                 <div className="flex flex-col gap-4">
                   <div className="flex items-center justify-between">
-                    <h2 className="text-lg font-bold text-text-primary">Security Alerts</h2>
-                    <span className="text-xs font-mono text-text-muted">{alerts.length} Active Alerts</span>
+                    <div>
+                      <h2 className="font-display-serif text-2xl font-medium tracking-tight text-text-primary">
+                        Security Alerts
+                      </h2>
+                      <p className="text-xs text-text-muted mt-0.5 tracking-[-0.01em]">
+                        Prioritized incident queue scored by Isolation Forest
+                      </p>
+                    </div>
+                    <span className="text-xs font-mono text-text-muted bg-shell px-3 py-1 rounded-[28.8px] border border-border">
+                      {alerts.length} Active Incidents
+                    </span>
                   </div>
-                  <div className="rounded-xl border border-border bg-surface overflow-hidden">
+
+                  <div className="rounded-[9px] border border-border bg-surface overflow-hidden shadow-sm">
                     <table className="w-full text-xs">
                       <thead>
                         <tr className="border-b border-border bg-slate-50/90 text-text-muted font-medium">
@@ -381,7 +419,7 @@ function App() {
                           alerts.map((a) => (
                             <tr
                               key={a.id}
-                              className="border-b border-border-subtle hover:bg-slate-50 transition cursor-pointer"
+                              className="border-b border-border-subtle hover:bg-slate-50/80 transition cursor-pointer"
                               onClick={() => handleSelectEntity(a.entity_id)}
                             >
                               <td className="px-4 py-2.5 font-mono text-text-muted">#{a.id}</td>
@@ -390,7 +428,9 @@ function App() {
                               </td>
                               <td className="px-4 py-2.5 text-text-muted">{a.entity_type}</td>
                               <td className="px-4 py-2.5 font-mono font-bold text-accent">
-                                {Math.round(a.final_risk_score)}%
+                                <span className="inline-block px-2.5 py-0.5 text-[11px] font-bold font-mono rounded-[28.8px] bg-accent text-white tracking-tight tabular-nums shadow-sm">
+                                  {Math.round(a.final_risk_score)}%
+                                </span>
                               </td>
                               <td className="px-4 py-2.5 text-text-secondary">{a.reasons || "High Anomaly Score"}</td>
                               <td className="px-4 py-2.5 text-right">
@@ -399,7 +439,7 @@ function App() {
                                     e.stopPropagation();
                                     handleSelectEntity(a.entity_id);
                                   }}
-                                  className="px-2.5 py-1 bg-accent/10 text-accent font-medium rounded hover:bg-accent hover:text-white transition"
+                                  className="px-3 py-1 bg-shell text-text-secondary font-mono text-[11px] font-medium rounded-[28.8px] hover:bg-accent hover:text-white transition-colors cursor-pointer"
                                 >
                                   Investigate
                                 </button>
@@ -412,6 +452,7 @@ function App() {
                   </div>
                 </div>
               )}
+
             </>
           )}
         </div>
