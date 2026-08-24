@@ -10,13 +10,28 @@ transactions touching this wallet" is accurate.
 
 import networkx as nx
 import pandas as pd
+from networkx.algorithms.community import greedy_modularity_communities
 
 from graph_builder import wallet_to_wallet_projection
 
+def compute_communities(wg: nx.DiGraph) -> dict:
+    """Returns {wallet_node: community_id (int)}. Isolated/no-edge
+    wallets each get their own singleton community."""
+    if wg.number_of_edges() == 0:
+        return {n: i for i, n in enumerate(wg.nodes())}
+
+    undirected = wg.to_undirected()
+    communities = greedy_modularity_communities(undirected)
+    mapping = {}
+    for community_id, members in enumerate(communities):
+        for m in members:
+            mapping[m] = community_id
+    return mapping
 
 def compute_wallet_features(g: nx.DiGraph) -> pd.DataFrame:
     wallet_nodes = [n for n, d in g.nodes(data=True) if d.get("type") == "wallet"]
     wg = wallet_to_wallet_projection(g)
+    community_map = compute_communities(wg)
 
     pagerank = nx.pagerank(wg) if wg.number_of_nodes() > 0 else {}
     betweenness = nx.betweenness_centrality(wg) if wg.number_of_nodes() > 0 else {}
@@ -46,6 +61,8 @@ def compute_wallet_features(g: nx.DiGraph) -> pd.DataFrame:
             if src_countries and dst_countries and src_countries != dst_countries:
                 cross_border_tx_count += 1
 
+        community_id = community_map.get(wallet, -1)
+
         row = {
             "wallet_id": wallet.replace("wallet:", ""),
             "tx_as_sender": n_funded,
@@ -63,10 +80,13 @@ def compute_wallet_features(g: nx.DiGraph) -> pd.DataFrame:
                 len(set(wg.predecessors(wallet)) | set(wg.successors(wallet)))
                 if wallet in wg else 0
             ),
+            "community_id": community_id,            
         }
         rows.append(row)
 
-    return pd.DataFrame(rows)
+    df = pd.DataFrame(rows)
+    df["community_size"] = df.groupby("community_id")["wallet_id"].transform("count")
+    return df
 
 
 if __name__ == "__main__":

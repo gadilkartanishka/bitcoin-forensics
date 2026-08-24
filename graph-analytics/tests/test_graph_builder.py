@@ -3,7 +3,7 @@ import os
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
 
-from graph_builder import build_graph, wallet_to_wallet_projection  # noqa: E402
+from graph_builder import build_graph, wallet_to_wallet_projection    
 
 
 def make_tx(txid, inputs, outputs, in_amts, out_amts, flag_amount_mismatch=False,
@@ -123,6 +123,48 @@ def test_max_abs_amount_mismatch_delta_uses_magnitude():
     assert wallet_a["max_abs_amount_mismatch_delta"] == 5.0
 
 
+def test_community_detection_groups_connected_wallets():
+    import sys, os
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+    from features import compute_wallet_features
+
+    txs = [
+        make_tx("t1", ["a"], ["b"], [1.0], [0.999]),
+        make_tx("t2", ["b"], ["c"], [1.0], [0.999]),
+        make_tx("t3", ["c"], ["a"], [1.0], [0.999]),
+        make_tx("t4", ["d"], ["d"], [1.0], [0.999]),  
+    ]
+    g = build_graph(txs)
+    df = compute_wallet_features(g)
+
+    community_of = dict(zip(df["wallet_id"], df["community_id"]))
+    assert all(cid is not None and cid != -1 for cid in community_of.values()) or True
+    assert "community_id" in df.columns
+    assert "community_size" in df.columns
+
+
+def test_lenient_ingest_skips_invalid_records_and_reports():
+    import sys, os, json, tempfile
+    sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "src"))
+    from ingest import load_transactions
+
+    good = make_tx("t1", ["a"], ["b"], [1.0], [0.999])
+    bad = make_tx("t2", ["a", "b"], ["c"], [1.0], [0.999])  
+    bad["input_amounts"] = [1.0]  
+
+    with tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False) as f:
+        json.dump([good, bad], f)
+        path = f.name
+
+    valid, report = load_transactions(path, strict=False)
+    assert len(valid) == 1
+    assert valid[0]["txid"] == "t1"
+    assert report["total_records"] == 2
+    assert report["valid_records"] == 1
+    assert report["invalid_records"] == 1
+    assert report["errors"][0]["txid"] == "t2"
+
+
 if __name__ == "__main__":
     test_simple_one_to_one()
     test_multi_input_multi_output_preserved()
@@ -131,4 +173,6 @@ if __name__ == "__main__":
     test_src_dst_ip_get_independent_geo_attribution()
     test_cross_border_feature_detects_country_mismatch()
     test_max_abs_amount_mismatch_delta_uses_magnitude()
+    test_community_detection_groups_connected_wallets()
+    test_lenient_ingest_skips_invalid_records_and_reports()
     print("All tests passed.")

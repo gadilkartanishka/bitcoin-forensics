@@ -30,6 +30,8 @@ graph-analytics/data/sample/*.csv
 # Graph real/generated data
 graph-analytics/data/real/*.json
 graph-analytics/data/real/*.csv
+!graph-analytics/data/real/clean_dataset.json
 
 # Graph mock-data generator
 graph-analytics/src/generate_mock_data.py
+
