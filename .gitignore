@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# Virtual environments
+venv/
+env/
+.venv/
+
+# Environment variables 
+.env
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+
+# Data engineering
+data_engineering/geoip_data/*.mmdb
+data_engineering/output/
+
+# Graph sample data
+graph-analytics/data/sample/*.json
+graph-analytics/data/sample/*.csv
+!graph-analytics/data/sample/.gitkeep
+
+# Graph real/generated data
+graph-analytics/data/real/*.json
+graph-analytics/data/real/*.csv
+
+# Graph mock-data generator
+graph-analytics/src/generate_mock_data.py

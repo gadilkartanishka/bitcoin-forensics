@@ -1,20 +1,20 @@
 import { RiskGauge } from "./RiskGauge";
 
-export function TopFlaggedCard({ entity }) {
+export function TopFlaggedCard({ entity, onSelectEntity = () => {} }) {
   return (
     <div
-      className="rounded-xl bg-surface p-4 flex flex-col gap-3 h-full border border-border"
+      onClick={() => onSelectEntity(entity.id)}
+      className="rounded-xl bg-surface p-4 flex flex-col gap-3 h-full border border-border cursor-pointer hover:border-accent/40 transition-all group"
       style={{
-        boxShadow:
-          "0 2px 4px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03), inset 0 1px 0 0 rgba(255,255,255,0.9)",
+        boxShadow: "rgba(12, 41, 126, 0.07) 0px 0px 0px 1px inset",
       }}
     >
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted">
+          <p className="text-[11px] font-medium uppercase text-text-muted tracking-[-0.015em]">
             Top flagged entity
           </p>
-          <p className="mt-1 text-lg font-bold font-mono text-text-primary tracking-tight">
+          <p className="mt-1 text-lg font-bold font-mono text-text-primary group-hover:text-accent transition-colors tracking-tight">
             {entity.id}
           </p>
         </div>
@@ -23,26 +23,26 @@ export function TopFlaggedCard({ entity }) {
 
       <div className="flex gap-6 border-t border-border-subtle pt-3">
         <div>
-          <p className="text-[10px] uppercase tracking-wider text-text-faint font-medium">
+          <p className="text-[10px] uppercase text-text-faint font-medium tracking-[-0.015em]">
             Received
           </p>
-          <p className="text-sm font-bold font-mono text-text-primary mt-0.5">
-            {entity.received_btc} <span className="text-xs text-text-muted font-normal">BTC</span>
+          <p className="text-sm font-bold font-mono text-text-primary mt-0.5 tabular-nums">
+            {entity.received_btc} <span className="text-xs text-text-muted font-normal tracking-[-0.015em]">BTC</span>
           </p>
         </div>
         <div>
-          <p className="text-[10px] uppercase tracking-wider text-text-faint font-medium">
+          <p className="text-[10px] uppercase text-text-faint font-medium tracking-[-0.015em]">
             Sent
           </p>
-          <p className="text-sm font-bold font-mono text-text-primary mt-0.5">
-            {entity.sent_btc} <span className="text-xs text-text-muted font-normal">BTC</span>
+          <p className="text-sm font-bold font-mono text-text-primary mt-0.5 tabular-nums">
+            {entity.sent_btc} <span className="text-xs text-text-muted font-normal tracking-[-0.015em]">BTC</span>
           </p>
         </div>
         <div>
-          <p className="text-[10px] uppercase tracking-wider text-text-faint font-medium">
+          <p className="text-[10px] uppercase text-text-faint font-medium tracking-[-0.015em]">
             Hops (20 min)
           </p>
-          <p className="text-sm font-bold font-mono text-accent mt-0.5">
+          <p className="text-sm font-bold font-mono text-accent mt-0.5 tabular-nums">
             {entity.hops_20min}
           </p>
         </div>

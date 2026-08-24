@@ -28,7 +28,7 @@ export function Heatmap({ data }) {
         boxShadow: "0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.02)",
       }}
     >
-      <p className="text-[11px] font-medium uppercase tracking-wider text-text-muted mb-3">
+      <p className="text-[11px] font-medium uppercase text-text-muted mb-3 tracking-[-0.015em]">
         Transaction frequency (Wallet A)
       </p>
 
@@ -41,7 +41,7 @@ export function Heatmap({ data }) {
         {days.map((d) => (
           <span
             key={d}
-            className="text-[10px] font-mono text-text-faint text-center w-8"
+            className="text-[10px] font-mono text-text-faint text-center w-8 tracking-[-0.015em]"
           >
             {d}
           </span>
@@ -50,7 +50,7 @@ export function Heatmap({ data }) {
         {/* data rows */}
         {data.map((row) => (
           <div key={`row-${row.label}`} className="contents">
-            <span className="text-[10px] font-mono text-text-faint pr-2 flex items-center">
+            <span className="text-[10px] font-mono text-text-faint pr-2 flex items-center tracking-[-0.015em] tabular-nums">
               {row.label}
             </span>
             {row.values.map((v, ci) => (
@@ -63,7 +63,7 @@ export function Heatmap({ data }) {
         ))}
       </div>
 
-      <p className="mt-3 text-[11px] font-mono text-text-muted">
+      <p className="mt-3 text-[11px] font-mono text-text-muted tracking-[-0.015em]">
         Cluster of activity 11am–1pm, Tue–Fri — feeds anomaly score
       </p>
     </div>
