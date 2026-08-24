@@ -4,15 +4,14 @@ import {
   LayoutDashboard,
   Bell,
   Search,
-  Waypoints,
 } from "lucide-react";
 
 const navItems = [
   { id: "overview", icon: LayoutDashboard, label: "Overview" },
   { id: "alerts", icon: Bell, label: "Alerts" },
   { id: "investigate", icon: Search, label: "Investigate" },
-  { id: "graph", icon: Waypoints, label: "Graph" },
 ];
+
 
 export function Sidebar({
   active = "overview",

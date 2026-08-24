@@ -32,6 +32,6 @@ graph-analytics/data/real/*.json
 graph-analytics/data/real/*.csv
 !graph-analytics/data/real/clean_dataset.json
 
-# Graph mock-data generator
-graph-analytics/src/generate_mock_data.py
-
+# Database
+*.db
+*.sqlite3

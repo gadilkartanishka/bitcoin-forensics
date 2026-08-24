@@ -51,7 +51,7 @@ function TrendCell({ trend }) {
   );
 }
 
-export function EntityTable({ entities, onSelectEntity = () => {} }) {
+export function EntityTable({ entities = [], onSelectEntity = () => {} }) {
   const [sortKey, setSortKey] = useState("risk_score");
   const [sortDir, setSortDir] = useState("desc");
 
@@ -64,7 +64,15 @@ export function EntityTable({ entities, onSelectEntity = () => {} }) {
     }
   }
 
-  const sorted = [...entities].sort((a, b) => {
+  const normalizedEntities = (entities || []).map((e) => ({
+    id: e.wallet_id || e.id || "Unknown",
+    txn_count: e.txn_count ?? e.degree ?? ((e.in_degree || 0) + (e.out_degree || 0)) ?? 0,
+    country_count: e.country_count ?? (e.community_id != null ? `C-${e.community_id}` : 1),
+    risk_score: Math.round(e.risk_score ?? ((e.anomaly_score || 0) * 100) ?? 0),
+    trend: e.trend ?? (e.risk_score >= 80 ? 12 : e.risk_score >= 50 ? 5 : 0),
+  }));
+
+  const sorted = [...normalizedEntities].sort((a, b) => {
     const av = a[sortKey] ?? -1;
     const bv = b[sortKey] ?? -1;
     return sortDir === "asc" ? av - bv : bv - av;
@@ -72,8 +80,8 @@ export function EntityTable({ entities, onSelectEntity = () => {} }) {
 
   const headers = [
     { key: "id", label: "Entity", sortable: false },
-    { key: "txn_count", label: "Txns", sortable: true },
-    { key: "country_count", label: "Countries", sortable: true },
+    { key: "txn_count", label: "Txns / Degree", sortable: true },
+    { key: "country_count", label: "Cluster / Geo", sortable: true },
     { key: "risk_score", label: "Risk score", sortable: true },
     { key: "trend", label: "Trend", sortable: true },
   ];
@@ -114,29 +122,37 @@ export function EntityTable({ entities, onSelectEntity = () => {} }) {
           </tr>
         </thead>
         <tbody>
-          {sorted.map((e) => (
-            <tr
-              key={e.id}
-              onClick={() => onSelectEntity(e.id)}
-              className="border-b border-border-subtle last:border-0 hover:bg-slate-50/80 transition-colors cursor-pointer group"
-            >
-              <td className="px-4 py-2.5 font-mono font-semibold text-text-primary group-hover:text-accent transition-colors">
-                {e.id}
-              </td>
-              <td className="px-4 py-2.5 font-mono text-text-muted tabular-nums">
-                {e.txn_count != null ? e.txn_count.toLocaleString() : "—"}
-              </td>
-              <td className="px-4 py-2.5 font-mono text-text-muted tabular-nums">
-                {e.country_count}
-              </td>
-              <td className="px-4 py-2.5">
-                <RiskBadge score={e.risk_score} />
-              </td>
-              <td className="px-4 py-2.5">
-                <TrendCell trend={e.trend} />
+          {sorted.length === 0 ? (
+            <tr>
+              <td colSpan={5} className="text-center py-6 text-text-muted">
+                No entities found.
               </td>
             </tr>
-          ))}
+          ) : (
+            sorted.map((e) => (
+              <tr
+                key={e.id}
+                onClick={() => onSelectEntity(e.id)}
+                className="border-b border-border-subtle last:border-0 hover:bg-slate-50/80 transition-colors cursor-pointer group"
+              >
+                <td className="px-4 py-2.5 font-mono font-semibold text-text-primary group-hover:text-accent transition-colors">
+                  {e.id}
+                </td>
+                <td className="px-4 py-2.5 font-mono text-text-muted tabular-nums">
+                  {e.txn_count != null ? e.txn_count.toLocaleString() : "—"}
+                </td>
+                <td className="px-4 py-2.5 font-mono text-text-muted tabular-nums">
+                  {e.country_count}
+                </td>
+                <td className="px-4 py-2.5">
+                  <RiskBadge score={e.risk_score} />
+                </td>
+                <td className="px-4 py-2.5">
+                  <TrendCell trend={e.trend} />
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>

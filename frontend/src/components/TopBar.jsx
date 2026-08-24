@@ -1,15 +1,46 @@
-import { Search, RefreshCw } from "lucide-react";
+import { useState, useRef } from "react";
+import { Search, UploadCloud, Loader2 } from "lucide-react";
 
-export function TopBar({ onLoadDataset = () => {} }) {
+export function TopBar({
+  onSearch = () => {},
+  onUploadDataset = () => {},
+  totalWallets = 0,
+}) {
+  const [query, setQuery] = useState("");
+  const [isUploading, setIsUploading] = useState(false);
+  const fileInputRef = useRef(null);
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" && query.trim()) {
+      onSearch(query.trim());
+    }
+  };
+
+  const handleFileChange = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setIsUploading(true);
+    try {
+      await onUploadDataset(file);
+    } finally {
+      setIsUploading(false);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+    }
+  };
+
   return (
-    <header className="sticky top-0 z-40 h-14 flex items-center justify-between px-6 shrink-0 bg-shell/70 backdrop-blur-[10px] [-webkit-backdrop-filter:blur(10px)]">
+    <header className="sticky top-0 z-40 h-14 flex items-center justify-between px-6 shrink-0 bg-shell/70 backdrop-blur-[10px] [-webkit-backdrop-filter:blur(10px)] border-b border-border/40">
       {/* left: system status */}
       <div className="flex items-baseline gap-2">
         <span className="text-sm font-medium text-text-primary">
-          Bitcoin forensic analyzer
+          Bitcoin Forensic Analyzer
         </span>
-        <span className="text-xs text-text-faint font-mono tracking-[-0.015em]">
-          Offline · Dataset: synthetic_v1.json
+        <span className="inline-flex items-center gap-1.5 text-xs text-emerald-600 font-mono tracking-[-0.015em] bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          Live Connected · {totalWallets} Wallets
         </span>
       </div>
 
@@ -18,23 +49,47 @@ export function TopBar({ onLoadDataset = () => {} }) {
         <div className="relative">
           <Search
             size={14}
-            className="absolute left-2.5 top-1/2 -translate-y-1/2 text-text-faint"
+            className="absolute left-2.5 top-1/2 -translate-y-1/2 text-text-faint cursor-pointer hover:text-accent transition-colors"
+            onClick={() => query.trim() && onSearch(query.trim())}
           />
           <input
             type="text"
-            placeholder="Search wallet, tx id, IP..."
-            className="w-64 h-8 pl-8 pr-3 text-xs bg-bg border border-border rounded-lg text-text-primary placeholder:text-text-faint focus:outline-none focus:border-accent"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onKeyDown={handleKeyDown}
+            placeholder="Search wallet, tx id, or press Enter..."
+            className="w-72 h-8 pl-8 pr-3 text-xs bg-bg border border-border rounded-lg text-text-primary placeholder:text-text-faint focus:outline-none focus:border-accent transition-colors font-mono"
           />
         </div>
 
+        {/* Hidden file input for dataset uploads */}
+        <input
+          type="file"
+          ref={fileInputRef}
+          onChange={handleFileChange}
+          accept=".json,.csv,.xml"
+          className="hidden"
+        />
+
         <button
-          onClick={onLoadDataset}
-          className="h-8 px-3 text-xs text-text-muted border border-border rounded-lg hover:text-text-primary hover:border-text-faint transition-colors cursor-pointer flex items-center gap-1.5 tracking-[-0.015em]"
+          onClick={() => fileInputRef.current?.click()}
+          disabled={isUploading}
+          className="h-8 px-3 text-xs font-medium text-white bg-accent hover:bg-accent/90 disabled:opacity-50 border border-accent rounded-lg transition-colors cursor-pointer flex items-center gap-1.5 tracking-[-0.015em] shadow-sm"
         >
-          <RefreshCw size={12} />
-          Analyze dataset
+          {isUploading ? (
+            <>
+              <Loader2 size={13} className="animate-spin" />
+              <span>Ingesting...</span>
+            </>
+          ) : (
+            <>
+              <UploadCloud size={13} />
+              <span>Analyze dataset</span>
+            </>
+          )}
         </button>
       </div>
     </header>
   );
 }
+

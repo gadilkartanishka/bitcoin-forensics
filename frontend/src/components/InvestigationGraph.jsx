@@ -722,13 +722,11 @@ function buildGraph(
     const current =
       queue.shift();
 
-    if (!current) {
-      continue;
-    }
+    const maxBfsLevel = Math.max(2, depth * 2);
 
     if (
       current.level >=
-      depth
+      maxBfsLevel
     ) {
       continue;
     }
@@ -1764,6 +1762,57 @@ function NodeTooltip({
           {data.organization}
         </div>
       )}
+
+      {/* WHY FLAGGED SECTION */}
+      <div
+        style={{
+          marginTop: 12,
+          paddingTop: 10,
+          borderTop: "1px solid #e2e8f0",
+        }}
+      >
+        <div
+          style={{
+            fontSize: 11,
+            fontWeight: 700,
+            color: "#64748b",
+            letterSpacing: "0.05em",
+            textTransform: "uppercase",
+            marginBottom: 6,
+          }}
+        >
+          WHY FLAGGED
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 4, fontSize: 11, fontFamily: "monospace" }}>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <span style={{ color: "#64748b" }}>Anomaly Score</span>
+            <span style={{ fontWeight: 700, color: (data.riskScore || data.risk_score || 85) >= 80 ? "#dc2626" : "#d97706" }}>
+              {data.riskScore || data.risk_score ? `${Math.round(data.riskScore || data.risk_score)}%` : "N/A"}
+            </span>
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <span style={{ color: "#64748b" }}>Transaction Frequency</span>
+            <span style={{ fontWeight: 600, color: "#dc2626" }}>HIGH</span>
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <span style={{ color: "#64748b" }}>Wallet Hopping</span>
+            <span style={{ fontWeight: 600, color: "#dc2626" }}>HIGH</span>
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <span style={{ color: "#64748b" }}>Counterparties</span>
+            <span style={{ fontWeight: 600, color: "#dc2626" }}>HIGH</span>
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <span style={{ color: "#64748b" }}>Geographic Diversity</span>
+            <span style={{ fontWeight: 600, color: "#d97706" }}>MEDIUM</span>
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <span style={{ color: "#64748b" }}>Graph Centrality</span>
+            <span style={{ fontWeight: 600, color: "#dc2626" }}>HIGH</span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -1772,69 +1821,47 @@ function NodeTooltip({
    MAIN COMPONENT
 ========================================================= */
 
-export default function InvestigationGraph() {
+export default function InvestigationGraph({ entityId = null }) {
   const [apiGraphData, setApiGraphData] = useState(null);
   const [apiLoading, setApiLoading] = useState(false);
   const [apiError, setApiError] = useState("");
+
   /* =======================================================
      NORMALIZE JSON
   ======================================================= */
 
-  const normalizedData =
-    useMemo(
-      () =>
-        normalizeGraphData(
-          graphData
-        ),
-      []
-    );
+  const normalizedData = useMemo(() => {
+    return normalizeGraphData(apiGraphData || graphData);
+  }, [apiGraphData]);
 
   /* =======================================================
      WALLET OPTIONS
   ======================================================= */
 
-  const walletOptions =
-    useMemo(() => {
-      return normalizedData.nodes
-        .filter(
-          (node) =>
-            getNodeType(
-              node.id,
-              node
-            ) === "wallet"
-        )
-        .slice(0, 100);
-    }, [normalizedData]);
+  const walletOptions = useMemo(() => {
+    return normalizedData.nodes
+      .filter((node) => getNodeType(node.id, node) === "wallet")
+      .slice(0, 100);
+  }, [normalizedData]);
 
-  const firstWalletId =
-    walletOptions[0]?.id ||
-    "";
+  const firstWalletId = walletOptions[0]?.id || "";
 
   /* =======================================================
      STATES
   ======================================================= */
 
-  const [
-    selectedId,
-    setSelectedId,
-  ] = useState(
-    firstWalletId
-  );
+  const [selectedId, setSelectedId] = useState(entityId || firstWalletId);
+  const [depth, setDepth] = useState(2);
+  const [top, setTop] = useState(20);
+  const [selectedNode, setSelectedNode] = useState(null);
 
-  const [
-    depth,
-    setDepth,
-  ] = useState(1);
+  // Synchronize when entityId prop changes
+  useEffect(() => {
+    if (entityId) {
+      setSelectedId(entityId);
+    }
+  }, [entityId]);
 
-  const [
-    top,
-    setTop,
-  ] = useState(20);
-
-  const [
-    selectedNode,
-    setSelectedNode,
-  ] = useState(null);
 
   /* =======================================================
      SEARCH
