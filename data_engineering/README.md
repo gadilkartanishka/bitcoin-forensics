@@ -7,8 +7,7 @@ Input: files in /raw (CSV, JSON, XML)
 Output: output/clean_dataset.json
 
 Schema: see schema example in team doc / this README.
-Known limitations: GeoIP currently uses placeholder data (Option B) —
-swap geoip.py for MaxMind lookups (Option A) when time allows.
+
 ## How to use this module
 
 ### Setup
@@ -20,6 +19,11 @@ venv\Scripts\activate
 
 pip install -r requirements.txt
 
+3. GeoIP setup (real MaxMind data, not placeholder):
+Create `data_engineering/geoip_data/` and download `GeoLite2-City.mmdb`
+and `GeoLite2-ASN.mmdb` from your own MaxMind account (free signup at
+maxmind.com). Drop both files into that folder. These are gitignored —
+each dev grabs their own copy, they're not committed.
 
 ### Running the pipeline
 Input files (CSV/JSON/XML) go in `raw/`. Run:
