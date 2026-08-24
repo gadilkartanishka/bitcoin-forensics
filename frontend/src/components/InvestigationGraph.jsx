@@ -1773,6 +1773,9 @@ function NodeTooltip({
 ========================================================= */
 
 export default function InvestigationGraph() {
+  const [apiGraphData, setApiGraphData] = useState(null);
+  const [apiLoading, setApiLoading] = useState(false);
+  const [apiError, setApiError] = useState("");
   /* =======================================================
      NORMALIZE JSON
   ======================================================= */

@@ -22,7 +22,7 @@ function App() {
   const [showEntry, setShowEntry] = useState(true);
 
   if (showEntry) {
-    return <EntryScreen onEnter={() => setShowEntry(false)} />;
+    return <EntryScreen onLoadDataset={() => setShowEntry(false)} />;
   }
 
   const topEntity = entities[0];
