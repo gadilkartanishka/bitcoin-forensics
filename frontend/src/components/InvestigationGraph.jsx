@@ -1896,8 +1896,14 @@ export default function InvestigationGraph({ entityId = null }) {
     const scoreKeys = Object.keys(walletScores);
 
     data.nodes = data.nodes.map((node) => {
-      // Skip if already has a valid score
-      if (node.riskScore != null && node.riskScore > 0) return node;
+      // Prioritize explicit score on the node if present
+      const preScore = node.riskScore ?? node.risk_score ?? (node.anomaly_score != null ? Math.round(node.anomaly_score * 100) : null);
+      if (preScore != null && preScore > 0) {
+        return {
+          ...node,
+          riskScore: preScore,
+        };
+      }
 
       // Try to match by node id (strip "wallet:" prefix if present)
       const rawId = String(node.id || "").replace(/^wallet:/, "");
@@ -1919,10 +1925,10 @@ export default function InvestigationGraph({ entityId = null }) {
       if (nodeType === "wallet") {
         const degree = node.degree ?? node.in_degree ?? 0;
         const community = node.community_id ?? node.communityId;
-        // Heuristic: high degree + large community = higher risk
-        const degreeScore = Math.min(degree * 8, 50);
-        const communityScore = community != null ? 25 : 10;
-        const baseScore = Math.min(degreeScore + communityScore + 15, 100);
+        // Heuristic: moderate baseline avoiding saturated 100s
+        const degreeScore = Math.min(degree * 6, 40);
+        const communityScore = community != null ? 15 : 5;
+        const baseScore = Math.min(degreeScore + communityScore + 10, 85);
         return {
           ...node,
           riskScore: baseScore,
@@ -1940,9 +1946,13 @@ export default function InvestigationGraph({ entityId = null }) {
   ======================================================= */
 
   const walletOptions = useMemo(() => {
-    return normalizedData.nodes
-      .filter((node) => getNodeType(node.id, node) === "wallet")
-      .slice(0, 100);
+    const wallets = normalizedData.nodes
+      .filter((node) => getNodeType(node.id, node) === "wallet");
+    return [...wallets].sort((a, b) => {
+      const scoreA = a.riskScore ?? a.risk_score ?? 0;
+      const scoreB = b.riskScore ?? b.risk_score ?? 0;
+      return scoreB - scoreA;
+    }).slice(0, 100);
   }, [normalizedData]);
 
   const firstWalletId = walletOptions[0]?.id || "";

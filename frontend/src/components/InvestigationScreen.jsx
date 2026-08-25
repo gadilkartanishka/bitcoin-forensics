@@ -163,37 +163,49 @@ export function InvestigationScreen({
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2.5 mt-1">
           {entity.evidence && entity.evidence.length > 0 ? (
-            entity.evidence.map((item, idx) => (
-              <div
-                key={idx}
-                className="flex items-center justify-between gap-3 p-2.5 rounded-lg bg-shell/50 border border-border-subtle/80"
-              >
-                <div className="flex items-start gap-2.5 min-w-0">
-                  <CheckCircle2
-                    size={15}
-                    className="text-accent shrink-0 mt-0.5"
-                    strokeWidth={2}
-                  />
-                  <span className="text-xs text-text-primary leading-snug tracking-[-0.015em]">
-                    {item.text || item}
-                  </span>
-                </div>
+            entity.evidence.map((item, idx) => {
+              const title = item.title || item.headline || (typeof item === "string" ? item : item.text);
+              const technical = item.technical || item.subtext || (item.text && item.text !== title ? item.text : null);
 
-                {item.weight != null && (
-                  <div className="flex items-center gap-2 shrink-0">
-                    <div className="w-16 h-1.5 bg-shell rounded-full overflow-hidden">
-                      <div
-                        className="h-full bg-accent"
-                        style={{ width: `${item.weight}%` }}
-                      />
+              return (
+                <div
+                  key={idx}
+                  className="flex items-center justify-between gap-3 p-2.5 rounded-lg bg-shell/50 border border-border-subtle/80"
+                >
+                  <div className="flex items-start gap-2.5 min-w-0">
+                    <CheckCircle2
+                      size={15}
+                      className="text-accent shrink-0 mt-0.5"
+                      strokeWidth={2}
+                    />
+                    <div className="flex flex-col gap-0.5 min-w-0">
+                      <span className="text-xs font-semibold text-text-primary leading-snug tracking-[-0.015em]">
+                        {title}
+                      </span>
+                      {technical && (
+                        <span className="text-[10.5px] font-mono text-text-muted leading-tight tracking-tight">
+                          {technical}
+                        </span>
+                      )}
                     </div>
-                    <span className="text-[10px] font-mono text-text-faint w-7 text-right tabular-nums">
-                      {item.weight}%
-                    </span>
                   </div>
-                )}
-              </div>
-            ))
+
+                  {item.weight != null && (
+                    <div className="flex items-center gap-2 shrink-0 self-center">
+                      <div className="w-16 h-1.5 bg-shell rounded-full overflow-hidden border border-border/30">
+                        <div
+                          className="h-full bg-accent"
+                          style={{ width: `${item.weight}%` }}
+                        />
+                      </div>
+                      <span className="text-[10px] font-mono text-text-faint w-7 text-right tabular-nums">
+                        {item.weight}%
+                      </span>
+                    </div>
+                  )}
+                </div>
+              );
+            })
           ) : (
             <p className="text-xs font-mono text-text-muted py-2">
               No critical anomaly indicators detected for this entity.

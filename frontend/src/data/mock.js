@@ -176,11 +176,11 @@ export const investigationDetails = {
       hops_20min: 9,
     },
     evidence: [
-      { text: "Direct downstream receiver from top flagged entity bc1q...a92f", weight: 92 },
-      { text: "Rapid intermediary forwarding with under 2-minute holding time", weight: 88 },
-      { text: "Split-routing across 3 international exit points", weight: 76 },
-      { text: "Known mixing service deposit address pattern", weight: 69 },
-      { text: "Multi-input transaction clustering detected", weight: 61 },
+      { title: "Direct Downstream Fund Receiver", technical: "Direct receiver from top flagged entity bc1q...a92f", weight: 92 },
+      { title: "High-Velocity Peeling Intermediary", technical: "Rapid forwarding with under 2-minute holding time", weight: 88 },
+      { title: "Multi-Jurisdiction Exit Routing", technical: "Split-routing across 3 international exit points (Tor/VPN nodes)", weight: 76 },
+      { title: "Mixing Pool Deposit Pattern", technical: "Known CoinJoin mixing service deposit address pattern", weight: 69 },
+      { title: "Syndicate Co-Spending Cluster", technical: "Multi-input transaction clustering detected (Louvain Community)", weight: 61 },
     ],
     related_entities: [
       { id: "bc1q...a92f", type: "wallet", risk_score: 97, role: "Upstream Source" },
